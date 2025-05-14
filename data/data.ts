@@ -65,25 +65,32 @@ export const projectsData = [
   {
     title: 'Twitter Clone',
     description:
-      'It was Clone of Twitter Website Build using Bootstrap fully responsive Which was build in Internship at Narsun Studios',
+      'It was a clone of the Twitter website built using Bootstrap. Fully responsive and developed during my internship at Narsun Studios.',
     tags: ['HTML', 'CSS', 'Bootstrap'],
     imageUrl: Twitter,
+    url: 'https://osamaayub.github.io/TwitterClone/',
+    github: 'https://github.com/osamaayub/TwitterClone',
   },
   {
     title: 'Portfolio',
     description:
-      'Portfolio website built using Three.js and Framer Motion to showcase the work',
+      'Portfolio website built using Three.js and Framer Motion to showcase my work interactively.',
     tags: ['React', 'TypeScript', 'Tailwind', 'Three.js', 'Framer Motion'],
     imageUrl: portfolio,
+    url: 'https://osamaayubportfoliowebsite.netlify.app/',
+    github: 'https://github.com/osamaayub/3D-Developer-Portfolio',
   },
   {
     title: 'JobLane',
     description:
-      'JobLane is a job portal built with the MERN stack that allows job seekers to browse and apply for jobs, while employers can post job openings and manage applications.',
+      'JobLane is a job portal built with the MERN stack. Job seekers can browse and apply for jobs, and employers can post openings and manage applications.',
     tags: ['React', 'Node', 'Express', 'Tailwind', 'MongoDB'],
     imageUrl: JobLane,
+    url: '', // Add live link if you deploy it
+    github: 'https://github.com/osamaayub/JobLane',
   },
 ] as const;
+
 
 export const skillsData = [
   'HTML',
