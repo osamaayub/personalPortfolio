@@ -45,14 +45,28 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
             ))}
           </ul>
 
-          <div className='mt-4 flex gap-4 flex-wrap'>
+          <div className='mt-4 flex gap-2 flex-wrap items-center text-sm'>
             {url && (
               <a
                 href={url}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition-all duration-300'
+                className='inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-all duration-300'
               >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth='1.5'
+                  stroke='currentColor'
+                  className='w-4 h-4'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M12 4.5v15m7.5-7.5h-15'
+                  />
+                </svg>
                 Live Demo
               </a>
             )}
@@ -61,8 +75,16 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
                 href={github}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded hover:bg-gray-900 transition-all duration-300'
+                className='inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition-all duration-300'
               >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 24 24'
+                  className='w-4 h-4'
+                >
+                  <path d='M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.77-1.35-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.85 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0C16.7 5.1 17.7 5.42 17.7 5.42c.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.62-2.8 5.64-5.47 5.94.43.37.81 1.1.81 2.23v3.3c0 .32.21.69.83.58A12 12 0 0012 0z' />
+                </svg>
                 GitHub
               </a>
             )}
