@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef } from 'react';
@@ -7,7 +8,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 type ProjectProps = (typeof projectsData)[number];
 
-const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
+const Project = ({ title, description, tags, imageUrl, url, github }: ProjectProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -31,6 +32,7 @@ const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
           <p className='mt-2 leading-relaxed text-gray-700 dark:text-white/70'>
             {description}
           </p>
+
           <ul className='flex flex-wrap mt-4 gap-2 sm:mt-auto'>
             {tags.map((tag, index) => (
               <li
@@ -41,6 +43,30 @@ const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
               </li>
             ))}
           </ul>
+
+          {/* Buttons */}
+          <div className='mt-4 flex gap-4'>
+            {url && (
+              <a
+                href={url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition-all duration-300'
+              >
+                Live Demo
+              </a>
+            )}
+            {github && (
+              <a
+                href={github}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded hover:bg-gray-900 transition-all duration-300'
+              >
+                GitHub
+              </a>
+            )}
+          </div>
         </div>
 
         <Image
@@ -48,20 +74,21 @@ const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
           alt='Project I worked on'
           quality={95}
           className='absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl
-        transition 
-        group-hover:scale-[1.04]
-        group-hover:-translate-x-3
-        group-hover:translate-y-3
-        group-hover:-rotate-2
+            transition  
+            group-hover:scale-[1.04]
+            group-hover:-translate-x-3
+            group-hover:translate-y-3
+            group-hover:-rotate-2
 
-        group-even:group-hover:translate-x-3
-        group-even:group-hover:translate-y-3
-        group-even:group-hover:rotate-2
+            group-even:group-hover:translate-x-3
+            group-even:group-hover:translate-y-3
+            group-even:group-hover:rotate-2
 
-        group-even:right-[initial] group-even:-left-40'
+            group-even:right-[initial] group-even:-left-40'
         />
       </section>
     </motion.div>
   );
 };
+
 export default Project;
