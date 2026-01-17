@@ -1,7 +1,9 @@
 import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export", // REQUIRED for GitHub Pages
   images: {
+    unoptimized: true, // REQUIRED for next/image on GitHub Pages
     remotePatterns: [
       {
         protocol: "https",
