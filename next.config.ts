@@ -1,5 +1,6 @@
-import {NextConfig} from "next"
-const nextConfig:NextConfig = {
+import { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -7,9 +8,6 @@ const nextConfig:NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
-  },
-  experimental: {
-    serverActions:{}
   },
 };
 
