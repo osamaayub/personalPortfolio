@@ -1,4 +1,5 @@
-"use client"
+"use server";
+
 import React from "react";
 import { Resend } from "resend";
 import { validateString, getErrorMessage } from "@/lib/utils";
