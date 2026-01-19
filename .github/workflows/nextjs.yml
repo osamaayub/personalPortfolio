@@ -1,5 +1,5 @@
-# .github/workflows/deploy-nextjs.yml
-name: Deploy Next.js site to GitHub Pages
+# .github/workflows/deploy-nextjs-to-pages.yml
+name: Deploy Next.js Site to GitHub Pages (Static Only)
 
 on:
   push:
@@ -20,75 +20,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Detect package manager
-      - name: Detect package manager
-        id: detect-package-manager
-        run: |
-          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=yarn" >> $GITHUB_OUTPUT
-          elif [ -f "${{ github.workspace }}/package.json" ]; then
-            echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=ci" >> $GITHUB_OUTPUT
-            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
-          else
-            echo "Unable to determine package manager"
-            exit 1
-          fi
-
-      # 3. Setup Node.js
-      - name: Setup Node
+      # 2️⃣ Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
 
-      # 4. Configure GitHub Pages
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: next
-
-      # 5. Restore Next.js cache
-      - name: Restore cache
-        uses: actions/cache@v4
-        with:
-          path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
-
-      # 6. Install dependencies
+      # 3️⃣ Install dependencies
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: npm ci
 
-      # 7. Build Next.js site
+      # 4️⃣ Build Next.js site
       - name: Build Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: npm run build
 
-      # 8. Export static HTML for GitHub Pages
-      - name: Export Next.js site
-        run: ${{ steps.detect-package-manager.outputs.runner }} next export
+      # 5️⃣ Export static HTML (required for GitHub Pages)
+      - name: Export static site
+        run: npm run export
 
-      # 9. Upload artifact for deployment
+      # 6️⃣ Upload static site artifact
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./out   # 'next export' output folder
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # Deploy to GitHub Pages
+      # 7️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
