@@ -40,6 +40,8 @@ export const experiencesData = [
     location: 'SensViz Lahore, Pk',
     description: "I’m a Junior Software Engineer and aspiring Full-Stack Developer with hands-on experience in the MERN stack. I build responsive, performance-driven web applications with clean UI and maintainable backend logic. I’m passionate about learning, writing readable code, and applying best practices to deliver reliable software solutions.",
     date: 'AUG 2025 - present',
+    icon: React.createElement(CgWorkAlt),
+
 
   },
   {
