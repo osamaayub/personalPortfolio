@@ -1,15 +1,15 @@
+// app/api/send-email/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { validateString, getErrorMessage } from "@/lib/utils";
 import ContactFormEmail from "@/email/contact-form-email";
 import React from "react";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
-
 export async function POST(req: NextRequest) {
   try {
     const { senderEmail, message } = await req.json();
 
+    // Input validation
     if (!validateString(senderEmail, 500)) {
       return NextResponse.json({ error: "Invalid sender email" }, { status: 400 });
     }
@@ -17,6 +17,14 @@ export async function POST(req: NextRequest) {
     if (!validateString(message, 5000)) {
       return NextResponse.json({ error: "Invalid message" }, { status: 400 });
     }
+
+    // ✅ Lazy-load Resend at runtime
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: "Missing RESEND_API_KEY" }, { status: 500 });
+    }
+
+    const resend = new Resend(apiKey);
 
     const data = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
