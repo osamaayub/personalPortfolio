@@ -5,43 +5,49 @@ import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/hooks/hooks";
 
-const About=()=> {
+const About = () => {
   const { ref } = useSectionInView("About");
+
   return (
     <motion.section
       ref={ref}
-      className=" mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
+      className="mb-28 max-w-[45rem] scroll-mt-28 text-center leading-8 sm:mb-40"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.175 }}
-      id="about">
+      id="about"
+    >
       <SectionHeading>About me</SectionHeading>
+
       <p className="mb-3">
-        After graduating with a degree in{" "}
-        <span className="font-medium">Computer Science</span>, I decided to pursue my
-        passion for web development. I enrolled in a coding bootcamp and learned{" "}
-        <span className="font-medium">full-stack web development</span>.{" "}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I 
-        <span className="underline">love</span>
-         the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{" "}
+        I’m a <span className="font-medium">Junior Software Engineer</span> with{" "}
+        <span className="font-medium">6 months of hands-on industry experience</span>{" "}
+        building and maintaining modern web applications. I specialize in{" "}
+        <span className="font-medium">MERN stack development</span> and enjoy
+        creating scalable, maintainable, and user-focused solutions.
+      </p>
+
+      <p className="mb-3">
+        My core stack includes{" "}
         <span className="font-medium">
-          React, Next.js, Node.js, and MongoDB
+          React, Next.js, Node.js, MongoDB, and TypeScript
         </span>
-        . I am also familiar with TypeScript and Mernstack. I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">full-time position</span> as a software
-        developer.
+        . I have experience working with REST APIs, Redux, authentication flows,
+        reusable components, and backend business logic.{" "}
+        <span className="italic">
+          Problem-solving and improving existing systems
+        </span>{" "}
+        are the aspects of development I enjoy the most.
       </p>
 
       <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        video games, watching movies, and hang out with friends. I also enjoy{" "}
-        <span className="font-medium">learning new things</span>.
+        When I’m not coding, I enjoy playing video games, watching movies, and
+        spending time with friends. I also enjoy{" "}
+        <span className="font-medium">learning new technologies</span> and
+        continuously improving my skills as a full-stack developer.
       </p>
     </motion.section>
   );
-}
+};
+
 export default About;
