@@ -7,8 +7,8 @@ import SectionHeading from "./section-heading";
 import SubmitBtn from "./submit-btn";
 import { useSectionInView } from "@/hooks/hooks";
 
-// Toggle this to true to test without Resend API key
-const USE_MOCK_API = true;
+
+const USE_MOCK_API = false;
 
 const Contact = () => {
   const { ref } = useSectionInView("Contact");
@@ -26,8 +26,8 @@ const Contact = () => {
       let result;
 
       if (USE_MOCK_API) {
-        // Mock response for local testing
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // simulate network delay
+       
+        await new Promise((resolve) => setTimeout(resolve, 1000)); 
         result = { success: true, data: { id: "mock-email" } };
       } else {
         const response = await fetch("/api/send-email", {
@@ -36,7 +36,6 @@ const Contact = () => {
           body: JSON.stringify({ senderEmail, message }),
         });
 
-        // parse JSON safely
         try {
           result = await response.json();
         } catch {

@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   try {
     const { senderEmail, message } = await req.json();
 
-    // Input validation
+    
     if (!validateString(senderEmail, 500)) {
       return NextResponse.json({ error: "Invalid sender email" }, { status: 400 });
     }
@@ -18,16 +18,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid message" }, { status: 400 });
     }
 
-    // ✅ Lazy-load Resend at runtime
     const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ error: "Missing RESEND_API_KEY" }, { status: 500 });
-    }
+     if (!apiKey) {
+  return NextResponse.json(
+    { error: "Resend API key not configured" },
+    { status: 500 }
+  );
+}
 
     const resend = new Resend(apiKey);
 
     const data = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: 'Acme <onboarding@resend.dev>',
       to: "ayubosama416@gmail.com",
       subject: "Message from contact form",
       react: React.createElement(ContactFormEmail, { senderEmail, message }),
