@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(apiKey);
 
     const data = await resend.emails.send({
-      from: 'Acme <onboarding@resend.dev>',
+      from: "onboarding@resend.dev",
       to: "ayubosama416@gmail.com",
       subject: "Message from contact form",
       react: React.createElement(ContactFormEmail, { senderEmail, message }),
