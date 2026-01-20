@@ -28,7 +28,7 @@ const Intro = () => {
             transition={{ type: "tween", duration: 0.2 }}
           >
             <Image
-              src="/personal.jpg"
+              src="./personal.jpg"
               alt="Osama Ayub portrait"
               width={192}
               height={192}
