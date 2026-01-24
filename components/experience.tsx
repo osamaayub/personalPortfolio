@@ -11,7 +11,7 @@ import { experiencesData } from "@/data/data";
 import { useSectionInView } from "@/hooks/hooks";
 import { useTheme } from "@/context/theme-context";
 
- const  Experience=()=>{
+const Experience = () => {
   const { ref } = useSectionInView("Experience");
   const { theme } = useTheme();
 
@@ -37,11 +37,26 @@ import { useTheme } from "@/context/theme-context";
                     : "0.4rem solid rgba(255, 255, 255, 0.5)",
               }}
               date={item.date}
-              icon={item.icon}
+              icon={
+                item.logo ? (
+                  <img
+                    src={item.logo.src}
+                    alt={`${item.title} logo`}
+                    className="w-8 h-8 object-contain"
+                  />
+                ) : (
+                  <item.icon size={24} />
+                )
+              }
               iconStyle={{
                 background:
                   theme === "light" ? "white" : "rgba(255, 255, 255, 0.15)",
-                fontSize: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                borderRadius: "50%",
+                padding: "4px",
               }}
             >
               <h3 className="font-semibold capitalize">{item.title}</h3>
@@ -55,5 +70,5 @@ import { useTheme } from "@/context/theme-context";
       </VerticalTimeline>
     </section>
   );
-}
+};
 export default Experience;

@@ -1,89 +1,67 @@
-import React from 'react';
 import { CgWorkAlt } from 'react-icons/cg';
 import { FaReact } from 'react-icons/fa';
-import { LuGraduationCap } from 'react-icons/lu';
 import Twitter from '@/public/Twitter.png';
 import portfolio from '@/public/3dportfolio.png';
 import JobLane from "@/public/jobLane.png";
-
-
+import Favicon from "@/public/Equigenix.png"
+import Sensviz from '@/public/sensviz.jpeg'
+import Ifatech from '@/public/Ifatech.jpeg'
+import Narsun from "@/public/Narsun.jpeg"
 export const links = [
-  {
-    name: 'Home',
-    hash: '#home',
-  },
-  {
-    name: 'About',
-    hash: '#about',
-  },
-  {
-    name: 'Projects',
-    hash: '#projects',
-  },
-  {
-    name: 'Skills',
-    hash: '#skills',
-  },
-  {
-    name: 'Experience',
-    hash: '#experience',
-  },
-  {
-    name: 'Contact',
-    hash: '#contact',
-  },
+  { name: 'Home', hash: '#home' },
+  { name: 'About', hash: '#about' },
+  { name: 'Projects', hash: '#projects' },
+  { name: 'Skills', hash: '#skills' },
+  { name: 'Experience', hash: '#experience' },
+  { name: 'Contact', hash: '#contact' },
 ] as const;
 
 export const experiencesData = [
   {
     title: 'Junior Software Engineer',
-    location: 'SensViz Lahore, Pk',
+    location: 'SensViz, Lahore, PK',
     description: "I’m a Junior Software Engineer and aspiring Full-Stack Developer with hands-on experience in the MERN stack. I build responsive, performance-driven web applications with clean UI and maintainable backend logic. I’m passionate about learning, writing readable code, and applying best practices to deliver reliable software solutions.",
     date: 'AUG 2025 - present',
-    icon: React.createElement(CgWorkAlt),
-
-
-  },
-  {
-    title: 'MernStack bootcamp',
-    location: 'Lahore, Pk',
-    description:
-      'I graduated after 6 months of studying. I immediately found an internship  as a front-end developer.',
-    icon: React.createElement(LuGraduationCap),
-    date: 'June 2023 - Sep 2023',
+    icon:CgWorkAlt,
+    logo:Sensviz,
   },
   {
     title: 'MERNSTACK Developer',
-    location: 'Narsun Studios,Lahore',
-    description:
-      'I worked as a fullstack developer for 6 months  in 1 job. I also upskilled to the full stack.',
-    icon: React.createElement(CgWorkAlt),
+    location: 'Narsun Studios, Lahore',
+    description: 'I worked as a full-stack developer for 6 months. I also upskilled to become a full-stack developer.',
     date: 'Jan 2024 - Apr 2024',
+    icon: CgWorkAlt,
+    logo:Narsun
   },
   {
     title: 'Full-Stack Developer',
-    location: 'IIFATECH,Lahore',
-    description:
-      "I'm now a full-stack developer working at iifatech. My stack includes React, TypeScript, Tailwind and MongoDB. I'm open to full-time opportunities.",
-    icon: React.createElement(FaReact),
+    location: 'IIFATECH, Lahore',
+    description: "I'm now a full-stack developer working at IIFATECH. My stack includes React, TypeScript, Tailwind, and MongoDB. I'm open to full-time opportunities.",
     date: 'Aug 2024 - Oct 2024',
+    icon: FaReact,
+    logo:Ifatech
   },
 ] as const;
-
 export const projectsData = [
   {
     title: 'Twitter Clone',
-    description:
-      'It was a clone of the Twitter website built using Bootstrap. Fully responsive and developed during my internship at Narsun Studios.',
+    description: 'It was a clone of the Twitter website built using Bootstrap. Fully responsive and developed during my internship at Narsun Studios.',
     tags: ['HTML', 'CSS', 'Bootstrap'],
     imageUrl: Twitter,
     url: 'https://osamaayub.github.io/TwitterClone/',
     github: 'https://github.com/osamaayub/TwitterClone',
   },
   {
+    title: 'EQUIGENIX',
+    description: 'Web platform for Arabian horse judges to train, test, and analyze their performance in show competitions.',
+    tags: ['REACT', 'NODE', 'TYPESCRIPT','MONGODB','EXPRESS','GIT','AWS'],
+    imageUrl: Favicon,
+    url: 'https://app.equijudge.ai/',
+    github :''
+  },
+  {
     title: 'Portfolio',
-    description:
-      'Portfolio website built using Three.js and Framer Motion to showcase my work interactively.',
+    description: 'Portfolio website built using Three.js and Framer Motion to showcase my work interactively.',
     tags: ['React', 'TypeScript', 'Tailwind', 'Three.js', 'Framer Motion'],
     imageUrl: portfolio,
     url: 'https://osamaayubportfoliowebsite.netlify.app/',
@@ -91,15 +69,13 @@ export const projectsData = [
   },
   {
     title: 'JobLane',
-    description:
-      'JobLane is a job portal built with the MERN stack. Job seekers can browse and apply for jobs, and employers can post openings and manage applications.',
+    description: 'JobLane is a job portal built with the MERN stack. Job seekers can browse and apply for jobs, and employers can post openings and manage applications.',
     tags: ['React', 'Node', 'Express', 'Tailwind', 'MongoDB'],
     imageUrl: JobLane,
-    url: '', // Add live link if you deploy it
+    url: '', 
     github: 'https://github.com/osamaayub/JobLane',
   },
 ] as const;
-
 
 export const skillsData = [
   'HTML',
