@@ -1,12 +1,12 @@
 import { CgWorkAlt } from 'react-icons/cg';
 import { FaReact } from 'react-icons/fa';
-import Twitter from '@/public/Twitter.png';
 import portfolio from '@/public/3dportfolio.png';
 import JobLane from "@/public/jobLane.png";
 import Favicon from "@/public/Equigenix.png"
 import Sensviz from '@/public/sensviz.jpeg'
 import Ifatech from '@/public/Ifatech.jpeg'
 import Narsun from "@/public/Narsun.jpeg"
+import HLMS from "@/public/HLMS.png"
 export const links = [
   { name: 'Home', hash: '#home' },
   { name: 'About', hash: '#about' },
@@ -44,19 +44,19 @@ export const experiencesData = [
 ] as const;
 export const projectsData = [
   {
-    title: 'Twitter Clone',
-    description: 'It was a clone of the Twitter website built using Bootstrap. Fully responsive and developed during my internship at Narsun Studios.',
-    tags: ['HTML', 'CSS', 'Bootstrap'],
-    imageUrl: Twitter,
-    url: 'https://osamaayub.github.io/TwitterClone/',
-    github: 'https://github.com/osamaayub/TwitterClone',
+    title: 'Hair Transplant Management System',
+    description:'Hair Transplant Management System is a web application designed to streamline the management of hair transplant clinics. It offers features such as patient registration, appointment scheduling, treatment tracking, and inventory management. The system provides an intuitive interface for clinic staff to efficiently manage patient information, appointments, and treatment plans.',
+    tags: ['React','Node','express','Mongodb'],
+    imageUrl: HLMS,
+    url: '',
+    github: '',
   },
   {
     title: 'EQUIGENIX',
     description: 'Web platform for Arabian horse judges to train, test, and analyze their performance in show competitions.',
     tags: ['REACT', 'NODE', 'TYPESCRIPT','MONGODB','EXPRESS','GIT','AWS'],
     imageUrl: Favicon,
-    url: 'https://app.equijudge.ai/',
+    url: 'https://app.staging.equijudge.ai/',
     github :''
   },
   {
