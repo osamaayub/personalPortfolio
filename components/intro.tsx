@@ -59,13 +59,34 @@ const Intro = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hi, I’m Osama.</span> A{" "}
-        <span className="font-bold">Junior Software Engineer</span> with{" "}
-        <span className="font-bold">6 months of industry experience</span>{" "}
-        building modern <span className="italic">web applications</span>.  
-        My primary focus is{" "}
-        <span className="underline">MERN stack development</span>.
+        <span className="font-bold">Hi, I'm Osama.</span> A{" "}
+        <span className="font-bold">Full-Stack Software Engineer</span> with{" "}
+        <span className="font-bold">1+ year of experience</span> across{" "}
+        <span className="font-bold">3 companies</span> shipping production{" "}
+        <span className="italic">web applications</span>. My primary focus is{" "}
+        <span className="underline">React, Next.js & Node.js</span>.
       </motion.h1>
+
+      {/* Key metrics strip */}
+      <motion.div
+        className="mb-8 flex flex-wrap items-center justify-center gap-4 px-4 text-sm text-gray-600 dark:text-gray-400"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+      >
+        {[
+          "⚡ 30% faster page loads",
+          "📦 25% smaller bundles",
+          "📈 20% longer sessions",
+        ].map((stat) => (
+          <span
+            key={stat}
+            className="rounded-full border border-gray-200 bg-white px-4 py-1.5 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-white/70"
+          >
+            {stat}
+          </span>
+        ))}
+      </motion.div>
 
       <motion.div
         className="flex flex-col items-center justify-center gap-2 px-4 text-lg font-medium sm:flex-row"
