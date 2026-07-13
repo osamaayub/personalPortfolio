@@ -20,6 +20,7 @@ const Intro = () => {
       id="home"
       className="mb-28 max-w-[50rem] scroll-mt-[100rem] text-center sm:mb-0"
     >
+      {/* Profile image */}
       <div className="flex items-center justify-center">
         <div className="relative">
           <motion.div
@@ -54,30 +55,47 @@ const Intro = () => {
         </div>
       </div>
 
+      {/* Headline */}
       <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
+        className="mb-6 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
         <span className="font-bold">Hi, I'm Osama.</span> A{" "}
         <span className="font-bold">Full-Stack Software Engineer</span> with{" "}
-        <span className="font-bold">1+ year of experience</span> across{" "}
-        <span className="font-bold">3 companies</span> shipping production{" "}
-        <span className="italic">web applications</span>. My primary focus is{" "}
-        <span className="underline">React, Next.js & Node.js</span>.
+        <span className="font-bold">1+ year of experience</span> delivering
+        production-ready applications at{" "}
+        <span className="font-bold">SensViz</span>,{" "}
+        <span className="font-bold">Cogilent Solutions</span>, and{" "}
+        <span className="font-bold">IIFATECH</span>. I specialize in{" "}
+        <span className="underline">React, Next.js & Node.js</span>, building
+        scalable systems with clean TypeScript, optimized MongoDB queries, and
+        responsive UIs that match design specs pixel-for-pixel.
       </motion.h1>
+
+      {/* Mission statement */}
+      <motion.p
+        className="mb-8 px-6 text-lg text-gray-600 dark:text-gray-400"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+      >
+        I thrive on building performant, user-friendly web apps that scale —
+        from authentication flows to pixel-perfect UIs.
+      </motion.p>
 
       {/* Key metrics strip */}
       <motion.div
         className="mb-8 flex flex-wrap items-center justify-center gap-4 px-4 text-sm text-gray-600 dark:text-gray-400"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.05 }}
+        transition={{ delay: 0.1 }}
       >
         {[
-          "⚡ 30% faster page loads",
-          "📦 25% smaller bundles",
-          "📈 20% longer sessions",
+          "⚡ Cut page refresh time by 30%",
+          "📦 Reduced bundle size by 25%",
+          "📈 Boosted session duration by 20%",
+          "✅ Dropped post-release defects by 20%",
         ].map((stat) => (
           <span
             key={stat}
@@ -88,11 +106,12 @@ const Intro = () => {
         ))}
       </motion.div>
 
+      {/* Action bar */}
       <motion.div
-        className="flex flex-col items-center justify-center gap-2 px-4 text-lg font-medium sm:flex-row"
+        className="flex flex-wrap items-center justify-center gap-3 px-4 text-lg font-medium"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
+        transition={{ delay: 0.15 }}
       >
         <Link
           href="mailto:osama.ayubwebdev@gmail.com"
