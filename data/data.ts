@@ -2,6 +2,7 @@ import { CgWorkAlt } from 'react-icons/cg';
 import {
   FaDatabase,
   FaLayerGroup,
+  FaMobileAlt,
   FaReact,
   FaServer,
   FaTools,
@@ -55,14 +56,6 @@ export const experiencesData = [
 
 export const servicesData = [
   {
-    title: 'Full-stack product builds',
-    description:
-      'From first wireframe to production deploy—dashboards, portals, and internal tools tailored to your workflow.',
-    highlights: ['MVPs & admin panels', 'Auth & role-based access', 'Deploy-ready delivery'],
-    icon: FaLayerGroup,
-    featured: true,
-  },
-  {
     title: 'Frontend development',
     description:
       'Fast, accessible interfaces that match your brand and feel great on every screen size.',
@@ -77,38 +70,22 @@ export const servicesData = [
     icon: FaServer,
   },
   {
+    title: 'Responsive design',
+    description:
+      'Interfaces that adapt cleanly across mobile, tablet, and desktop without extra rework.',
+    highlights: ['Mobile-first layouts', 'Cross-device testing', 'Consistent UX at every breakpoint'],
+    icon: FaMobileAlt,
+  },
+  {
     title: 'Database & data modeling',
     description:
       'Structured MongoDB schemas and queries that stay maintainable as your product grows.',
     highlights: ['Schema design', 'Indexing & performance', 'Clean integrations'],
     icon: FaDatabase,
   },
-  {
-    title: 'Maintenance & improvements',
-    description:
-      'Extend, fix, and optimize existing React/Node apps without disrupting users.',
-    highlights: ['Bug fixes & refactors', 'Performance tuning', 'Feature additions'],
-    icon: FaTools,
-  },
 ] as const;
 
-export const workProcessSteps = [
-  {
-    step: '01',
-    title: 'Understand',
-    description: 'Goals, users, and constraints—so we build the right thing first.',
-  },
-  {
-    step: '02',
-    title: 'Build',
-    description: 'Iterative development with clear updates and demo-ready milestones.',
-  },
-  {
-    step: '03',
-    title: 'Ship & support',
-    description: 'Polish, deploy, and hand off with docs—or stay on for ongoing work.',
-  },
-] as const;
+
 export const projectsData = [
   {
     title: 'Hair Transplant Management System',

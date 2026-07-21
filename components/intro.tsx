@@ -12,42 +12,48 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 
 const Intro = () => {
   const { ref } = useSectionInView("Home", 0.5);
-  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+  const { setActiveSection, setTimeOfLastClick } =
+    useActiveSectionContext();
+
+  const primaryButton =
+    "flex h-14 items-center justify-center gap-2 rounded-full px-7 font-medium transition-all duration-300 hover:scale-105 active:scale-95";
+
+  const socialButton =
+    "flex h-14 w-14 items-center justify-center rounded-full borderBlack bg-white text-gray-700 shadow-sm transition-all duration-300 hover:scale-110 hover:text-gray-950 dark:bg-white/10 dark:text-white/70";
 
   return (
     <section
       ref={ref}
       id="home"
-      className="mb-28 max-w-[50rem] scroll-mt-[100rem] text-center sm:mb-0"
+      className="mx-auto flex min-h-[90vh] max-w-4xl flex-col items-center justify-center scroll-mt-[100rem] px-4 text-center"
     >
-      {/* Profile image */}
-      <div className="flex items-center justify-center">
+      {/* Profile Image */}
+      <div className="flex justify-center">
         <div className="relative">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "tween", duration: 0.2 }}
+            transition={{ duration: 0.3 }}
           >
             <Image
-              src="./personal.jpg"
-              alt="Osama Ayub portrait"
-              width={192}
-              height={192}
-              quality={95}
+              src="/personal.jpg"
+              alt="Osama Ayub"
+              width={200}
+              height={200}
               priority
-              className="h-24 w-24 rounded-full border-[0.35rem] border-white object-cover shadow-xl"
+              quality={100}
+              className="h-32 w-32 rounded-full border-[5px] border-white object-cover shadow-2xl"
             />
           </motion.div>
 
           <motion.span
-            className="absolute bottom-0 right-0 text-4xl"
+            className="absolute -bottom-1 -right-1 text-4xl"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
+              delay: 0.15,
               type: "spring",
-              stiffness: 125,
-              delay: 0.1,
-              duration: 0.7,
+              stiffness: 180,
             }}
           >
             👋
@@ -55,112 +61,101 @@ const Intro = () => {
         </div>
       </div>
 
-      {/* Headline */}
+      {/* Heading */}
       <motion.h1
-        className="mb-6 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
-        initial={{ opacity: 0, y: 100 }}
+        className="mt-8 max-w-4xl text-3xl font-medium leading-tight sm:text-5xl"
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hi, I'm Osama.</span> A{" "}
-        <span className="font-bold">Full-Stack Software Engineer</span> with{" "}
-        <span className="font-bold">1+ year of experience</span> delivering
-        production-ready applications at{" "}
-        <span className="font-bold">SensViz</span>,{" "}
-        <span className="font-bold">Cogilent Solutions</span>, and{" "}
-        <span className="font-bold">IIFATECH</span>. I specialize in{" "}
-        <span className="underline">React, Next.js & Node.js</span>, building
-        scalable systems with clean TypeScript, optimized MongoDB queries, and
-        responsive UIs that match design specs pixel-for-pixel.
+        Hi, I'm{" "}
+        <span className="font-bold text-gray-900 dark:text-white">
+          Osama Ayub
+        </span>
+        .
+        <br />
+        <span className="mt-2 inline-block">
+          Software Engineer specializing in{" "}
+          <span className="font-bold">
+            React, Next.js, Node.js & TypeScript
+          </span>
+          .
+        </span>
       </motion.h1>
 
-      {/* Mission statement */}
+      {/* Subtitle */}
       <motion.p
-        className="mb-8 px-6 text-lg text-gray-600 dark:text-gray-400"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.05 }}
-      >
-        I thrive on building performant, user-friendly web apps that scale —
-        from authentication flows to pixel-perfect UIs.
-      </motion.p>
-
-      {/* Key metrics strip */}
-      <motion.div
-        className="mb-8 flex flex-wrap items-center justify-center gap-4 px-4 text-sm text-gray-600 dark:text-gray-400"
-        initial={{ opacity: 0, y: 100 }}
+        className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-400"
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        {[
-          "⚡ Cut page refresh time by 30%",
-          "📦 Reduced bundle size by 25%",
-          "📈 Boosted session duration by 20%",
-          "✅ Dropped post-release defects by 20%",
-        ].map((stat) => (
-          <span
-            key={stat}
-            className="rounded-full border border-gray-200 bg-white px-4 py-1.5 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-white/70"
-          >
-            {stat}
-          </span>
-        ))}
-      </motion.div>
+        I build scalable, high-performance web applications using the MERN
+        stack. Passionate about creating clean architecture, intuitive user
+        experiences, and reliable backend systems that solve real-world
+        problems.
+      </motion.p>
 
-      {/* Action bar */}
+      {/* Buttons */}
       <motion.div
-        className="flex flex-wrap items-center justify-center gap-3 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y: 100 }}
+        className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
+        transition={{ delay: 0.2 }}
       >
         <Link
-          href="#services"
-          className="group flex items-center gap-2 rounded-full borderBlack bg-white px-7 py-3 outline-none transition hover:scale-110 focus:scale-110 active:scale-105 dark:bg-white/10"
-          onClick={() => {
-            setActiveSection("Services");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          View services
-          <BsArrowRight className="opacity-70 transition group-hover:translate-x-1" />
-        </Link>
-
-        <Link
-          href="mailto:osama.ayubwebdev@gmail.com"
-          className="group flex items-center gap-2 rounded-full bg-gray-900 px-7 py-3 text-white outline-none transition hover:scale-110 hover:bg-gray-950 focus:scale-110 active:scale-105"
+          href="#contact"
           onClick={() => {
             setActiveSection("Contact");
             setTimeOfLastClick(Date.now());
           }}
+          className={`${primaryButton} bg-gray-900 text-white hover:bg-black`}
         >
-          Contact me
-          <BsArrowRight className="opacity-70 transition group-hover:translate-x-1" />
+          Contact Me
+          <BsArrowRight className="transition-transform group-hover:translate-x-1" />
         </Link>
 
         <Link
           href="/CV.pdf"
           download
-          className="group flex cursor-pointer items-center gap-2 rounded-full borderBlack bg-white px-7 py-3 outline-none transition hover:scale-110 focus:scale-110 active:scale-105 dark:bg-white/10"
+          className={`${primaryButton} border border-black/10 bg-white dark:border-white/10 dark:bg-white/10`}
         >
           Download CV
-          <HiDownload className="opacity-60 transition group-hover:translate-y-1" />
+          <HiDownload className="text-lg" />
         </Link>
 
         <Link
           href="https://www.linkedin.com/in/osama-ayub8889993755979/"
           target="_blank"
-          className="flex items-center gap-2 rounded-full borderBlack bg-white p-4 text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
+          rel="noopener noreferrer"
+          className={socialButton}
+          aria-label="LinkedIn"
         >
-          <BsLinkedin />
+          <BsLinkedin size={22} />
         </Link>
 
         <Link
           href="https://github.com/osamaayub"
           target="_blank"
-          className="flex items-center gap-2 rounded-full borderBlack bg-white p-4 text-[1.35rem] text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
+          rel="noopener noreferrer"
+          className={socialButton}
+          aria-label="GitHub"
         >
-          <FaGithubSquare />
+          <FaGithubSquare size={24} />
         </Link>
+      </motion.div>
+
+      {/* Small Stats */}
+      <motion.div
+        className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600 dark:text-gray-400"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.35 }}
+      >
+        <span>💼 1+ Year Experience</span>
+        <span>⚛ React & Next.js</span>
+        <span>🟢 Node.js & Express</span>
+        <span>🍃 MongoDB</span>
+        <span>📍 Islamabad, Pakistan</span>
       </motion.div>
     </section>
   );
