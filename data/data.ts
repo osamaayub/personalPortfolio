@@ -1,5 +1,11 @@
 import { CgWorkAlt } from 'react-icons/cg';
-import { FaReact } from 'react-icons/fa';
+import {
+  FaDatabase,
+  FaLayerGroup,
+  FaReact,
+  FaServer,
+  FaTools,
+} from 'react-icons/fa';
 import portfolio from '@/public/3dportfolio.png';
 import JobLane from "@/public/jobLane.png";
 import Favicon from "@/public/Equigenix.png"
@@ -12,6 +18,7 @@ export const links = [
   { name: 'About', hash: '#about' },
   { name: 'Projects', hash: '#projects' },
   { name: 'Skills', hash: '#skills' },
+  { name: 'Services', hash: '#services' },
   { name: 'Experience', hash: '#experience' },
   { name: 'Contact', hash: '#contact' },
 ] as const;
@@ -20,26 +27,86 @@ export const experiencesData = [
   {
     title: 'Associate Software Engineer',
     location: 'SensViz, Lahore, PK',
-    description: "I’m a Junior Software Engineer and aspiring Full-Stack Developer with hands-on experience in the MERN stack. I build responsive, performance-driven web applications with clean UI and maintainable backend logic. I’m passionate about learning, writing readable code, and applying best practices to deliver reliable software solutions.",
-    date: 'AUG 2025 - JULY 2026',
-    icon:CgWorkAlt,
-    logo:Sensviz,
-  },
-  {
-    title: 'MERNSTACK Developer',
-    location: 'Narsun Studios, Lahore',
-    description: 'I worked as a full-stack developer for 6 months. I also upskilled to become a full-stack developer.',
-    date: 'Jan 2024 - Apr 2024',
+    description:
+      'Built and maintained full-stack web products on the MERN stack. Delivered REST APIs, MongoDB data models, and responsive React interfaces. Collaborated on production features with attention to performance, code quality, and clear UI/UX.',
+    date: 'Aug 2025 - Jul 2026',
     icon: CgWorkAlt,
-    logo:Narsun
+    logo: Sensviz,
   },
   {
     title: 'Full-Stack Developer',
-    location: 'IIFATECH, Lahore',
-    description: "I'm now a full-stack developer working at IIFATECH. My stack includes React, TypeScript, Tailwind, and MongoDB. I'm open to full-time opportunities.",
+    location: 'IIFATECH, Lahore, PK',
+    description:
+      'Developed client-facing applications with React, TypeScript, Tailwind CSS, and MongoDB. Integrated backend services, improved application structure, and shipped features from design through deployment.',
     date: 'Aug 2024 - Oct 2024',
     icon: FaReact,
-    logo:Ifatech
+    logo: Ifatech,
+  },
+  {
+    title: 'MERN Stack Developer',
+    location: 'Narsun Studios, Lahore, PK',
+    description:
+      'Worked across the stack for six months on web applications using React, Node.js, Express, and MongoDB. Gained solid full-stack delivery experience in an agile team environment.',
+    date: 'Jan 2024 - Apr 2024',
+    icon: CgWorkAlt,
+    logo: Narsun,
+  },
+] as const;
+
+export const servicesData = [
+  {
+    title: 'Full-stack product builds',
+    description:
+      'From first wireframe to production deploy—dashboards, portals, and internal tools tailored to your workflow.',
+    highlights: ['MVPs & admin panels', 'Auth & role-based access', 'Deploy-ready delivery'],
+    icon: FaLayerGroup,
+    featured: true,
+  },
+  {
+    title: 'Frontend development',
+    description:
+      'Fast, accessible interfaces that match your brand and feel great on every screen size.',
+    highlights: ['React & Next.js', 'Tailwind & motion', 'Pixel-accurate UI'],
+    icon: FaReact,
+  },
+  {
+    title: 'Backend & REST APIs',
+    description:
+      'Reliable server logic and APIs your frontend (and future mobile apps) can trust.',
+    highlights: ['Node & Express', 'JWT / OAuth', 'Validation & error handling'],
+    icon: FaServer,
+  },
+  {
+    title: 'Database & data modeling',
+    description:
+      'Structured MongoDB schemas and queries that stay maintainable as your product grows.',
+    highlights: ['Schema design', 'Indexing & performance', 'Clean integrations'],
+    icon: FaDatabase,
+  },
+  {
+    title: 'Maintenance & improvements',
+    description:
+      'Extend, fix, and optimize existing React/Node apps without disrupting users.',
+    highlights: ['Bug fixes & refactors', 'Performance tuning', 'Feature additions'],
+    icon: FaTools,
+  },
+] as const;
+
+export const workProcessSteps = [
+  {
+    step: '01',
+    title: 'Understand',
+    description: 'Goals, users, and constraints—so we build the right thing first.',
+  },
+  {
+    step: '02',
+    title: 'Build',
+    description: 'Iterative development with clear updates and demo-ready milestones.',
+  },
+  {
+    step: '03',
+    title: 'Ship & support',
+    description: 'Polish, deploy, and hand off with docs—or stay on for ongoing work.',
   },
 ] as const;
 export const projectsData = [

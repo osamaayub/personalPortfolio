@@ -114,6 +114,18 @@ const Intro = () => {
         transition={{ delay: 0.15 }}
       >
         <Link
+          href="#services"
+          className="group flex items-center gap-2 rounded-full borderBlack bg-white px-7 py-3 outline-none transition hover:scale-110 focus:scale-110 active:scale-105 dark:bg-white/10"
+          onClick={() => {
+            setActiveSection("Services");
+            setTimeOfLastClick(Date.now());
+          }}
+        >
+          View services
+          <BsArrowRight className="opacity-70 transition group-hover:translate-x-1" />
+        </Link>
+
+        <Link
           href="mailto:osama.ayubwebdev@gmail.com"
           className="group flex items-center gap-2 rounded-full bg-gray-900 px-7 py-3 text-white outline-none transition hover:scale-110 hover:bg-gray-950 focus:scale-110 active:scale-105"
           onClick={() => {

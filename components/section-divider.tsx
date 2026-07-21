@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function SectionDivider() {
   return (
     <motion.div
-      className=" my-24 h-16 w-1 rounded-full hidden sm:block dark:bg-opacity-20"
+      className="my-24 hidden h-16 w-1 rounded-full bg-gray-300 sm:block dark:bg-gray-600"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.125 }}

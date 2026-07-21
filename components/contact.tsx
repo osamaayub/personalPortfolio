@@ -58,7 +58,7 @@ const Contact = () => {
     <motion.section
       id="contact"
       ref={ref}
-      className="mb-20 sm:mb-28 w-[min(100%,38rem)] text-center"
+      className="mb-20 w-[min(100%,38rem)] scroll-mt-28 text-center sm:mb-28"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -66,7 +66,7 @@ const Contact = () => {
     >
       <SectionHeading>Contact me</SectionHeading>
 
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
+      <p className="-mt-4 mb-2 text-gray-700 dark:text-white/80">
         Please contact me directly at{" "}
         <a className="underline" href="mailto:osama.ayubwebdev@gmail.com">
           osama.ayubwebdev@gmail.com
@@ -76,7 +76,7 @@ const Contact = () => {
 
       <form className="mt-10 flex flex-col dark:text-black" onSubmit={handleSubmit}>
         <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="h-14 rounded-lg borderBlack px-4 transition-all focus:ring-2 focus:ring-gray-900/10 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 dark:focus:ring-white/20 dark:outline-none"
           name="senderEmail"
           type="email"
           required
@@ -85,7 +85,7 @@ const Contact = () => {
           disabled={submitting}
         />
         <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="my-3 h-52 rounded-lg borderBlack p-4 transition-all focus:ring-2 focus:ring-gray-900/10 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 dark:focus:ring-white/20 dark:outline-none"
           name="message"
           placeholder="Your message"
           required

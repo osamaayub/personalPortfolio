@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Osama Ayub | Personal Portfolio",
-  description: "Osama Ayub is a full-stack developer with 6 months of experience.",
+  description:
+    "Full-stack software engineer specializing in React, Next.js, and Node.js. Available for web development, APIs, and product builds.",
 };
 
 export default function RootLayout({
