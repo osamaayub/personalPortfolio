@@ -127,6 +127,7 @@ export const skillsData = [
   'JavaScript',
   'TypeScript',
   'React',
+  'AI intergeration',
   'Next.js',
   'Node.js',
   'Git',
