@@ -112,12 +112,12 @@ export const projectsData = [
     github: 'https://github.com/osamaayub/3D-Developer-Portfolio',
   },
   {
-    title: 'JobLane',
-    description: 'JobLane is a job portal built with the MERN stack. Job seekers can browse and apply for jobs, and employers can post openings and manage applications.',
-    tags: ['React', 'Node', 'Express', 'Tailwind', 'MongoDB'],
+    title: 'AI Powered Interviewer',
+    description: 'An AI-powered interview platform that simulates real-world interview scenarios and provides automated feedback.',
+    tags: ['Next Js ', 'Vapi', 'Shadcn', 'Tailwind', 'Firebase'],
     imageUrl: JobLane,
-    url: '', 
-    github: 'https://github.com/osamaayub/JobLane',
+    url: 'https://interview-preparation-psi-rosy.vercel.app/sign-in', 
+    github: 'https://github.com/osamaayub/Interview-Preparation',
   },
 ] as const;
 
