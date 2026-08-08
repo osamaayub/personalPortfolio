@@ -8,7 +8,7 @@ import {
   FaTools,
 } from 'react-icons/fa';
 import portfolio from '@/public/3dportfolio.png';
-import JobLane from "@/public/jobLane.png";
+import PrepWise from "@/public/PrepWise.png";
 import Favicon from "@/public/Equigenix.png"
 import Sensviz from '@/public/sensviz.jpeg'
 import Ifatech from '@/public/Ifatech.jpeg'
@@ -115,7 +115,7 @@ export const projectsData = [
     title: 'AI Powered Interviewer',
     description: 'An AI-powered interview platform that simulates real-world interview scenarios and provides automated feedback.',
     tags: ['Next Js ', 'Vapi', 'Shadcn', 'Tailwind', 'Firebase'],
-    imageUrl: JobLane,
+    imageUrl: PrepWise,
     url: 'https://interview-preparation-psi-rosy.vercel.app/sign-in', 
     github: 'https://github.com/osamaayub/Interview-Preparation',
   },
