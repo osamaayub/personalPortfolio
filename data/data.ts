@@ -114,7 +114,7 @@ export const projectsData = [
   {
     title: 'AI Powered Interviewer',
     description: 'An AI-powered interview platform that simulates real-world interview scenarios and provides automated feedback.',
-    tags: ['Next Js ', 'Vapi', 'Shadcn', 'Tailwind', 'Firebase'],
+    tags: ['Next Js ', 'Vapi', 'Shadcn', 'Tailwind', 'Firebase','Google Gemini'],
     imageUrl: PrepWise,
     url: 'https://interview-preparation-psi-rosy.vercel.app/sign-in', 
     github: 'https://github.com/osamaayub/Interview-Preparation',
