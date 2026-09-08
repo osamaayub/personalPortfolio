@@ -12,6 +12,7 @@ import Sensviz from '@/public/sensviz.jpeg';
 import Narsun from "@/public/Narsun.jpeg";
 import HLMS from "@/public/HLMS.png";
 import Cogilent from "@/public/cogilent.jpeg"
+
 export const links = [
   { name: 'Home', hash: '#home' },
   { name: 'About', hash: '#about' },
@@ -24,15 +25,6 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: 'Software Engineer',
-    location: 'Cogilent Solutions, Islamabad, PK',
-    description:
-        'Full-stack development focusing on scalable web applications. Worked on enterprise-level projects using React, Node.js, and modern JavaScript frameworks. Contributed to system architecture, API development, and performance optimization. Collaborated with cross-functional teams to deliver high-quality software solutions that meet business requirements and user needs.',
-    date: 'Feb 2025 - Jan 2026',
-    icon: CgWorkAlt,
-    logo: Cogilent,
-  },
-  {
     title: 'Associate Software Engineer',
     location: 'SensViz, Lahore, PK',
     description:
@@ -40,6 +32,15 @@ export const experiencesData = [
     date: 'Aug 2025 - Jul 2026',
     icon: CgWorkAlt,
     logo: Sensviz,
+  },
+  {
+    title: 'Software Engineer',
+    location: 'Cogilent Solutions, Islamabad, PK',
+    description:
+        'Full-stack development focusing on scalable web applications. Worked on enterprise-level projects using React, Node.js, and modern JavaScript frameworks. Contributed to system architecture, API development, and performance optimization. Collaborated with cross-functional teams to deliver high-quality software solutions that meet business requirements and user needs.',
+    date: 'Feb 2025 - Jan 2026',
+    icon: CgWorkAlt,
+    logo: Cogilent,
   },
   {
     title: 'MERN Stack Developer',
