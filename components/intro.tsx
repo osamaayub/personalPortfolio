@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -35,15 +35,10 @@ const Intro = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <Image
+            <img
               src="/personal.jpg"
               alt="Osama Ayub"
-              width={200}
-              height={200}
-              priority
-              quality={100}
               className="h-32 w-32 rounded-full border-[5px] border-white object-cover shadow-2xl"
-              unoptimized
             />
           </motion.div>
 
