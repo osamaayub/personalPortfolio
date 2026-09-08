@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef } from 'react';
@@ -64,7 +63,7 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    d='M12 4.5v15m7.5-7.5h-15'
+                    d='M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'
                   />
                 </svg>
                 Live Demo
@@ -95,7 +94,7 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
           src={imageUrl}
           alt='Project image'
           quality={95}
-          className='absolute hidden sm:block top-8 -right-40 w-[28rem] rounded-t-lg shadow-2xl transition 
+          className='absolute hidden sm:block top-8 -right-40 w-[28rem] rounded-t-lg shadow-2xl transition
           group-hover:scale-[1.04] group-hover:-translate-x-3 group-hover:translate-y-3 group-hover:-rotate-2
           group-even:group-hover:translate-x-3 group-even:group-hover:translate-y-3 group-even:group-hover:rotate-2
           group-even:right-[initial] group-even:-left-40'
