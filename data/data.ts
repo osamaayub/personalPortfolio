@@ -1,6 +1,5 @@
 import { CgWorkAlt } from 'react-icons/cg';
 import {
-  FaCode,
   FaDatabase,
   FaLayerGroup,
   FaMobileAlt,
@@ -29,10 +28,10 @@ export const experiencesData = [
     title: 'Software Engineer',
     location: 'Cogilent Solutions, Lahore, PK',
     description:
-      'Full-stack development focusing on scalable web applications. Worked on enterprise-level projects using React, Node.js, and modern JavaScript frameworks. Contributed to system architecture, API development, and performance optimization.',
-    date: 'Jul 2026 - Present',
-    icon: FaCode,
-    logo: Narsun,
+      'Full-stack development focusing on scalable web applications. Worked on enterprise-level projects using React, Node.js, and modern JavaScript frameworks. Contributed to system architecture, API development, and performance optimization in a professional environment.',
+    date: 'Feb 2025 - Jan 2026',
+    icon: CgWorkAlt,
+    logo: Sensviz,
   },
   {
     title: 'Associate Software Engineer',
@@ -92,8 +91,8 @@ export const projectsData = [
     description:'Full-stack web application for managing hair transplant clinics. Features include patient registration, appointment scheduling, treatment tracking, and inventory management with an intuitive interface for clinic staff.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB', 'TypeScript'],
     imageUrl: HLMS,
-    url: '',
-    github: '',
+    url: '#',
+    github: '#',
   },
   {
     title: 'EQUIGENIX',
@@ -101,7 +100,7 @@ export const projectsData = [
     tags: ['React', 'Node.js', 'TypeScript', 'MongoDB', 'Express', 'AWS'],
     imageUrl: Favicon,
     url: 'https://app.staging.equijudge.ai/',
-    github: ''
+    github: '#'
   },
   {
     title: 'Portfolio',

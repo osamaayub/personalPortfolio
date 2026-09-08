@@ -78,7 +78,7 @@ const Intro = () => {
           <span className="font-bold">
             Cogilent Solutions
           </span>{" "}
-          with 2+ years of experience specializing in React, Next.js, Node.js & TypeScript.
+          with 1+ year of experience specializing in React, Next.js, Node.js & TypeScript.
         </span>
       </motion.h1>
 
@@ -152,7 +152,7 @@ const Intro = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35 }}
       >
-        <span>💼 2+ Years Experience</span>
+        <span>💼 1+ Year Experience</span>
         <span>⚛ React & Next.js</span>
         <span>🟢 Node.js & Express</span>
         <span>🍃 MongoDB</span>
