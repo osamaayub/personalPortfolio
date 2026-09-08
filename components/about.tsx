@@ -21,11 +21,12 @@ const About = () => {
 
       <p className="mb-3">
         I’m a <span className="font-medium">Full-Stack Software Engineer</span>{" "}
-        with <span className="font-medium">1+ year of professional experience</span>{" "}
+        with <span className="font-medium">2+ years of professional experience</span>{" "}
         building scalable web applications using modern JavaScript technologies.
-        I have worked across startups and product-focused teams, delivering
-        production-ready applications that improve performance, user experience,
-        and business workflows.
+        I specialize in the MERN stack (MongoDB, Express.js, React, Node.js) with
+        strong expertise in Next.js, TypeScript, and cloud deployment. I have a proven
+        track record of delivering production-ready applications that improve performance,
+        user experience, and business workflows.
       </p>
 
       <p className="mb-3">

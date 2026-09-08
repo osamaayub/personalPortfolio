@@ -28,7 +28,7 @@ export const experiencesData = [
     title: 'Software Engineer',
     location: 'Cogilent Solutions, Lahore, PK',
     description:
-      'Full-stack development focusing on scalable web applications. Worked on enterprise-level projects using React, Node.js, and modern JavaScript frameworks. Contributed to system architecture, API development, and performance optimization in a professional environment.',
+      'Full-stack development focusing on scalable web applications. Worked on enterprise-level projects using React, Node.js, and modern JavaScript frameworks. Contributed to system architecture, API development, and performance optimization. Collaborated with cross-functional teams to deliver high-quality software solutions that meet business requirements and user needs.',
     date: 'Feb 2025 - Jan 2026',
     icon: CgWorkAlt,
     logo: Sensviz,
@@ -37,7 +37,7 @@ export const experiencesData = [
     title: 'Associate Software Engineer',
     location: 'SensViz, Lahore, PK',
     description:
-      'Built and maintained full-stack web products on the MERN stack. Delivered REST APIs, MongoDB data models, and responsive React interfaces. Collaborated on production features with attention to performance, code quality, and clear UI/UX.',
+      'Built and maintained full-stack web products on the MERN stack. Delivered REST APIs, MongoDB data models, and responsive React interfaces. Collaborated on production features with attention to performance, code quality, and clear UI/UX. Worked in an agile environment to deliver features on time and meet project milestones.',
     date: 'Aug 2025 - Jul 2026',
     icon: CgWorkAlt,
     logo: Sensviz,
@@ -46,7 +46,7 @@ export const experiencesData = [
     title: 'MERN Stack Developer',
     location: 'Narsun Studios, Lahore, PK',
     description:
-      'Worked across the stack on web applications using React, Node.js, Express, and MongoDB. Gained solid full-stack delivery experience in an agile team environment, developing complete features from database design to frontend implementation.',
+      'Worked across the stack on web applications using React, Node.js, Express, and MongoDB. Gained solid full-stack delivery experience in an agile team environment, developing complete features from database design to frontend implementation. Contributed to project planning and code reviews while learning industry best practices.',
     date: 'Jan 2024 - Apr 2024',
     icon: CgWorkAlt,
     logo: Narsun,
@@ -91,8 +91,8 @@ export const projectsData = [
     description:'Full-stack web application for managing hair transplant clinics. Features include patient registration, appointment scheduling, treatment tracking, and inventory management with an intuitive interface for clinic staff.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB', 'TypeScript'],
     imageUrl: HLMS,
-    url: '#',
-    github: '#',
+    url: '',
+    github: '',
   },
   {
     title: 'EQUIGENIX',
@@ -100,7 +100,7 @@ export const projectsData = [
     tags: ['React', 'Node.js', 'TypeScript', 'MongoDB', 'Express', 'AWS'],
     imageUrl: Favicon,
     url: 'https://app.staging.equijudge.ai/',
-    github: '#'
+    github: ''
   },
   {
     title: 'Portfolio',
