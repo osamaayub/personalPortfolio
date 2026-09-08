@@ -11,8 +11,7 @@ import Favicon from "@/public/Equigenix.png";
 import Sensviz from '@/public/sensviz.jpeg';
 import Narsun from "@/public/Narsun.jpeg";
 import HLMS from "@/public/HLMS.png";
-import Cogilent from "@/public/cogilent.png";
-
+import Cogilent from '../public/cogilent.png';
 export const links = [
   { name: 'Home', hash: '#home' },
   { name: 'About', hash: '#about' },
