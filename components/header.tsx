@@ -14,8 +14,8 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = (name: string) => {
-    setActiveSection("Home");
+  const handleClick = (name: (typeof links)[number]["name"]) => {
+    setActiveSection(name);
     setTimeOfLastClick(Date.now());
     setIsOpen(false);
   };
