@@ -1,5 +1,6 @@
 import { CgWorkAlt } from 'react-icons/cg';
 import {
+  FaCode,
   FaDatabase,
   FaLayerGroup,
   FaMobileAlt,
@@ -11,7 +12,6 @@ import portfolio from '@/public/3dportfolio.png';
 import PrepWise from "@/public/PrepWise.png";
 import Favicon from "@/public/Equigenix.png"
 import Sensviz from '@/public/sensviz.jpeg'
-import Ifatech from '@/public/Ifatech.jpeg'
 import Narsun from "@/public/Narsun.jpeg"
 import HLMS from "@/public/HLMS.png"
 export const links = [
@@ -26,6 +26,15 @@ export const links = [
 
 export const experiencesData = [
   {
+    title: 'Software Engineer',
+    location: 'Cogilent Solutions, Lahore, PK',
+    description:
+      'Full-stack development focusing on scalable web applications. Worked on enterprise-level projects using React, Node.js, and modern JavaScript frameworks. Contributed to system architecture, API development, and performance optimization.',
+    date: 'Jul 2026 - Present',
+    icon: FaCode,
+    logo: Narsun,
+  },
+  {
     title: 'Associate Software Engineer',
     location: 'SensViz, Lahore, PK',
     description:
@@ -35,19 +44,10 @@ export const experiencesData = [
     logo: Sensviz,
   },
   {
-    title: 'Full-Stack Developer',
-    location: 'IIFATECH, Lahore, PK',
-    description:
-      'Developed client-facing applications with React, TypeScript, Tailwind CSS, and MongoDB. Integrated backend services, improved application structure, and shipped features from design through deployment.',
-    date: 'Aug 2024 - Oct 2024',
-    icon: FaReact,
-    logo: Ifatech,
-  },
-  {
     title: 'MERN Stack Developer',
     location: 'Narsun Studios, Lahore, PK',
     description:
-      'Worked across the stack for six months on web applications using React, Node.js, Express, and MongoDB. Gained solid full-stack delivery experience in an agile team environment.',
+      'Worked across the stack on web applications using React, Node.js, Express, and MongoDB. Gained solid full-stack delivery experience in an agile team environment, developing complete features from database design to frontend implementation.',
     date: 'Jan 2024 - Apr 2024',
     icon: CgWorkAlt,
     logo: Narsun,
@@ -89,34 +89,34 @@ export const servicesData = [
 export const projectsData = [
   {
     title: 'Hair Transplant Management System',
-    description:'Hair Transplant Management System is a web application designed to streamline the management of hair transplant clinics. It offers features such as patient registration, appointment scheduling, treatment tracking, and inventory management. The system provides an intuitive interface for clinic staff to efficiently manage patient information, appointments, and treatment plans.',
-    tags: ['React','Node','express','Mongodb'],
+    description:'Full-stack web application for managing hair transplant clinics. Features include patient registration, appointment scheduling, treatment tracking, and inventory management with an intuitive interface for clinic staff.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'TypeScript'],
     imageUrl: HLMS,
     url: '',
     github: '',
   },
   {
     title: 'EQUIGENIX',
-    description: 'Web platform for Arabian horse judges to train, test, and analyze their performance in show competitions.',
-    tags: ['REACT', 'NODE', 'TYPESCRIPT','MONGODB','EXPRESS','GIT','AWS'],
+    description: 'Web platform for Arabian horse judges to train, test, and analyze their performance in show competitions. Built with full-stack technologies for real-time performance tracking.',
+    tags: ['React', 'Node.js', 'TypeScript', 'MongoDB', 'Express', 'AWS'],
     imageUrl: Favicon,
     url: 'https://app.staging.equijudge.ai/',
-    github :''
+    github: ''
   },
   {
     title: 'Portfolio',
-    description: 'Portfolio website built using Three.js and Framer Motion to showcase my work interactively.',
-    tags: ['React', 'TypeScript', 'Tailwind', 'Three.js', 'Framer Motion'],
+    description: 'Interactive portfolio website built with Three.js and Framer Motion to showcase software development work with engaging 3D animations and smooth transitions.',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Three.js', 'Framer Motion'],
     imageUrl: portfolio,
     url: 'https://osamaayubportfoliowebsite.netlify.app/',
     github: 'https://github.com/osamaayub/3D-Developer-Portfolio',
   },
   {
     title: 'AI Powered Interviewer',
-    description: 'An AI-powered interview platform that simulates real-world interview scenarios and provides automated feedback.',
-    tags: ['Next ', 'Vapi', 'Google Gemini', 'Tailwind', 'Firebase'],
+    description: 'AI-powered interview preparation platform that simulates real-world interview scenarios with voice interaction and provides automated feedback using Google Gemini and Vapi.',
+    tags: ['Next.js', 'Vapi', 'Google Gemini', 'Tailwind CSS', 'Firebase'],
     imageUrl: PrepWise,
-    url: 'https://interview-preparation-psi-rosy.vercel.app/sign-in', 
+    url: 'https://interview-preparation-psi-rosy.vercel.app/sign-in',
     github: 'https://github.com/osamaayub/Interview-Preparation',
   },
 ] as const;
@@ -127,17 +127,23 @@ export const skillsData = [
   'JavaScript',
   'TypeScript',
   'React',
-  'AI intergeration',
   'Next.js',
   'Node.js',
-  'Git',
-  'Github',
-  'JWT',
-  'OAUTH',
-  'Responsive Web Designs(RWD)',
-  'Tailwind',
+  'Express.js',
   'MongoDB',
+  'REST APIs',
+  'Git',
+  'GitHub',
+  'Tailwind CSS',
   'Redux',
-  'Express',
-  'Framer Motion',
+  'JWT',
+  'OAuth',
+  'Responsive Web Design',
+  'API Development',
+  'Database Design',
+  'Full-Stack Development',
+  'Agile/Scrum',
+  'Problem Solving',
+  'Clean Code',
+  'Version Control',
 ] as const;

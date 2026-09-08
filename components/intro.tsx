@@ -74,11 +74,11 @@ const Intro = () => {
         .
         <br />
         <span className="mt-2 inline-block">
-          Software Engineer specializing in{" "}
+          Software Engineer at{" "}
           <span className="font-bold">
-            React, Next.js, Node.js & TypeScript
-          </span>
-          .
+            Cogilent Solutions
+          </span>{" "}
+          with 2+ years of experience specializing in React, Next.js, Node.js & TypeScript.
         </span>
       </motion.h1>
 
@@ -90,7 +90,8 @@ const Intro = () => {
         transition={{ delay: 0.1 }}
       >
         I build scalable, high-performance web applications using the MERN
-        stack. Passionate about creating clean architecture, intuitive user
+        stack with expertise in React, Next.js, Node.js, and TypeScript.
+        Passionate about creating clean architecture, intuitive user
         experiences, and reliable backend systems that solve real-world
         problems.
       </motion.p>
@@ -151,11 +152,11 @@ const Intro = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35 }}
       >
-        <span>💼 1+ Year Experience</span>
+        <span>💼 2+ Years Experience</span>
         <span>⚛ React & Next.js</span>
         <span>🟢 Node.js & Express</span>
         <span>🍃 MongoDB</span>
-        <span>📍 Islamabad, Pakistan</span>
+        <span>📍 Lahore, Pakistan</span>
       </motion.div>
     </section>
   );
