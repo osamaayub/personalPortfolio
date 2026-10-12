@@ -10,6 +10,7 @@
 .env
 # next.js
 /.next/
+/.idea/
 /out/
 
 # production
