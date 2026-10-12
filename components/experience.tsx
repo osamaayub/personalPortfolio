@@ -12,6 +12,11 @@ import { experiencesData } from "@/data/data";
 import { useSectionInView } from "@/hooks/hooks";
 import { useTheme } from "@/context/theme-context";
 
+// Workaround: react-vertical-timeline-component's types are incompatible with current React typings in JSX.
+// Cast to React.ComponentType<any> to allow usage as JSX elements without changing library types.
+const VerticalTimelineComponent = VerticalTimeline as unknown as React.ComponentType<any>;
+const VerticalTimelineElementComponent = VerticalTimelineElement as unknown as React.ComponentType<any>;
+
 const Experience = () => {
     const { ref } = useSectionInView("Experience");
     const { theme } = useTheme();
@@ -19,10 +24,10 @@ const Experience = () => {
     return (
         <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
             <SectionHeading>My experience</SectionHeading>
-            <VerticalTimeline lineColor="">
+            <VerticalTimelineComponent lineColor="">
                 {experiencesData.map((item, index) => (
                     <React.Fragment key={index}>
-                        <VerticalTimelineElement
+                        <VerticalTimelineElementComponent
                             contentStyle={{
                                 background:
                                     theme === "light" ? "#f3f4f6" : "rgba(255, 255, 255, 0.05)",
@@ -41,13 +46,12 @@ const Experience = () => {
                             icon={
                                 item.logo ? (
                                     <Image
-                                        // Checks if logo is a direct string or a Next.js static image object
-                                                                            src={typeof item.logo === "string" ? item.logo : item.logo}
+                                        src={item.logo}
                                         alt={`${item.title} logo`}
-                                                                            width={32}
-                                                                            height={32}
-                                                                            className="object-contain"
-                                                                        />
+                                        width={32}
+                                        height={32}
+                                        className="object-contain"
+                                    />
                                 ) : (
                                     <item.icon size={24} />
                                 )
@@ -68,10 +72,10 @@ const Experience = () => {
                             <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
                                 {item.description}
                             </p>
-                        </VerticalTimelineElement>
+                        </VerticalTimelineElementComponent>
                     </React.Fragment>
                 ))}
-            </VerticalTimeline>
+            </VerticalTimelineComponent>
         </section>
     );
 };
