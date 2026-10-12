@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import SectionHeading from "./section-heading";
 import {
     VerticalTimeline,
@@ -39,12 +40,14 @@ const Experience = () => {
                             date={item.date}
                             icon={
                                 item.logo ? (
-                                    <img
+                                    <Image
                                         // Checks if logo is a direct string or a Next.js static image object
-                                        src={typeof item.logo === "string" ? item.logo : item.logo.src}
+                                                                            src={typeof item.logo === "string" ? item.logo : item.logo}
                                         alt={`${item.title} logo`}
-                                        className="w-8 h-8 object-contain"
-                                    />
+                                                                            width={32}
+                                                                            height={32}
+                                                                            className="object-contain"
+                                                                        />
                                 ) : (
                                     <item.icon size={24} />
                                 )
