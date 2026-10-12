@@ -4,24 +4,25 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { skillsData } from "@/data/data";
 import { useSectionInView } from "@/hooks/hooks";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const fadeInAnimationVariants = {
   initial: {
     opacity: 0,
-    y: 100,
+    y: 24,
   },
   animate: (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.05 * index,
+      delay: 0.035 * index,
     },
   }),
 };
 
  const Skills=()=> {
   const { ref } = useSectionInView("Skills");
+  const reduceMotion = useReducedMotion();
 
   return (
     <section
@@ -30,18 +31,20 @@ const fadeInAnimationVariants = {
       className="mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40"
     >
       <SectionHeading>My skills</SectionHeading>
-      <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
+      <p className="mx-auto -mt-4 mb-8 max-w-lg leading-relaxed text-gray-600 dark:text-gray-400">The tools I use to turn complex problems into simple, dependable experiences.</p>
+      <ul className="flex flex-wrap justify-center gap-3 text-base text-gray-800">
         {skillsData.map((skill, index) => (
           <motion.li
-            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
+            className="rounded-2xl border border-indigo-100 bg-white/80 px-5 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-white/80"
             key={index}
             variants={fadeInAnimationVariants}
-            initial="initial"
+            initial={reduceMotion ? false : "initial"}
             whileInView="animate"
+            whileHover={reduceMotion ? undefined : { y: -4, rotate: -2, borderColor: "#818cf8", boxShadow: "0 8px 24px rgb(99 102 241 / 0.12)" }}
             viewport={{
               once: true,
             }}
-            custom={index}
+            custom={reduceMotion ? 0 : index}
           >
             {skill}
           </motion.li>

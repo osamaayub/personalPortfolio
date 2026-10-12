@@ -76,7 +76,7 @@ const Services = () => {
                 stiffness: 350,
                 damping: 28,
               }}
-              className={`group borderBlack relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-shadow hover:shadow-lg dark:bg-white/[0.07] ${isFeatured ? "sm:col-span-2 sm:p-8" : ""
+              className={`group relative overflow-hidden rounded-3xl border border-indigo-100 bg-white/80 p-6 shadow-sm transition-shadow hover:shadow-xl hover:shadow-indigo-500/10 dark:border-white/10 dark:bg-slate-900/80 ${isFeatured ? "sm:col-span-2 sm:p-8" : ""
                 }`}
             >
               <div
@@ -91,7 +91,7 @@ const Services = () => {
                   }`}
               >
                 <div
-                  className={`flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-gray-900 to-gray-700 text-white shadow-lg dark:from-white/20 dark:to-white/5 ${isFeatured ? "h-14 w-14" : "h-12 w-12"
+                  className={`flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-500 text-white shadow-lg shadow-indigo-500/20 transition-transform motion-safe:group-hover:-rotate-6 ${isFeatured ? "h-14 w-14" : "h-12 w-12"
                     }`}
                 >
                   <service.icon

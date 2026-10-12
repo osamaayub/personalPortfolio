@@ -2,19 +2,21 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useSectionInView } from "@/hooks/hooks";
 
 const About = () => {
   const { ref } = useSectionInView("About");
+  const reduceMotion = useReducedMotion();
 
   return (
     <motion.section
       ref={ref}
-      className="mb-28 max-w-[45rem] scroll-mt-28 text-center leading-8 sm:mb-40"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
+      className="mb-28 max-w-[45rem] scroll-mt-28 rounded-3xl border border-indigo-100/80 bg-white/60 px-6 py-10 text-center leading-8 shadow-xl shadow-indigo-950/5 backdrop-blur-sm sm:mb-40 sm:px-10 dark:border-white/10 dark:bg-white/5"
+      initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ type: "spring", stiffness: 90, damping: 20 }}
       id="about"
     >
       <SectionHeading>About Me</SectionHeading>
@@ -22,42 +24,24 @@ const About = () => {
       <p className="mb-3">
         I’m a <span className="font-medium">Full-Stack Software Engineer</span>{" "}
         with <span className="font-medium">2+ years of professional experience</span>{" "}
-        building scalable web applications using modern JavaScript technologies.
-        I specialize in the MERN stack (MongoDB, Express.js, React, Node.js) with
-        strong expertise in Next.js, TypeScript, and cloud deployment. I have a proven
-        track record of delivering production-ready applications that improve performance,
-        user experience, and business workflows.
+        building scalable web applications. I specialize in the MERN stack,
+        Next.js, and TypeScript, with a focus on performance, clean code, and
+        intuitive user experiences.
       </p>
 
       <p className="mb-3">
-        My core expertise lies in{" "}
-        <span className="font-medium">
-          React.js, Next.js, Node.js, TypeScript, Express.js, and MongoDB
-        </span>
-        . I have hands-on experience designing REST APIs, implementing secure
-        authentication systems, optimizing application performance, and building
-        reusable, maintainable components. I enjoy solving complex problems and
-        creating efficient solutions that provide real value to users.
-      </p>
-
-      <p className="mb-3">
-        Throughout my experience at{" "}
+        At{" "}
         <span className="font-medium">
           Cogilent Solutions, SensViz, and Narsun Studios
         </span>
-        , I have contributed to projects involving full-stack web development,
-        REST API design, database architecture, and responsive user interfaces.
-        I've worked on enterprise-level applications, management systems, and
-        AI-powered platforms, delivering high-quality solutions that meet
-        business requirements and user needs.
+        , I’ve built REST APIs, secure authentication, and responsive interfaces
+        for enterprise applications and AI-powered platforms. I enjoy turning
+        complex problems into practical solutions.
       </p>
 
       <p>
-        When I’m not coding, I enjoy playing video games, watching movies, and
-        spending time with friends. I also enjoy{" "}
-        <span className="font-medium">continuous learning</span> and
-        staying current with modern web development trends to grow as a
-        software engineer and build impactful digital products.
+        Outside of coding, I enjoy gaming, movies, and time with friends—along
+        with <span className="font-medium">learning new technologies</span>.
       </p>
     </motion.section>
   );

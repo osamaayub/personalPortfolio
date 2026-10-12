@@ -3,12 +3,13 @@
 import { useRef } from 'react';
 import { projectsData } from '@/data/data';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion, useSpring } from 'framer-motion';
 
 type ProjectProps = (typeof projectsData)[number];
 
 const Project = ({ title, description, tags, imageUrl, url, github }: ProjectProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['0 1', '1.33 1'],
@@ -16,19 +17,49 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
 
   const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const rotateX = useSpring(0, { stiffness: 180, damping: 24 });
+  const rotateY = useSpring(0, { stiffness: 180, damping: 24 });
+
+  const resetTilt = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
 
   return (
     <motion.div
       ref={ref}
       style={{
-        scale: scaleProgess,
-        opacity: opacityProgess,
+        scale: reduceMotion ? 1 : scaleProgess,
+        opacity: reduceMotion ? 1 : opacityProgess,
+        perspective: 1200,
       }}
-      className='group mb-3 sm:mb-8 last:mb-0'
+      className='group h-full'
     >
-      <section className='bg-gray-100 max-w-[42rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[22rem] hover:bg-gray-200 transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 dark:hover:bg-white/20'>
-        <div className='pt-4 pb-6 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full sm:group-even:ml-[18rem]'>
-          <h3 className='text-2xl font-semibold'>{title}</h3>
+      <motion.article
+        style={{ rotateX: reduceMotion ? 0 : rotateX, rotateY: reduceMotion ? 0 : rotateY }}
+        onPointerMove={(event) => {
+          if (reduceMotion || event.pointerType !== 'mouse') return;
+          const bounds = event.currentTarget.getBoundingClientRect();
+          rotateX.set((0.5 - (event.clientY - bounds.top) / bounds.height) * 6);
+          rotateY.set(((event.clientX - bounds.left) / bounds.width - 0.5) * 6);
+        }}
+        onPointerLeave={resetTilt}
+        onPointerCancel={resetTilt}
+        whileHover={reduceMotion ? undefined : { y: -6 }}
+        transition={{ type: 'spring', stiffness: 240, damping: 24 }}
+        className='flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200/80 bg-white/80 shadow-sm backdrop-blur-sm transition-shadow duration-300 hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-950/5 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-indigo-400/50'
+      >
+        <div className='relative aspect-[16/10] overflow-hidden border-b border-gray-200/60 bg-slate-100 dark:border-white/10 dark:bg-slate-950'>
+          <Image
+            src={imageUrl}
+            alt={`${title} project preview`}
+            fill
+            sizes='(min-width: 1280px) 560px, (min-width: 768px) 50vw, 100vw'
+            className='object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
+          />
+        </div>
+        <div className='flex flex-1 flex-col p-6 sm:p-8'>
+          <h3 className='text-2xl font-semibold tracking-tight text-gray-900 dark:text-white'>{title}</h3>
           <p className='mt-2 leading-relaxed text-gray-700 dark:text-white/70'>
             {description}
           </p>
@@ -37,20 +68,21 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
             {tags.map((tag, index) => (
               <li
                 key={index}
-                className='bg-black/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:text-white/70'
+                className='rounded-lg border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200'
               >
                 {tag}
               </li>
             ))}
           </ul>
 
-          <div className='mt-4 flex gap-2 flex-wrap items-center text-sm'>
+          <div className='mt-auto flex flex-wrap items-center gap-3 pt-6 text-sm'>
             {url && (
               <a
                 href={url}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-all duration-300'
+                aria-label={`View ${title} live demo (opens in a new tab)`}
+                className='inline-flex min-h-11 items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 font-medium text-white transition-colors hover:bg-indigo-700'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -74,7 +106,8 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
                 href={github}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition-all duration-300'
+                aria-label={`View ${title} on GitHub (opens in a new tab)`}
+                className='inline-flex min-h-11 items-center gap-2 rounded-xl border border-gray-200 px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:border-white/15 dark:text-gray-200 dark:hover:bg-white/10'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -90,16 +123,7 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
           </div>
         </div>
 
-        <Image
-          src={imageUrl}
-          alt='Project image'
-          quality={95}
-          className='absolute hidden sm:block top-8 -right-40 w-[28rem] rounded-t-lg shadow-2xl transition
-          group-hover:scale-[1.04] group-hover:-translate-x-3 group-hover:translate-y-3 group-hover:-rotate-2
-          group-even:group-hover:translate-x-3 group-even:group-hover:translate-y-3 group-even:group-hover:rotate-2
-          group-even:right-[initial] group-even:-left-40'
-        />
-      </section>
+      </motion.article>
     </motion.div>
   );
 };

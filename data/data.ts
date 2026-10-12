@@ -6,6 +6,7 @@ import {
   FaServer,
 } from 'react-icons/fa';
 import portfolio from '@/public/3dportfolio.png';
+import DevFlow from '@/public/devflow.png';
 import PrepWise from "@/public/PrepWise.png";
 import Favicon from "@/public/Equigenix.png";
 import Sensviz from '@/public/sensviz.jpeg';
@@ -85,6 +86,14 @@ export const servicesData = [
 ] as const;
 
 export const projectsData = [
+  {
+    title: 'DevFlow',
+    description: 'A community-driven platform for developers to ask questions, share answers, and explore topics. Discover discussions through tags, save useful knowledge in collections, and connect with the developer community.',
+    tags: ['Next.js', 'TypeScript', 'MongoDB', 'NextAuth', 'Tailwind CSS', 'OpenAI'],
+    imageUrl: DevFlow,
+    url: 'https://dev-flow-kappa-seven.vercel.app/',
+    github: 'https://github.com/osamaayub/DevFlow',
+  },
   {
     title: 'Hair Transplant Management System',
     description: 'Full-stack web application for managing hair transplant clinics. Features include patient registration, appointment scheduling, treatment tracking, and inventory management with an intuitive interface for clinic staff.',

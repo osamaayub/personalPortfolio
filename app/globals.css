@@ -13,3 +13,44 @@ html.dark {
 .borderBlack {
   @apply border border-black/10;
 }
+
+@layer base {
+  ::selection {
+    @apply bg-indigo-200 text-indigo-950;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-4 outline-indigo-500;
+  }
+}
+
+.portfolio-backdrop {
+  background-image: radial-gradient(circle, rgb(99 102 241 / 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.profile-halo {
+  background: linear-gradient(135deg, #818cf8, #c084fc, #f0abfc);
+  box-shadow: 0 0 60px rgb(129 140 248 / 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:root {
+    scroll-behavior: auto !important;
+  }
+
+  a:hover,
+  a:active {
+    transform: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
