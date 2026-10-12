@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="927b6549-5ff5-4aa0-9b5e-ee48a4e81396" name="Changes" comment="updated the portfolio design" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;osamaayub&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/osamaayub/personalPortfolio.git&quot;,
+    &quot;accountId&quot;: &quot;9aedb98a-c9e2-4b95-896c-2fa88a71ec9c&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0106877334269118" />
+      <entry key="MS500" value="2.442491083550286" />
+      <entry key="S2" value="7.816765639510597" />
+      <entry key="S5" value="12.07479806545513" />
+      <entry key="S10" value="14.305169357524763" />
+      <entry key="S30" value="18.197183888818994" />
+      <entry key="S60" value="22.575634756742268" />
+      <entry key="M2" value="31.09116198957378" />
+      <entry key="M5" value="64.92771729554059" />
+      <entry key="M10" value="133.44531753958162" />
+      <entry key="M15" value="203.12898341712602" />
+      <entry key="M30" value="364.3700966780247" />
+      <entry key="H1" value="525.9734203114523" />
+      <entry key="H2" value="644.4977804763108" />
+      <entry key="H4" value="716.908259566539" />
+      <entry key="D1" value="785.3389434356892" />
+      <entry key="W1" value="797.8846713590267" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.8677718418296498" />
+      <entry key="MS500" value="2.370995090881894" />
+      <entry key="S2" value="7.761577419178355" />
+      <entry key="S5" value="12.041141468094901" />
+      <entry key="S10" value="14.285327781656855" />
+      <entry key="S30" value="18.188938178026778" />
+      <entry key="S60" value="22.57062716624353" />
+      <entry key="M2" value="31.087730990477887" />
+      <entry key="M5" value="64.92468098661155" />
+      <entry key="M10" value="133.4418786892271" />
+      <entry key="M15" value="203.1252762985364" />
+      <entry key="M30" value="364.36652856880596" />
+      <entry key="H1" value="525.9707550189124" />
+      <entry key="H2" value="644.4961212750885" />
+      <entry key="H4" value="716.9073297472265" />
+      <entry key="D1" value="785.338772638114" />
+      <entry key="W1" value="797.88464654427" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3J5Zgz89WcQfwAPICLm6Ss5HdBc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
+    "last_opened_file_path": "C:/Users/Hp/OneDrive/Desktop/personalPortfolio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\Hp\\OneDrive\\Desktop\\personalPortfolio\\node_modules\\typescript\\lib"
+  }
+}]]></component>
+  <component name="RunManager" selected="npm.Next.js: server-side">
+    <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="Next.js: server-side" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.10968.77" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="927b6549-5ff5-4aa0-9b5e-ee48a4e81396" name="Changes" comment="" />
+      <created>1788953006721</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1788953006721</updated>
+      <workItem from="1788953016483" duration="1147000" />
+      <workItem from="1791802172882" duration="3611000" />
+    </task>
+    <task id="LOCAL-00001" summary="updated the portfolio design">
+      <option name="closed" value="true" />
+      <created>1791805568059</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1791805568059</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updated the portfolio design" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the portfolio design" />
+  </component>
+</project>
