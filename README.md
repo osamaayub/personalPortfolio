@@ -1,121 +1,344 @@
-A Next.js application built with TypeScript, featuring a modern UI design, responsive layout, and advanced animations using Framer Motion.
+# ✦ Osama Ayub — Personal Portfolio
 
-## Table of Contents
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white" />
+</p>
 
-* [Features](#features)
-* [Setup](#setup)
-* [Usage](#usage)
-* [Contributing](#contributing)
-* [License](#license)
+<p align="center">
+  <strong>A modern, interactive portfolio crafted to showcase my work, skills, and experience.</strong>
+</p>
 
-## Features
+<p align="center">
+  <a href="https://github.com/osamaayub/PersonalPortfolio">GitHub</a>
+  •
+  <a href="#-features">Features</a>
+  •
+  <a href="#-tech-stack">Tech Stack</a>
+  •
+  <a href="#-getting-started">Getting Started</a>
+  •
+  <a href="#-contact">Contact</a>
+</p>
 
-* Latest Next.js 13 features
-* Next.js App Router
-* Next.js Server Actions
-* Client & Server Components
-* TypeScript (Beginner & Intermediate)
-* Tailwind CSS
-* Context API
-* Advanced Animations with Framer Motion
-* React.Email & Resend
-* Custom React hooks
-* Fresh, modern UI design
-* Light & Dark mode
-* Responsive website
+---
 
-## Setup
+## ✨ About
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo-name.git`
-2. Install dependencies: `npm install` or `yarn install`
-3. Create a `.env.local` file and add your RESEND_API_KEY
-4. Update the `send-email.ts` action file with your own email address
+**PersonalPortfolio** is a modern full-stack developer portfolio built with the latest web technologies.
 
+It combines a clean interface, responsive layouts, subtle animations, dark/light mode, and an integrated contact system to create a polished and engaging developer experience.
 
+> **Designed to be simple. Built to be fast. Made to stand out.**
 
+---
 
-##Overview 
+## 🎯 Highlights
 
-The PersonalPortfolio is a personal portfolio website built using Next.js. It showcases the work and projects of Osama Ayub, a full-stack developer.
+<table>
+<tr>
+<td width="50%">
 
-## Features
+### 🎨 Modern UI
 
-- Responsive design
-- Light and dark mode
-- Navigation menu
-- Projects showcase
-- Skills section
-- Contact form
+Clean layouts, smooth interactions, and a minimal developer-focused aesthetic.
 
-## Technologies Used
+</td>
+<td width="50%">
 
-- Next.js
-- React
-- Tailwind CSS
-- TypeScript
-- Framer Motion
-- React.Email
-- Resend
-- Custom React hooks
+### ⚡ Performance
 
-## Project Structure
+Built with Next.js and optimized for a fast, responsive experience.
 
-- [app/layout.tsx](cci:7://file:///home/usama/Desktop/portfolio-website/app/layout.tsx:0:0-0:0): Contains the main layout of the application.
-- [app/page.tsx](cci:7://file:///home/usama/Desktop/portfolio-website/app/page.tsx:0:0-0:0): Contains the main page of the application.
-- `app/components`: Contains reusable components used throughout the application.
-- `app/context`: Contains context providers for managing state.
-- `app/styles`: Contains global styles.
-- `app/utils`: Contains utility functions.
-- `public`: Contains static assets.
-- `styles`: Contains global styles.
-- `lib`: Contains utility functions.
+</td>
+</tr>
 
-## Getting Started
+<tr>
+<td width="50%">
 
-To set up and run the project locally:
+### 📱 Responsive
 
-1. Clone the repository:
+Designed to look great across desktop, tablet, and mobile devices.
+
+</td>
+<td width="50%">
+
+### 🌗 Dark Mode
+
+Seamless light and dark theme experience.
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### 🎬 Animations
+
+Interactive animations and transitions powered by Framer Motion.
+
+</td>
+<td width="50%">
+
+### 📩 Contact
+
+Functional contact system powered by React Email and Resend.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Features
+
+* ✦ Responsive portfolio design
+* ✦ Modern navigation
+* ✦ Dark / Light mode
+* ✦ Animated UI interactions
+* ✦ Projects showcase
+* ✦ Technical skills section
+* ✦ Contact form
+* ✦ Server Actions
+* ✦ Client & Server Components
+* ✦ Custom React hooks
+* ✦ Context API
+* ✦ React Email integration
+* ✦ Resend email delivery
+* ✦ Type-safe development with TypeScript
+* ✦ Mobile-first responsive design
+
+---
+
+## 🧩 Tech Stack
+
+### Frontend
+
+<p>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+</p>
+
+### Styling & Animation
+
+<p>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" />
+</p>
+
+### Email & Services
+
+<p>
+  <img src="https://img.shields.io/badge/React_Email-000000?style=for-the-badge&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=resend&logoColor=white" />
+</p>
+
+---
+
+## 🏗️ Architecture
+
+```text
+PersonalPortfolio
+│
+├── app/
+│   ├── components/
+│   │   └── Reusable UI components
+│   │
+│   ├── context/
+│   │   └── Application state & providers
+│   │
+│   ├── styles/
+│   │   └── Component & global styles
+│   │
+│   ├── utils/
+│   │   └── Helper functions
+│   │
+│   ├── layout.tsx
+│   │   └── Root application layout
+│   │
+│   └── page.tsx
+│       └── Portfolio homepage
+│
+├── lib/
+│   └── Shared utilities
+│
+├── public/
+│   └── Images & static assets
+│
+├── styles/
+│   └── Global styles
+│
+├── .env.local
+│   └── Environment variables
+│
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+Make sure you have installed:
+
+* **Node.js 18+**
+* **npm** or **Yarn**
+* A **Resend API key**
+
+### 1. Clone
+
+```bash
 git clone https://github.com/osamaayub/PersonalPortfolio.git
+```
 
+### 2. Enter the project
 
-2. Navigate to the project directory:
+```bash
 cd PersonalPortfolio
+```
 
-3. Install dependencies:
+### 3. Install dependencies
+
+```bash
 npm install
+```
 
-4. Start the development server:
+### 4. Configure environment variables
+
+Create `.env.local`:
+
+```env
+RESEND_API_KEY=your_resend_api_key
+```
+
+### 5. Configure email
+
+Update the recipient email inside the `send-email.ts` server action.
+
+### 6. Start development
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 📜 Available Scripts
+
+```bash
+# Development
 npm run dev
 
-5. Open your browser and navigate to `http://localhost:5173` to use the application.
+# Production build
+npm run build
 
-## Contributing
+# Start production server
+npm run start
 
-If you would like to contribute to the project, please follow these guidelines:
+# Lint
+npm run lint
+```
 
-1. Fork the repository.
-2. Create a new branch for your changes.
-3. Make your changes.
-4. Commit your changes.
-5. Push your changes to your forked repository.
-6. Create a pull request.
+---
 
-## License
+## 📸 Preview
 
-The PersonalPortfolio is licensed under the [MIT License](LICENSE).
+> Add screenshots or a short demo GIF here to showcase the portfolio.
 
-## Acknowledgements
+```text
+┌─────────────────────────────────────────────┐
+│                                             │
+│              PERSONAL PORTFOLIO             │
+│                                             │
+│          Modern • Responsive • Animated     │
+│                                             │
+└─────────────────────────────────────────────┘
+```
 
-This project was built using the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Framer Motion Documentation](https://www.framer.com/motion/)
-- [React.Email Documentation](https://react-email.com/docs)
-- [Resend Documentation](https://resend.dev/docs)
+## 🛣️ Roadmap
 
-## Contact
+* [x] Responsive layout
+* [x] Dark / Light mode
+* [x] Projects section
+* [x] Skills section
+* [x] Contact form
+* [x] Framer Motion animations
+* [x] Email integration
+* [ ] Blog section
+* [ ] Case studies
+* [ ] More interactive project previews
+* [ ] Performance optimizations
 
-If you have any questions or need further assistance, please reach out to [osama.ayub@gmail.com](mailto:osama.ayub@gmail.com).
-Feel free to modify and customize this README.md file to fit your project's specific needs.
+---
 
+## 🤝 Contributing
+
+Contributions and suggestions are welcome.
+
+```bash
+# Fork the repository
+
+# Create your branch
+git checkout -b feature/your-feature
+
+# Make your changes
+
+# Commit
+git commit -m "Add your feature"
+
+# Push
+git push origin feature/your-feature
+```
+
+Then open a **Pull Request**.
+
+---
+
+## 📄 License
+
+This project is available under the **MIT License**.
+
+See [`LICENSE`](LICENSE) for details.
+
+---
+
+## 🔗 Connect
+
+<p align="center">
+  <strong>Osama Ayub</strong>
+  <br />
+  Full-Stack Developer
+</p>
+
+<p align="center">
+  <a href="mailto:osama.ayub@gmail.com">
+    📧 Email
+  </a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="https://github.com/osamaayub">
+    💻 GitHub
+  </a>
+</p>
+
+---
+
+<p align="center">
+  <sub>Built with Next.js, TypeScript & ☕</sub>
+</p>
+
+<p align="center">
+  ⭐ If you like this project, consider giving it a star!
+</p>
