@@ -114,24 +114,34 @@ export const defaultContent: SiteContent = {
   },
   skills: [
     {
+      title: "Languages",
+      blurb: "Core languages I write daily",
+      skills: ["JavaScript (ES6+)", "TypeScript", "SQL", "HTML5", "CSS3"],
+    },
+    {
       title: "Frontend",
       blurb: "Fast, accessible interfaces",
-      skills: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Redux", "HTML & CSS", "Responsive Design"],
+      skills: ["React", "Next.js (SSR, App Router)", "Redux Toolkit", "Tailwind CSS", "Material UI", "Responsive Design"],
     },
     {
       title: "Backend",
       blurb: "Reliable APIs and auth",
-      skills: ["Node.js", "Express.js", "REST APIs", "JWT", "OAuth", "API Development"],
+      skills: ["Node.js", "Express.js", "REST APIs", "JWT", "OAuth2", "Clerk RBAC", "Server Actions"],
     },
     {
-      title: "Data & Tools",
-      blurb: "Modeling, versioning, shipping",
-      skills: ["MongoDB", "Database Design", "Git", "GitHub", "Vercel"],
+      title: "Databases",
+      blurb: "Modeling and performance",
+      skills: ["PostgreSQL", "MongoDB", "Mongoose", "MySQL", "Database Indexing"],
     },
     {
-      title: "Practices",
+      title: "DevOps & AI",
+      blurb: "Shipping and LLM integrations",
+      skills: ["Docker", "AWS (EC2, S3)", "CI/CD", "Jest", "OpenAI", "Anthropic", "RAG", "LangChain", "Pinecone"],
+    },
+    {
+      title: "Tools",
       blurb: "How I work",
-      skills: ["Agile/Scrum", "Clean Code", "Problem Solving", "Code Review"],
+      skills: ["Git", "GitHub", "Postman", "VS Code", "Cursor", "Agile/Scrum"],
     },
   ],
   services: {
