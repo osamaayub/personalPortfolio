@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { isAdmin } from "@/lib/auth";
 import { connectDb, isDbConfigured } from "@/lib/db";
+import { createLogger } from "@/lib/logger";
+
+const log = createLogger("admin-api");
 
 /** Returns an error response if the caller cannot use the admin API, else null. */
 export async function guard(): Promise<NextResponse | null> {
@@ -14,7 +17,7 @@ export async function guard(): Promise<NextResponse | null> {
   try {
     await connectDb();
   } catch (err) {
-    console.error("MongoDB connection failed:", err);
+    log.error("MongoDB connection failed", err);
     return NextResponse.json(
       { error: "Could not connect to MongoDB. Check MONGODB_URI and that your IP is allowed in Atlas." },
       { status: 503 },

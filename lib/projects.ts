@@ -2,7 +2,10 @@ import { cache } from "react";
 import { projectsData } from "@/data/data";
 import { connectDb, isDbConfigured } from "@/lib/db";
 import { ProjectModel } from "@/models/project";
+import { createLogger } from "@/lib/logger";
 import type { PublicProject } from "@/lib/types";
+
+const log = createLogger("projects");
 
 const staticProjects = (): PublicProject[] =>
   projectsData.map((p, i) => ({
@@ -39,7 +42,7 @@ export const getProjects = cache(async (): Promise<PublicProject[]> => {
       featured: Boolean(d.featured),
     }));
   } catch (err) {
-    console.error("getProjects failed, using static data:", err);
+    log.error("Loading projects failed, using static data", err);
     return staticProjects();
   }
 });

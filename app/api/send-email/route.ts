@@ -4,6 +4,9 @@ import { connectDb, isDbConfigured } from "@/lib/db";
 import { clientIp, hashIp, memoryRateLimit } from "@/lib/request";
 import { contactSchema } from "@/lib/validators";
 import { MessageModel } from "@/models/message";
+import { createLogger } from "@/lib/logger";
+
+const log = createLogger("contact");
 
 export const runtime = "nodejs";
 
@@ -53,7 +56,7 @@ export async function POST(req: NextRequest) {
       }
       saved = await MessageModel.create({ name, email, message, ipHash });
     } catch (err) {
-      console.error("Saving contact message failed:", err);
+      log.error("Saving contact message failed", err);
     }
   } else if (!memoryRateLimit(ipHash, LIMIT, WINDOW_MS)) {
     return NextResponse.json(
@@ -87,7 +90,7 @@ export async function POST(req: NextRequest) {
       emailed = true;
       if (saved) await MessageModel.updateOne({ _id: saved._id }, { emailed: true });
     } catch (err) {
-      console.error("Sending contact email failed:", err);
+      log.error("Sending contact email failed", err);
     }
   }
 
