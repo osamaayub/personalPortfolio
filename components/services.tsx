@@ -2,7 +2,16 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import { servicesData } from "@/data/data";
+import { FaDatabase, FaMobileAlt, FaReact, FaServer, FaCode } from "react-icons/fa";
+import type { SectionsContent, ServicesContent } from "@/lib/content-schema";
+
+const serviceIcons = {
+  react: FaReact,
+  server: FaServer,
+  mobile: FaMobileAlt,
+  database: FaDatabase,
+  code: FaCode,
+} as const;
 import { useSectionInView } from "@/hooks/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { motion } from "framer-motion";
@@ -25,7 +34,7 @@ const cardVariants = {
   }),
 };
 
-const Services = () => {
+const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsContent["services"] }) => {
   const { ref } = useSectionInView("Services");
   const { setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
@@ -37,31 +46,18 @@ const Services = () => {
       className="mb-28 w-full max-w-[64rem] scroll-mt-28 sm:mb-40"
     >
       <SectionHeading
-        eyebrow="What I do"
-        subtitle={
-          <>
-            With 2+ years of professional experience, I bring{" "}
-            <span className="font-medium text-gray-900 dark:text-white">
-              strong full‑stack skills
-            </span>{" "}
-            in React, Next.js, Node.js, and MongoDB. I've contributed to{" "}
-            <span className="font-medium text-gray-900 dark:text-white">
-              production-ready applications
-            </span> at SensViz, Cogilent Solutions, and Narsun Studios —
-            improving performance, user experience, and maintainability.
-            Here’s how I can add value to your team:
-          </>
-        }
+        eyebrow={copy.eyebrow}
+        subtitle={content.intro}
       >
-        Services
+        {copy.title}
       </SectionHeading>
 
 
 
       <div className="grid gap-5 sm:grid-cols-2 lg:gap-7">
-        {servicesData.map((service, index) => {
-          const isFeatured =
-            "featured" in service && service.featured;
+        {content.items.map((service, index) => {
+          const isFeatured = false;
+          const Icon = serviceIcons[service.icon];
 
           return (
             <motion.article
@@ -98,7 +94,7 @@ const Services = () => {
                   className={`flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-500 text-white shadow-lg shadow-indigo-500/20 transition-transform motion-safe:group-hover:-rotate-6 ${isFeatured ? "h-14 w-14" : "h-12 w-12"
                     }`}
                 >
-                  <service.icon
+                  <Icon
                     className={isFeatured ? "text-2xl" : "text-xl"}
                   />
                 </div>
@@ -147,14 +143,11 @@ const Services = () => {
         viewport={{ once: true }}
       >
         <h3 className="text-2xl font-bold">
-          Let's Build Something Great Together
+          {copy.ctaTitle}
         </h3>
 
         <p className="mx-auto mt-4 max-w-2xl leading-7 text-gray-300 dark:text-white/70">
-          Have an idea, startup, or business project in mind? I'm always
-          excited to collaborate on building modern, scalable web applications
-          that deliver real value. Let's discuss your goals and turn your vision
-          into reality.
+          {copy.ctaText}
         </p>
 
         <Link
@@ -165,7 +158,7 @@ const Services = () => {
           }}
           className="group mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 font-semibold text-gray-900 transition-all duration-300 hover:scale-105 hover:bg-gray-100 active:scale-95"
         >
-          Start a Conversation
+          {copy.ctaButton}
           <BsArrowRight className="transition-transform group-hover:translate-x-1" />
         </Link>
       </motion.div>

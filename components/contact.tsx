@@ -9,19 +9,20 @@ import { useSectionInView } from "@/hooks/hooks";
 import { HiCheckCircle, HiMail, HiLocationMarker, HiClock } from "react-icons/hi";
 import { BsLinkedin } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
+import type { Profile, SectionsContent } from "@/lib/content-schema";
 
 const MAX_MESSAGE = 5000;
 
 const inputClass =
   "rounded-xl border border-black/10 bg-white px-4 transition-all focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-500/15 dark:bg-white/90 dark:text-gray-950";
 
-const info = [
-  { icon: HiMail, label: "Email", value: "osama.ayubwebdev@gmail.com", href: "mailto:osama.ayubwebdev@gmail.com" },
-  { icon: HiLocationMarker, label: "Based in", value: "Lahore, Pakistan" },
-  { icon: HiClock, label: "Response time", value: "Usually within a day or two" },
-] as const;
+const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["contact"] }) => {
+  const info = [
+    { icon: HiMail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
+    { icon: HiLocationMarker, label: "Based in", value: profile.location },
+    { icon: HiClock, label: "Response time", value: copy.responseTime },
+  ] as const;
 
-const Contact = () => {
   const { ref } = useSectionInView("Contact");
   const reduceMotion = useReducedMotion();
   const [submitting, setSubmitting] = useState(false);
@@ -61,11 +62,8 @@ const Contact = () => {
 
   return (
     <section id="contact" ref={ref} className="mb-20 w-full max-w-5xl scroll-mt-28 sm:mb-28">
-      <SectionHeading
-        eyebrow="Get in touch"
-        subtitle="Have a project, an idea, or a role in mind? Send a message and let's talk."
-      >
-        Let&apos;s work together
+      <SectionHeading eyebrow={copy.eyebrow} subtitle={copy.subtitle}>
+        {copy.title}
       </SectionHeading>
 
       <div className="grid gap-6 lg:grid-cols-5">
@@ -102,7 +100,7 @@ const Contact = () => {
 
           <div className="relative mt-8 flex gap-3">
             <a
-              href="https://www.linkedin.com/in/osama-ayub8889993755979/"
+              href={profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -111,7 +109,7 @@ const Contact = () => {
               <BsLinkedin />
             </a>
             <a
-              href="https://github.com/osamaayub"
+              href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"

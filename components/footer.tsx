@@ -1,7 +1,7 @@
 import React from "react";
 import { links } from "@/data/data";
 
-const Footer = () => {
+const Footer = ({ name, text }: { name: string; text: string }) => {
   return (
     <footer className="mx-auto mb-10 mt-8 max-w-3xl border-t border-gray-200 px-4 pt-8 text-center text-gray-500 dark:border-white/10">
       <nav aria-label="Footer" className="mb-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
@@ -12,11 +12,9 @@ const Footer = () => {
         ))}
       </nav>
       <small className="mb-2 block text-xs">
-        &copy; {new Date().getFullYear()} Osama Ayub. All rights reserved.
+        &copy; {new Date().getFullYear()} {name}. All rights reserved.
       </small>
-      <p className="text-xs">
-        Built with Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, MongoDB and Resend.
-      </p>
+      <p className="text-xs">{text}</p>
     </footer>
   );
 };

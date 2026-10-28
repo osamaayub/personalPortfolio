@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
-import React from "react";
-import ContactFormEmail from "@/email/contact-form-email";
+import { contactEmailHtml, contactEmailText } from "@/lib/contact-email";
 import { connectDb, isDbConfigured } from "@/lib/db";
 import { clientIp, hashIp, memoryRateLimit } from "@/lib/request";
 import { contactSchema } from "@/lib/validators";
@@ -67,15 +65,25 @@ export async function POST(req: NextRequest) {
   let emailed = false;
   if (resendKey) {
     try {
-      const resend = new Resend(resendKey);
-      const { error } = await resend.emails.send({
-        from: process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev",
-        to: process.env.CONTACT_TO_EMAIL ?? "ayubosama416@gmail.com",
-        replyTo: email,
-        subject: `Portfolio message from ${name || email}`,
-        react: React.createElement(ContactFormEmail, { senderEmail: email, message }),
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${resendKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev",
+          to: process.env.CONTACT_TO_EMAIL ?? "ayubosama416@gmail.com",
+          reply_to: email,
+          subject: `Portfolio message from ${name || email}`,
+          html: contactEmailHtml({ name, email, message }),
+          text: contactEmailText({ name, email, message }),
+        }),
       });
-      if (error) throw new Error(error.message);
+      if (!res.ok) {
+        const detail = await res.json().catch(() => ({}));
+        throw new Error(detail.message ?? `Resend responded ${res.status}`);
+      }
       emailed = true;
       if (saved) await MessageModel.updateOne({ _id: saved._id }, { emailed: true });
     } catch (err) {

@@ -4,10 +4,10 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import SectionHeading from "./section-heading";
-import { experiencesData } from "@/data/data";
+import type { Experience as ExperienceItem, SectionsContent } from "@/lib/content-schema";
 import { useSectionInView } from "@/hooks/hooks";
 
-const Experience = () => {
+const Experience = ({ items, copy }: { items: ExperienceItem[]; copy: SectionsContent["experience"] }) => {
   const { ref } = useSectionInView("Experience");
   const reduceMotion = useReducedMotion();
   const listRef = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ const Experience = () => {
 
   return (
     <section id="experience" ref={ref} className="mb-28 w-full max-w-[56rem] scroll-mt-28 sm:mb-40">
-      <SectionHeading eyebrow="Career">My experience</SectionHeading>
+      <SectionHeading eyebrow={copy.eyebrow}>{copy.title}</SectionHeading>
 
       <div ref={listRef} className="relative">
         {/* Track, plus a gradient line that draws itself as you scroll. */}
@@ -31,20 +31,24 @@ const Experience = () => {
         />
 
         <ol className="space-y-10">
-          {experiencesData.map((item, index) => {
+          {items.map((item, index) => {
             const onRight = index % 2 === 1;
             return (
               <li key={item.title + item.date} className="relative pl-14 md:grid md:grid-cols-2 md:gap-16 md:pl-0">
                 <div
                   className="absolute left-0 top-2 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 border-indigo-400 bg-white shadow-lg shadow-indigo-500/20 md:left-1/2 md:-translate-x-1/2 dark:bg-slate-900"
                 >
-                  <Image
-                    src={item.logo}
-                    alt={`${item.location.split(",")[0]} logo`}
-                    width={32}
-                    height={32}
-                    className="h-full w-full object-contain p-1"
-                  />
+                  {item.logo ? (
+                    <Image
+                      src={item.logo}
+                      alt={`${item.location.split(",")[0]} logo`}
+                      width={32}
+                      height={32}
+                      className="h-full w-full object-contain p-1"
+                    />
+                  ) : (
+                    <span className="text-xs font-bold text-indigo-600">{item.location.charAt(0)}</span>
+                  )}
                 </div>
 
                 <motion.article

@@ -5,14 +5,23 @@ import SectionHeading from "./section-heading";
 import { motion, useReducedMotion } from "framer-motion";
 import { useSectionInView } from "@/hooks/hooks";
 import { FaBolt, FaLayerGroup, FaShieldAlt } from "react-icons/fa";
+import type { AboutContent, SectionsContent } from "@/lib/content-schema";
 
-const highlights = [
-  { icon: FaBolt, title: "Performance first", text: "Fast loads, lean bundles, smooth interactions." },
-  { icon: FaShieldAlt, title: "Secure by default", text: "Validated inputs, solid auth, safe APIs." },
-  { icon: FaLayerGroup, title: "End-to-end ownership", text: "From schema design to polished UI." },
-] as const;
+const highlightIcons = [FaBolt, FaShieldAlt, FaLayerGroup];
 
-const About = () => {
+/** Renders **bold** markers from the admin editor as <span> elements. */
+const withBold = (text: string) =>
+  text.split("**").map((part, i) =>
+    i % 2 === 1 ? (
+      <span key={i} className="font-medium">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+
+const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["about"] }) => {
   const { ref } = useSectionInView("About");
   const reduceMotion = useReducedMotion();
 
@@ -26,43 +35,31 @@ const About = () => {
       transition={{ type: "spring", stiffness: 90, damping: 20 }}
       id="about"
     >
-      <SectionHeading eyebrow="About">Engineering with care</SectionHeading>
+      <SectionHeading eyebrow={copy.eyebrow}>{copy.title}</SectionHeading>
 
-      <p className="mb-3">
-        I’m a <span className="font-medium">Full-Stack Software Engineer</span>{" "}
-        with <span className="font-medium">2+ years of professional experience</span>{" "}
-        building scalable web applications. I specialize in the MERN stack,
-        Next.js, and TypeScript, with a focus on performance, clean code, and
-        intuitive user experiences.
-      </p>
+      {about.paragraphs.map((text, i) => (
+        <p key={i} className="mb-3 last:mb-8">
+          {withBold(text)}
+        </p>
+      ))}
 
-      <p className="mb-3">
-        At{" "}
-        <span className="font-medium">
-          Cogilent Solutions, SensViz, and Narsun Studios
-        </span>
-        , I’ve built REST APIs, secure authentication, and responsive interfaces
-        for enterprise applications and AI-powered platforms. I enjoy turning
-        complex problems into practical solutions.
-      </p>
-
-      <p className="mb-8">
-        Outside of coding, I enjoy gaming, movies, and time with friends—along
-        with <span className="font-medium">learning new technologies</span>.
-      </p>
-
-      <ul className="grid gap-3 text-left sm:grid-cols-3">
-        {highlights.map((h) => (
-          <li
-            key={h.title}
-            className="spotlight relative rounded-2xl border border-indigo-100 bg-white/70 p-4 leading-6 dark:border-white/10 dark:bg-white/5"
-          >
-            <h.icon className="mb-2 text-xl text-indigo-600 dark:text-indigo-300" aria-hidden="true" />
-            <p className="text-sm font-semibold">{h.title}</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">{h.text}</p>
-          </li>
-        ))}
-      </ul>
+      {about.highlights.length > 0 && (
+        <ul className="grid gap-3 text-left sm:grid-cols-3">
+          {about.highlights.map((h, i) => {
+            const Icon = highlightIcons[i % highlightIcons.length];
+            return (
+              <li
+                key={h.title}
+                className="spotlight relative rounded-2xl border border-indigo-100 bg-white/70 p-4 leading-6 dark:border-white/10 dark:bg-white/5"
+              >
+                <Icon className="mb-2 text-xl text-indigo-600 dark:text-indigo-300" aria-hidden="true" />
+                <p className="text-sm font-semibold">{h.title}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{h.text}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </motion.section>
   );
 };

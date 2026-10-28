@@ -4,25 +4,21 @@ import { Inter } from "next/font/google";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 import MotionProvider from "@/components/motion-provider";
+import { getContent } from "@/lib/content";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-const description =
-  "Full-stack software engineer specializing in React, Next.js, Node.js and MongoDB. Available for web development, APIs, and product builds.";
-
-export const metadata: Metadata = {
-  title: {
-    default: "Osama Ayub | Full-Stack Software Engineer",
-    template: "%s | Osama Ayub",
-  },
-  description,
-  openGraph: {
-    title: "Osama Ayub | Full-Stack Software Engineer",
+export async function generateMetadata(): Promise<Metadata> {
+  const { profile } = await getContent();
+  const title = `${profile.name} | ${profile.title}`;
+  const description = `${profile.title}${profile.company ? ` at ${profile.company}` : ""} ${profile.tagline}`.trim();
+  return {
+    title: { default: title, template: `%s | ${profile.name}` },
     description,
-    type: "website",
-  },
-  twitter: { card: "summary", title: "Osama Ayub | Full-Stack Software Engineer", description },
-};
+    openGraph: { title, description, type: "website" },
+    twitter: { card: "summary", title, description },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: [

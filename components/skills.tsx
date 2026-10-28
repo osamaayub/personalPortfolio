@@ -2,34 +2,33 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import { skillGroups } from "@/data/data";
 import Marquee from "./marquee";
-
-const allSkills = skillGroups.flatMap((g) => g.skills);
-const half = Math.ceil(allSkills.length / 2);
 import { useSectionInView } from "@/hooks/hooks";
 import { motion, useReducedMotion } from "framer-motion";
+import type { SectionsContent, SkillGroup } from "@/lib/content-schema";
 
-const Skills = () => {
+const Skills = ({ groups, copy }: { groups: SkillGroup[]; copy: SectionsContent["skills"] }) => {
   const { ref } = useSectionInView("Skills");
   const reduceMotion = useReducedMotion();
 
+  const allSkills = groups.flatMap((g) => g.skills);
+  const half = Math.ceil(allSkills.length / 2);
+
   return (
     <section id="skills" ref={ref} className="mb-28 w-full max-w-[72rem] scroll-mt-28 sm:mb-40">
-      <SectionHeading
-        eyebrow="Toolbox"
-        subtitle="The tools I use to turn complex problems into simple, dependable experiences."
-      >
-        My skills
+      <SectionHeading eyebrow={copy.eyebrow} subtitle={copy.subtitle}>
+        {copy.title}
       </SectionHeading>
 
-      <div className="mb-10 space-y-3">
-        <Marquee items={allSkills.slice(0, half)} />
-        <Marquee items={allSkills.slice(half)} reverse />
-      </div>
+      {allSkills.length > 0 && (
+        <div className="mb-10 space-y-3">
+          <Marquee items={allSkills.slice(0, half)} />
+          <Marquee items={allSkills.slice(half)} reverse />
+        </div>
+      )}
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {skillGroups.map((group, index) => (
+        {groups.map((group, index) => (
           <motion.div
             key={group.title}
             initial={reduceMotion ? false : { opacity: 0, y: 28 }}

@@ -10,10 +10,11 @@ import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/hooks/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import RotatingText from "./rotating-text";
+import type { Profile } from "@/lib/content-schema";
 
 const MotionLink = motion.create(Link);
 
-const Intro = () => {
+const Intro = ({ profile }: { profile: Profile }) => {
   const reduceMotion = useReducedMotion();
   const { ref } = useSectionInView("Home", 0.5);
   const { setActiveSection, setTimeOfLastClick } =
@@ -58,7 +59,7 @@ const Intro = () => {
           >
             <Image
               src="/personal.jpg"
-              alt="Osama Ayub"
+              alt={profile.name}
               width={128}
               height={128}
               priority
@@ -93,7 +94,7 @@ const Intro = () => {
           <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
         </span>
-        Open to new opportunities
+        {profile.availability}
       </motion.p>
 
       {/* Heading */}
@@ -111,8 +112,8 @@ const Intro = () => {
           animate={{ backgroundPosition: reduceMotion ? "0% center" : ["100% center", "0% center"] }}
           transition={reduceMotion ? { duration: 0 } : { duration: 7, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" as const }}
         >
-          <span className="sr-only">Osama Ayub</span>
-          {['Osama', 'Ayub'].map((word, index) => (
+          <span className="sr-only">{profile.name}</span>
+          {profile.name.split(' ').map((word, index) => (
             <React.Fragment key={word}>
               {index > 0 && ' '}
               <motion.span
@@ -130,18 +131,23 @@ const Intro = () => {
         .
         <br />
         <span className="mt-6 inline-block max-w-2xl text-xl leading-relaxed text-gray-600 dark:text-gray-300 sm:text-2xl">
-          Software Engineer at{" "}
-          <span className="relative inline-block font-bold">
-            Cogilent Solutions
-            <motion.span
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-0.5 origin-left rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-400"
-              initial={reduceMotion ? false : { scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.65, delay: 0.8, ease: "easeOut" }}
-            />
-          </span>{" "}
-          with 2+ years of experience specializing in React, Next.js, Node.js & TypeScript.
+          {profile.title}
+          {profile.company && (
+            <>
+              {" "}at{" "}
+              <span className="relative inline-block font-bold">
+                {profile.company}
+                <motion.span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 h-0.5 origin-left rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-400"
+                  initial={reduceMotion ? false : { scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.65, delay: 0.8, ease: "easeOut" }}
+                />
+              </span>
+            </>
+          )}{" "}
+          {profile.tagline}
         </span>
       </motion.h1>
 
@@ -153,7 +159,7 @@ const Intro = () => {
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
       >
         I build{" "}
-        <RotatingText words={["scalable web apps", "clean REST APIs", "polished interfaces", "full-stack products"]} />
+        <RotatingText words={profile.roles} />
       </motion.p>
 
       {/* Subtitle */}
@@ -189,7 +195,7 @@ const Intro = () => {
 
         <MotionLink
           {...buttonMotion}
-          href="/CV.pdf"
+          href={profile.cvUrl}
           download
           className={`${primaryButton} border border-black/10 bg-white dark:border-white/10 dark:bg-white/10`}
         >
@@ -199,7 +205,7 @@ const Intro = () => {
 
         <MotionLink
           {...buttonMotion}
-          href="https://www.linkedin.com/in/osama-ayub8889993755979/"
+          href={profile.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className={socialButton}
@@ -210,7 +216,7 @@ const Intro = () => {
 
         <MotionLink
           {...buttonMotion}
-          href="https://github.com/osamaayub"
+          href={profile.github}
           target="_blank"
           rel="noopener noreferrer"
           className={socialButton}
@@ -228,12 +234,7 @@ const Intro = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
       >
-        {[
-          { value: "2+", label: "Years experience" },
-          { value: "5+", label: "Products shipped" },
-          { value: "MERN", label: "Core stack" },
-          { value: "PK", label: "Lahore, Pakistan" },
-        ].map((stat) => (
+        {profile.stats.map((stat) => (
           <motion.div
             key={stat.label}
             variants={itemVariants}

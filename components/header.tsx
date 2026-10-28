@@ -18,7 +18,7 @@ import ThemeSwitch from './theme-switch';
 
 type LinkName = (typeof links)[number]['name'];
 
-const Header = () => {
+const Header = ({ name }: { name: string }) => {
   const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   const reduceMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
@@ -45,14 +45,14 @@ const Header = () => {
     <Link
       href="#home"
       onClick={() => go('Home')}
-      aria-label="Osama Ayub, back to top"
+      aria-label={`${name}, back to top`}
       className="flex items-center gap-2.5"
     >
       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-fuchsia-600 text-sm font-bold text-white shadow-md shadow-indigo-500/30">
-        OA
+        {name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
       </span>
       <span className="hidden text-sm font-semibold tracking-tight min-[1100px]:inline dark:text-white">
-        Osama Ayub
+        {name}
       </span>
     </Link>
   );

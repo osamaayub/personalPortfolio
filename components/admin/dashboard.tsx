@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import ContentEditor from "./content-editor";
 
 type Message = {
   _id: string;
@@ -55,7 +56,7 @@ const field =
 
 export default function Dashboard({ dbConfigured }: { dbConfigured: boolean }) {
   const router = useRouter();
-  const [tab, setTab] = useState<"messages" | "projects">("messages");
+  const [tab, setTab] = useState<"messages" | "projects" | "content">("messages");
   const [messages, setMessages] = useState<Message[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(dbConfigured);
@@ -187,7 +188,7 @@ export default function Dashboard({ dbConfigured }: { dbConfigured: boolean }) {
       )}
 
       <div role="tablist" className="mt-6 flex gap-2 border-b border-gray-200 dark:border-white/10">
-        {(["messages", "projects"] as const).map((t) => (
+        {(["messages", "projects", "content"] as const).map((t) => (
           <button
             key={t}
             role="tab"
@@ -209,6 +210,8 @@ export default function Dashboard({ dbConfigured }: { dbConfigured: boolean }) {
 
       {loading ? (
         <p className="mt-8 text-sm text-gray-500">Loading…</p>
+      ) : tab === "content" ? (
+        <ContentEditor />
       ) : tab === "messages" ? (
         <ul className="mt-6 space-y-3">
           {messages.length === 0 && <li className="text-sm text-gray-500">No messages yet.</li>}
