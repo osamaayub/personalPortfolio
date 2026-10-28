@@ -18,11 +18,11 @@ export default function Projects({
 
   return (
     <section ref={ref} id="projects" className="mb-28 w-full max-w-6xl scroll-mt-28">
-      <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-300">
+      <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.25em] text-brand">
         {copy.eyebrow}
       </p>
       <SectionHeading>{copy.title}</SectionHeading>
-      <p className="mx-auto -mt-5 mb-12 max-w-xl text-center leading-relaxed text-gray-600 dark:text-gray-400">
+      <p className="mx-auto -mt-5 mb-12 max-w-xl text-center leading-relaxed text-ink-muted">
         {copy.subtitle}
       </p>
 

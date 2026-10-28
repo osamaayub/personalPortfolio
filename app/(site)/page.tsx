@@ -15,7 +15,7 @@ export default async function Home() {
   const [projects, content] = await Promise.all([getProjects(), getContent()]);
 
   return (
-    <main className="flex flex-col items-center px-4 pb-4">
+    <main id="main" className="flex flex-col items-center px-4 pb-4">
       <Intro profile={content.profile} />
       <About about={content.about} copy={content.sections.about} />
       <Projects projects={projects} copy={content.sections.projects} />

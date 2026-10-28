@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { connectDb, isDbConfigured } from "@/lib/db";
 import { contentSchemas, defaultContent, sectionKeys, type SiteContent } from "@/lib/content-schema";
 import { ContentModel } from "@/models/content";
@@ -23,6 +24,8 @@ export async function getSavedSections(): Promise<Partial<SiteContent>> {
   }
 }
 
-export async function getContent(): Promise<SiteContent> {
-  return { ...defaultContent, ...(await getSavedSections()) };
-}
+/** Memoized per request: layout, page and metadata all call this. */
+export const getContent = cache(async (): Promise<SiteContent> => ({
+  ...defaultContent,
+  ...(await getSavedSections()),
+}));

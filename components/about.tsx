@@ -2,7 +2,7 @@
 
 import React from "react";
 import SectionHeading from "./section-heading";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { useSectionInView } from "@/hooks/hooks";
 import { FaBolt, FaLayerGroup, FaShieldAlt } from "react-icons/fa";
 import type { AboutContent, SectionsContent } from "@/lib/content-schema";
@@ -26,9 +26,9 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
-      className="mb-28 max-w-[48rem] scroll-mt-28 rounded-3xl border border-indigo-100/80 bg-white/60 px-6 py-10 text-center leading-8 shadow-xl shadow-indigo-950/5 backdrop-blur-sm sm:mb-40 sm:px-10 dark:border-white/10 dark:bg-white/5"
+      className="mb-28 max-w-[48rem] scroll-mt-28 card px-6 py-10 text-center leading-8 sm:mb-40 sm:px-10"
       initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.97 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -50,17 +50,17 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
             return (
               <li
                 key={h.title}
-                className="spotlight relative rounded-2xl border border-indigo-100 bg-white/70 p-4 leading-6 dark:border-white/10 dark:bg-white/5"
+                className="spotlight relative rounded-2xl border border-line bg-surface-2/60 p-4 leading-6"
               >
-                <Icon className="mb-2 text-xl text-indigo-600 dark:text-indigo-300" aria-hidden="true" />
+                <Icon className="mb-2 text-xl text-brand" aria-hidden="true" />
                 <p className="text-sm font-semibold">{h.title}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{h.text}</p>
+                <p className="text-sm text-ink-muted">{h.text}</p>
               </li>
             );
           })}
         </ul>
       )}
-    </motion.section>
+    </m.section>
   );
 };
 

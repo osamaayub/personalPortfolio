@@ -2,37 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  --line-color: #e5e7eb;
+/* Design tokens as RGB channels so Tailwind opacity modifiers work (bg-surface/80). */
+:root {
+  --canvas: 248 250 252;
+  --surface: 255 255 255;
+  --surface-2: 241 245 249;
+  --line: 226 232 240;
+  --ink: 15 23 42;
+  --ink-muted: 71 85 105;
+  --ink-subtle: 100 116 139;
+  --brand: 79 70 229;
+  --brand-soft: 238 242 255;
+  --brand-ink: 67 56 202;
+  --shadow: 15 23 42;
+  color-scheme: light;
 }
 
-html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
+.dark {
+  --canvas: 9 11 17;
+  --surface: 18 21 30;
+  --surface-2: 26 30 42;
+  --line: 38 43 58;
+  --ink: 236 238 244;
+  --ink-muted: 163 171 188;
+  --ink-subtle: 133 142 160;
+  --brand: 129 140 248;
+  --brand-soft: 30 33 66;
+  --brand-ink: 199 210 254;
+  --shadow: 0 0 0;
+  color-scheme: dark;
 }
 
-.borderBlack {
-  @apply border border-black/10;
-}
-
-@layer base {
-  ::selection {
-    @apply bg-indigo-200 text-indigo-950;
+@layer components {
+  /* Shared surface for cards: hairline border, soft layered shadow, brand-tinted hover. */
+  .card {
+    @apply rounded-3xl border border-line bg-surface/80 shadow-card backdrop-blur-sm transition-[box-shadow,border-color,transform] duration-300;
   }
 
-  :focus-visible {
-    @apply outline outline-2 outline-offset-4 outline-indigo-500;
+  .card-interactive {
+    @apply card hover:border-brand/40 hover:shadow-card-hover;
+  }
+
+  .chip {
+    @apply rounded-lg border border-brand/15 bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand-ink;
   }
 }
 
 .portfolio-backdrop {
-  background-image: radial-gradient(circle, rgb(99 102 241 / 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgb(var(--brand) / 0.14) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: linear-gradient(to bottom, black, transparent);
 }
 
 .profile-halo {
   background: linear-gradient(135deg, #818cf8, #c084fc, #f0abfc);
-  box-shadow: 0 0 60px rgb(129 140 248 / 0.2);
+  box-shadow: 0 0 60px rgb(var(--brand) / 0.22);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -91,7 +115,7 @@ html.dark {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(129 140 248 / 0.18), transparent 45%);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--brand) / 0.14), transparent 45%);
 }
 
 .spotlight:hover::before {
@@ -101,6 +125,25 @@ html.dark {
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
   .animate-gradient {
+    animation: none !important;
+  }
+}
+
+/* Backdrop blobs: pure CSS so the backdrop needs no client JS. */
+@keyframes drift-a {
+  to { transform: translate3d(40px, 30px, 0) scale(1.1); }
+}
+
+@keyframes drift-b {
+  to { transform: translate3d(-40px, -30px, 0) scale(0.9); }
+}
+
+.blob-a { animation: drift-a 14s ease-in-out infinite alternate; }
+.blob-b { animation: drift-b 14s ease-in-out infinite alternate; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-a,
+  .blob-b {
     animation: none !important;
   }
 }
