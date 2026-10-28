@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   AnimatePresence,
-  motion,
+  m,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
@@ -51,7 +51,7 @@ const Header = ({ name }: { name: string }) => {
       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-fuchsia-600 text-sm font-bold text-white shadow-md shadow-indigo-500/30">
         {name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
       </span>
-      <span className="hidden text-sm font-semibold tracking-tight min-[1100px]:inline dark:text-white">
+      <span className="hidden text-sm font-semibold tracking-tight min-[1100px]:inline">
         {name}
       </span>
     </Link>
@@ -60,8 +60,8 @@ const Header = ({ name }: { name: string }) => {
   const barClass = clsx(
     'fixed inset-x-0 top-3 z-[2] mx-auto w-[calc(100%-1.5rem)] max-w-5xl rounded-2xl border transition-all duration-300 lg:top-5 lg:rounded-full',
     scrolled
-      ? 'border-gray-200/80 bg-white/85 shadow-lg shadow-gray-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-gray-950/80'
-      : 'border-gray-200/40 bg-white/50 shadow-none backdrop-blur-md dark:border-white/5 dark:bg-gray-950/40',
+      ? 'border-line bg-surface/85 shadow-card backdrop-blur-xl'
+      : 'border-line/50 bg-surface/50 shadow-none backdrop-blur-md',
   );
 
   return (
@@ -78,7 +78,7 @@ const Header = ({ name }: { name: string }) => {
       )}
 
       {/* Desktop */}
-      <motion.div
+      <m.div
         initial={reduceMotion ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 20 }}
@@ -88,7 +88,7 @@ const Header = ({ name }: { name: string }) => {
           {logo}
 
           <nav aria-label="Primary">
-            <ul className="flex items-center gap-0.5 text-sm font-medium text-gray-500">
+            <ul className="flex items-center gap-0.5 text-sm font-medium text-ink-muted">
               {links.map((link) => {
                 const active = activeSection === link.name;
                 return (
@@ -98,15 +98,15 @@ const Header = ({ name }: { name: string }) => {
                       onClick={() => go(link.name)}
                       aria-current={active ? 'true' : undefined}
                       className={clsx(
-                        'relative flex items-center px-3.5 py-2 transition-colors hover:text-gray-950 dark:hover:text-gray-200',
-                        active ? 'text-gray-950 dark:text-white' : 'dark:text-gray-400',
+                        'relative flex items-center px-3.5 py-2 transition-colors hover:text-ink',
+                        active ? 'text-ink' : 'text-ink-muted',
                       )}
                     >
                       {link.name}
                       {active && (
-                        <motion.span
+                        <m.span
                           layoutId="activeSection"
-                          className="absolute inset-0 -z-10 rounded-full bg-indigo-50 dark:bg-white/10"
+                          className="absolute inset-0 -z-10 rounded-full bg-brand-soft"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -129,10 +129,10 @@ const Header = ({ name }: { name: string }) => {
             </Link>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Mobile / tablet */}
-      <motion.div
+      <m.div
         initial={reduceMotion ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 20 }}
@@ -148,26 +148,26 @@ const Header = ({ name }: { name: string }) => {
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               onClick={() => setIsOpen((o) => !o)}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-2xl text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-white/10"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-2xl text-ink-muted transition hover:bg-surface-2"
             >
               {isOpen ? <HiX /> : <HiMenu />}
             </button>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       <AnimatePresence>
         {isOpen && (
-          <motion.nav
+          <m.nav
             id="mobile-menu"
             aria-label="Primary"
             initial={{ opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -12, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-3 right-3 top-[4.75rem] z-[2] mx-auto max-w-5xl rounded-2xl border border-gray-200 bg-white/95 p-3 shadow-2xl backdrop-blur-xl lg:hidden dark:border-white/10 dark:bg-gray-900/95"
+            className="fixed left-3 right-3 top-[4.75rem] z-[2] mx-auto max-w-5xl rounded-2xl border border-line bg-surface/95 p-3 shadow-2xl backdrop-blur-xl lg:hidden"
           >
-            <motion.ul
+            <m.ul
               initial="hidden"
               animate="visible"
               variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
@@ -176,7 +176,7 @@ const Header = ({ name }: { name: string }) => {
               {links.map((link) => {
                 const active = activeSection === link.name;
                 return (
-                  <motion.li
+                  <m.li
                     key={link.hash}
                     variants={{ hidden: { opacity: 0, x: -12 }, visible: { opacity: 1, x: 0 } }}
                   >
@@ -187,17 +187,17 @@ const Header = ({ name }: { name: string }) => {
                       className={clsx(
                         'flex items-center justify-between rounded-xl px-4 py-3 text-[15px] font-medium transition-colors',
                         active
-                          ? 'bg-indigo-50 text-indigo-700 dark:bg-white/10 dark:text-white'
-                          : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5',
+                          ? 'bg-brand-soft text-brand-ink'
+                          : 'text-ink-muted hover:bg-surface-2',
                       )}
                     >
                       {link.name}
                       {active && <span className="h-2 w-2 rounded-full bg-indigo-500" aria-hidden="true" />}
                     </Link>
-                  </motion.li>
+                  </m.li>
                 );
               })}
-            </motion.ul>
+            </m.ul>
             <Link
               href="#contact"
               onClick={() => go('Contact')}
@@ -206,7 +206,7 @@ const Header = ({ name }: { name: string }) => {
               Let&apos;s talk
               <BsArrowRight />
             </Link>
-          </motion.nav>
+          </m.nav>
         )}
       </AnimatePresence>
     </header>

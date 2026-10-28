@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { projectsData } from "@/data/data";
 import { connectDb, isDbConfigured } from "@/lib/db";
 import { ProjectModel } from "@/models/project";
@@ -21,7 +22,7 @@ const staticProjects = (): PublicProject[] =>
  * configured / unreachable) the site falls back to the bundled data so it never
  * renders an empty section.
  */
-export async function getProjects(): Promise<PublicProject[]> {
+export const getProjects = cache(async (): Promise<PublicProject[]> => {
   if (!isDbConfigured) return staticProjects();
   try {
     await connectDb();
@@ -41,4 +42,4 @@ export async function getProjects(): Promise<PublicProject[]> {
     console.error("getProjects failed, using static data:", err);
     return staticProjects();
   }
-}
+});

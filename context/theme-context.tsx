@@ -33,18 +33,18 @@ export default function ThemeContextProvider({
   };
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem("theme") as Theme | null;
+    // The inline script in the root layout already set the class before paint; sync state to it,
+    // and follow the OS setting until the visitor picks a theme explicitly.
+    setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light");
 
-    if (localTheme) {
-      setTheme(localTheme);
-
-      if (localTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      }
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    }
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = (e: MediaQueryListEvent) => {
+      if (window.localStorage.getItem("theme")) return;
+      document.documentElement.classList.toggle("dark", e.matches);
+      setTheme(e.matches ? "dark" : "light");
+    };
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
   }, []);
 
   return (

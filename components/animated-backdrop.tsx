@@ -1,24 +1,9 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-
+// Pure CSS (see .blob-a / .blob-b in globals.css): no client JS needed for the aurora.
 export default function AnimatedBackdrop() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <div aria-hidden="true" className="portfolio-backdrop pointer-events-none absolute inset-x-0 top-0 -z-10 h-[65rem] overflow-hidden">
-      <motion.div
-        initial={false}
-        animate={reduceMotion ? { x: 0, y: 0, scale: 1 } : { x: [-20, 20], y: [-15, 15], scale: [0.95, 1.05] }}
-        transition={reduceMotion ? { duration: 0 } : { duration: 7, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" as const }}
-        className="absolute -top-24 right-[-10%] h-[32rem] w-[40rem] rounded-full bg-violet-200/60 blur-[90px] dark:bg-violet-900/25"
-      />
-      <motion.div
-        initial={false}
-        animate={reduceMotion ? { x: 0, y: 0, scale: 1 } : { x: [20, -20], y: [15, -15], scale: [1.05, 0.95] }}
-        transition={reduceMotion ? { duration: 0 } : { duration: 7, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" as const }}
-        className="absolute top-32 left-[-15%] h-[30rem] w-[40rem] rounded-full bg-indigo-200/60 blur-[90px] dark:bg-indigo-900/30"
-      />
+      <div className="blob-a absolute -top-24 right-[-10%] h-[32rem] w-[40rem] transform-gpu rounded-full bg-violet-300/40 blur-[90px] will-change-transform dark:bg-violet-700/20" />
+      <div className="blob-b absolute left-[-15%] top-32 h-[30rem] w-[40rem] transform-gpu rounded-full bg-indigo-300/40 blur-[90px] will-change-transform dark:bg-indigo-600/20" />
     </div>
   );
 }

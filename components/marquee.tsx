@@ -17,7 +17,7 @@ export default function Marquee({
         {row.map((item, i) => (
           <li
             key={i}
-            className="mr-3 rounded-full border border-indigo-100 bg-white/80 px-5 py-2 text-sm font-medium text-gray-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-gray-200"
+            className="mr-3 rounded-full border border-line bg-surface/80 px-5 py-2 text-sm font-medium text-ink-muted shadow-card"
           >
             {item}
           </li>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import toast from "react-hot-toast";
 import SectionHeading from "./section-heading";
 import SubmitBtn from "./submit-btn";
@@ -14,7 +14,7 @@ import type { Profile, SectionsContent } from "@/lib/content-schema";
 const MAX_MESSAGE = 5000;
 
 const inputClass =
-  "rounded-xl border border-black/10 bg-white px-4 transition-all focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-500/15 dark:bg-white/90 dark:text-gray-950";
+  "rounded-xl border border-line bg-surface-2/50 px-4 text-ink placeholder:text-ink-subtle transition-all focus:border-brand focus:bg-surface focus:outline-none focus:ring-4 focus:ring-brand/15";
 
 const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["contact"] }) => {
   const info = [
@@ -67,7 +67,7 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
       </SectionHeading>
 
       <div className="grid gap-6 lg:grid-cols-5">
-        <motion.aside
+        <m.aside
           initial={reduceMotion ? false : { opacity: 0, x: -32 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-40px" }}
@@ -118,30 +118,30 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
               <FaGithub />
             </a>
           </div>
-        </motion.aside>
+        </m.aside>
 
-        <motion.div
+        <m.div
           initial={reduceMotion ? false : { opacity: 0, x: 32 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.6 }}
-          className="rounded-3xl border border-indigo-100 bg-white/80 p-6 shadow-sm backdrop-blur-sm sm:p-8 lg:col-span-3 dark:border-white/10 dark:bg-slate-900/80"
+          className="card p-6 sm:p-8 lg:col-span-3"
         >
           {sent ? (
             <div role="status" className="flex h-full flex-col items-center justify-center py-10 text-center">
-              <motion.div
+              <m.div
                 initial={reduceMotion ? false : { scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 260, damping: 14 }}
               >
                 <HiCheckCircle className="text-6xl text-emerald-500" />
-              </motion.div>
+              </m.div>
               <p className="mt-3 text-xl font-semibold">Thanks, your message is in.</p>
-              <p className="mt-1 text-gray-600 dark:text-white/70">I usually reply within a day or two.</p>
+              <p className="mt-1 text-ink-muted">I usually reply within a day or two.</p>
               <button
                 type="button"
                 onClick={() => setSent(false)}
-                className="mt-6 text-sm font-medium text-indigo-600 underline dark:text-indigo-300"
+                className="mt-6 text-sm font-medium text-brand underline"
               >
                 Send another message
               </button>
@@ -151,7 +151,7 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="contact-name" className="text-sm font-medium">
-                    Name <span className="font-normal text-gray-500">(optional)</span>
+                    Name <span className="font-normal text-ink-subtle">(optional)</span>
                   </label>
                   <input
                     id="contact-name"
@@ -203,7 +203,7 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
                   onChange={(e) => setLength(e.target.value.length)}
                   className={`h-44 resize-none p-4 ${inputClass}`}
                 />
-                <span className="self-end text-xs text-gray-500" aria-live="polite">
+                <span className="self-end text-xs text-ink-subtle" aria-live="polite">
                   {length}/{MAX_MESSAGE}
                 </span>
               </div>
@@ -211,7 +211,7 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
               <SubmitBtn disabled={submitting} />
             </form>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

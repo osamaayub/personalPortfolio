@@ -10,7 +10,7 @@ export default function SectionHeading({ children, subtitle, eyebrow }: SectionH
   return (
     <div className="mb-10 text-center sm:mb-12">
       {eyebrow ? (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-300">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-brand">
           {eyebrow}
         </p>
       ) : (
@@ -21,7 +21,7 @@ export default function SectionHeading({ children, subtitle, eyebrow }: SectionH
       )}
       <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{children}</h2>
       {subtitle ? (
-        <p className="mx-auto mt-3 max-w-[40rem] text-base leading-relaxed text-gray-600 dark:text-white/70">
+        <p className="mx-auto mt-3 max-w-[40rem] text-base leading-relaxed text-ink-muted">
           {subtitle}
         </p>
       ) : null}

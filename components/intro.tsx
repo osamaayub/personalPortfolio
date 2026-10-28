@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
@@ -12,7 +12,7 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 import RotatingText from "./rotating-text";
 import type { Profile } from "@/lib/content-schema";
 
-const MotionLink = motion.create(Link);
+const MotionLink = m.create(Link);
 
 const Intro = ({ profile }: { profile: Profile }) => {
   const reduceMotion = useReducedMotion();
@@ -24,7 +24,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
     "flex h-14 items-center justify-center gap-2 rounded-full px-7 font-medium transition-colors duration-300";
 
   const socialButton =
-    "flex h-14 w-14 items-center justify-center rounded-full borderBlack bg-white text-gray-700 shadow-sm transition-colors duration-300 hover:text-gray-950 dark:bg-white/10 dark:text-white/70";
+    "flex h-14 w-14 items-center justify-center rounded-full border border-line bg-surface text-ink-muted shadow-card transition-colors duration-300 hover:text-ink";
 
   const itemVariants = {
     hidden: { opacity: 0, y: 16, scale: 0.96 },
@@ -45,14 +45,14 @@ const Intro = ({ profile }: { profile: Profile }) => {
     >
       {/* Profile Image */}
       <div className="flex justify-center">
-        <motion.div
+        <m.div
           className="profile-halo relative rounded-full p-2"
           initial={false}
           animate={reduceMotion ? { y: 0 } : { y: [0, -10, 0] }}
           transition={reduceMotion ? { duration: 0 } : { duration: 4, ease: "easeInOut", repeat: Infinity }}
           whileHover={reduceMotion ? undefined : { scale: 1.04 }}
         >
-          <motion.div
+          <m.div
             initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 160, damping: 16 }}
@@ -63,11 +63,11 @@ const Intro = ({ profile }: { profile: Profile }) => {
               width={128}
               height={128}
               priority
-              className="h-32 w-32 rounded-full border-[5px] border-white object-cover shadow-2xl"
+              className="h-32 w-32 rounded-full border-[5px] border-surface object-cover shadow-2xl"
             />
-          </motion.div>
+          </m.div>
 
-          <motion.span
+          <m.span
             className="absolute -bottom-1 -right-1 text-4xl"
             style={{ transformOrigin: "70% 70%" }}
             initial={reduceMotion ? false : { opacity: 0, scale: 0 }}
@@ -80,33 +80,33 @@ const Intro = ({ profile }: { profile: Profile }) => {
             }}
           >
             👋
-          </motion.span>
-        </motion.div>
+          </m.span>
+        </m.div>
       </div>
 
-      <motion.p
+      <m.p
         initial={reduceMotion ? false : { opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-200/80 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 backdrop-blur-sm dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200"
+        className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 backdrop-blur-sm dark:text-emerald-300"
       >
         <span className="relative flex h-2 w-2" aria-hidden="true">
           <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
         </span>
         {profile.availability}
-      </motion.p>
+      </m.p>
 
       {/* Heading */}
-      <motion.h1
+      <m.h1
         className="mt-8 max-w-4xl text-4xl font-medium leading-tight tracking-tight sm:text-6xl"
         initial={reduceMotion ? false : { opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
       >
         Hi, I'm{" "}
-        <motion.span
-          className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 bg-clip-text font-bold text-transparent dark:from-indigo-300 dark:via-violet-300 dark:to-fuchsia-300"
+        <m.span
+          className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text font-bold text-transparent dark:from-indigo-300 dark:via-violet-300 dark:to-purple-300"
           style={{ backgroundSize: "200% auto" }}
           initial={false}
           animate={{ backgroundPosition: reduceMotion ? "0% center" : ["100% center", "0% center"] }}
@@ -116,28 +116,28 @@ const Intro = ({ profile }: { profile: Profile }) => {
           {profile.name.split(' ').map((word, index) => (
             <React.Fragment key={word}>
               {index > 0 && ' '}
-              <motion.span
+              <m.span
                 aria-hidden="true"
-                className="inline-block bg-gradient-to-r from-indigo-600 to-fuchsia-600 bg-clip-text text-transparent dark:from-indigo-300 dark:to-fuchsia-300"
+                className="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent dark:from-indigo-300 dark:to-purple-300"
                 initial={reduceMotion ? false : { opacity: 0, y: 24, rotate: -4 }}
                 animate={{ opacity: 1, y: 0, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 150, damping: 18, delay: 0.25 + index * 0.12 }}
               >
                 {word}
-              </motion.span>
+              </m.span>
             </React.Fragment>
           ))}
-        </motion.span>
+        </m.span>
         .
         <br />
-        <span className="mt-6 inline-block max-w-2xl text-xl leading-relaxed text-gray-600 dark:text-gray-300 sm:text-2xl">
+        <span className="mt-6 inline-block max-w-2xl text-xl leading-relaxed text-ink-muted sm:text-2xl">
           {profile.title}
           {profile.company && (
             <>
               {" "}at{" "}
               <span className="relative inline-block font-bold">
                 {profile.company}
-                <motion.span
+                <m.span
                   aria-hidden="true"
                   className="absolute inset-x-0 bottom-0 h-0.5 origin-left rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-400"
                   initial={reduceMotion ? false : { scaleX: 0 }}
@@ -149,32 +149,32 @@ const Intro = ({ profile }: { profile: Profile }) => {
           )}{" "}
           {profile.tagline}
         </span>
-      </motion.h1>
+      </m.h1>
 
       {/* Rotating value line */}
-      <motion.p
-        className="mt-6 text-xl font-medium text-gray-800 sm:text-2xl dark:text-gray-200"
+      <m.p
+        className="mt-6 text-xl font-medium text-ink sm:text-2xl"
         initial={reduceMotion ? false : { opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
       >
         I build{" "}
         <RotatingText words={profile.roles} />
-      </motion.p>
+      </m.p>
 
       {/* Subtitle */}
-      <motion.p
-        className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-400"
+      <m.p
+        className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-ink-muted"
         initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
       >
         From a first idea to a polished product, I build fast, intuitive web
         experiences backed by clean architecture and reliable systems.
-      </motion.p>
+      </m.p>
 
       {/* Buttons */}
-      <motion.div
+      <m.div
         className="mt-10 flex flex-wrap items-center justify-center gap-4"
         initial={reduceMotion ? false : "hidden"}
         animate="visible"
@@ -187,7 +187,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
             setActiveSection("Contact");
             setTimeOfLastClick(Date.now());
           }}
-          className={`${primaryButton} group bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 hover:bg-indigo-700`}
+          className={`${primaryButton} group bg-indigo-600 text-white shadow-lg shadow-indigo-500/25 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400`}
         >
           Contact Me
           <BsArrowRight className="transition-transform group-hover:translate-x-1" />
@@ -197,7 +197,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
           {...buttonMotion}
           href={profile.cvUrl}
           download
-          className={`${primaryButton} border border-black/10 bg-white dark:border-white/10 dark:bg-white/10`}
+          className={`${primaryButton} border border-line bg-surface text-ink shadow-card`}
         >
           Download CV
           <HiDownload className="text-lg" />
@@ -224,10 +224,10 @@ const Intro = ({ profile }: { profile: Profile }) => {
         >
           <FaGithubSquare size={24} />
         </MotionLink>
-      </motion.div>
+      </m.div>
 
       {/* Stats */}
-      <motion.dl
+      <m.dl
         className="mt-14 grid w-full max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4"
         initial={reduceMotion ? false : "hidden"}
         whileInView="visible"
@@ -235,29 +235,29 @@ const Intro = ({ profile }: { profile: Profile }) => {
         variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
       >
         {profile.stats.map((stat) => (
-          <motion.div
+          <m.div
             key={stat.label}
             variants={itemVariants}
             whileHover={reduceMotion ? undefined : { y: -3 }}
             transition={{ type: "spring", stiffness: 250, damping: 20 }}
-            className="rounded-2xl border border-gray-200/70 bg-white/70 px-4 py-4 backdrop-blur-sm dark:border-white/10 dark:bg-white/5"
+            className="rounded-2xl border border-line bg-surface/70 px-4 py-4 shadow-card backdrop-blur-sm"
           >
-            <dd className="bg-gradient-to-r from-indigo-600 to-fuchsia-600 bg-clip-text text-2xl font-bold text-transparent dark:from-indigo-300 dark:to-fuchsia-300">
+            <dd className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-2xl font-bold text-transparent dark:from-indigo-300 dark:to-purple-300">
               {stat.value}
             </dd>
-            <dt className="mt-1 text-xs text-gray-600 dark:text-gray-400">{stat.label}</dt>
-          </motion.div>
+            <dt className="mt-1 text-xs text-ink-muted">{stat.label}</dt>
+          </m.div>
         ))}
-      </motion.dl>
+      </m.dl>
 
       <a
         href="#about"
         aria-label="Scroll to About section"
-        className="mt-14 hidden h-10 w-6 items-start justify-center rounded-full border-2 border-gray-400/60 p-1.5 sm:flex dark:border-white/30"
+        className="mt-14 hidden h-10 w-6 items-start justify-center rounded-full border-2 border-ink-subtle/50 p-1.5 sm:flex"
       >
-        <motion.span
+        <m.span
           aria-hidden="true"
-          className="h-2 w-1 rounded-full bg-gray-500 dark:bg-white/60"
+          className="h-2 w-1 rounded-full bg-ink-subtle"
           animate={reduceMotion ? undefined : { y: [0, 12, 0] }}
           transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
         />
