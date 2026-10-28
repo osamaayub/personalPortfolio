@@ -128,29 +128,25 @@ export const projectsData = [
   },
 ] as const;
 
-export const skillsData = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
-  'React',
-  'Next.js',
-  'Node.js',
-  'Express.js',
-  'MongoDB',
-  'REST APIs',
-  'Git',
-  'GitHub',
-  'Tailwind CSS',
-  'Redux',
-  'JWT',
-  'OAuth',
-  'Responsive Web Design',
-  'API Development',
-  'Database Design',
-  'Full-Stack Development',
-  'Agile/Scrum',
-  'Problem Solving',
-  'Clean Code',
-  'Version Control',
+export const skillGroups = [
+  {
+    title: 'Frontend',
+    blurb: 'Fast, accessible interfaces',
+    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Redux', 'HTML & CSS', 'Responsive Design'],
+  },
+  {
+    title: 'Backend',
+    blurb: 'Reliable APIs and auth',
+    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT', 'OAuth', 'API Development'],
+  },
+  {
+    title: 'Data & Tools',
+    blurb: 'Modeling, versioning, shipping',
+    skills: ['MongoDB', 'Database Design', 'Git', 'GitHub', 'Vercel'],
+  },
+  {
+    title: 'Practices',
+    blurb: 'How I work',
+    skills: ['Agile/Scrum', 'Clean Code', 'Problem Solving', 'Code Review'],
+  },
 ] as const;

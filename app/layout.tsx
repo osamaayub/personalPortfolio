@@ -1,43 +1,52 @@
-import Header from "@/components/header";
 import "./globals.css";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import ActiveSectionContextProvider from "@/context/active-section-context";
-import Footer from "@/components/footer";
-import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 import MotionProvider from "@/components/motion-provider";
-import AnimatedBackdrop from "@/components/animated-backdrop";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-export const metadata = {
-  title: "Osama Ayub | Personal Portfolio",
-  description:
-    "Full-stack software engineer specializing in React, Next.js, and Node.js. Available for web development, APIs, and product builds.",
+const description =
+  "Full-stack software engineer specializing in React, Next.js, Node.js and MongoDB. Available for web development, APIs, and product builds.";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Osama Ayub | Full-Stack Software Engineer",
+    template: "%s | Osama Ayub",
+  },
+  description,
+  openGraph: {
+    title: "Osama Ayub | Full-Stack Software Engineer",
+    description,
+    type: "website",
+  },
+  twitter: { card: "summary", title: "Osama Ayub | Full-Stack Software Engineer", description },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f9fafb" },
+    { media: "(prefers-color-scheme: dark)", color: "#111827" },
+  ],
+};
+
+// Runs before first paint so dark-mode visitors never see a light flash.
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
-        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
+        className={`${inter.className} relative bg-gray-50 text-gray-950 antialiased dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
       >
         <ThemeContextProvider>
           <MotionProvider>
-            <AnimatedBackdrop />
-            <ActiveSectionContextProvider>
-              <Header />
-              {children}
-              <Footer />
-
-              <Toaster position="top-right" />
-              <ThemeSwitch />
-            </ActiveSectionContextProvider>
+            {children}
+            <Toaster position="top-right" />
           </MotionProvider>
         </ThemeContextProvider>
       </body>

@@ -34,19 +34,20 @@ const Services = () => {
     <section
       ref={ref}
       id="services"
-      className="mb-28 w-full max-w-[53rem] scroll-mt-28 sm:mb-40"
+      className="mb-28 w-full max-w-[64rem] scroll-mt-28 sm:mb-40"
     >
       <SectionHeading
+        eyebrow="What I do"
         subtitle={
           <>
-            With 1 year of professional experience, I bring{" "}
+            With 2+ years of professional experience, I bring{" "}
             <span className="font-medium text-gray-900 dark:text-white">
               strong full‑stack skills
             </span>{" "}
             in React, Next.js, Node.js, and MongoDB. I've contributed to{" "}
             <span className="font-medium text-gray-900 dark:text-white">
               production-ready applications
-            </span> at SensViz, Cogilent Solutions, and IIFATECH —
+            </span> at SensViz, Cogilent Solutions, and Narsun Studios —
             improving performance, user experience, and maintainability.
             Here’s how I can add value to your team:
           </>
@@ -57,7 +58,7 @@ const Services = () => {
 
 
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2 lg:gap-7">
         {servicesData.map((service, index) => {
           const isFeatured =
             "featured" in service && service.featured;
@@ -76,13 +77,16 @@ const Services = () => {
                 stiffness: 350,
                 damping: 28,
               }}
-              className={`group relative overflow-hidden rounded-3xl border border-indigo-100 bg-white/80 p-6 shadow-sm transition-shadow hover:shadow-xl hover:shadow-indigo-500/10 dark:border-white/10 dark:bg-slate-900/80 ${isFeatured ? "sm:col-span-2 sm:p-8" : ""
+              className={`spotlight group relative overflow-hidden rounded-3xl border border-indigo-100 bg-white/80 p-6 shadow-sm transition-shadow hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-500/10 lg:p-8 dark:border-white/10 dark:bg-slate-900/80 ${isFeatured ? "sm:col-span-2 sm:p-8" : ""
                 }`}
             >
               <div
                 className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br from-[#fbe2e3]/80 to-[#dbd7fb]/60 opacity-60 blur-2xl transition-opacity group-hover:opacity-90 dark:from-[#946263]/40 dark:to-[#676394]/40"
                 aria-hidden
               />
+              <span aria-hidden="true" className="pointer-events-none absolute right-6 top-4 select-none text-6xl font-black text-indigo-500/10 dark:text-white/5">
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
               <div
                 className={`relative flex flex-col gap-4 ${isFeatured

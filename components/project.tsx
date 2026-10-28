@@ -1,13 +1,13 @@
 'use client';
 
 import { useRef } from 'react';
-import { projectsData } from '@/data/data';
 import Image from 'next/image';
+import type { PublicProject } from '@/lib/types';
 import { motion, useScroll, useTransform, useReducedMotion, useSpring } from 'framer-motion';
 
-type ProjectProps = (typeof projectsData)[number];
+type ProjectProps = PublicProject & { wide?: boolean };
 
-const Project = ({ title, description, tags, imageUrl, url, github }: ProjectProps) => {
+const Project = ({ title, description, tags, image, url, github, wide }: ProjectProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -33,8 +33,9 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
         opacity: reduceMotion ? 1 : opacityProgess,
         perspective: 1200,
       }}
-      className='group h-full'
+      className={`group h-full ${wide ? 'md:col-span-2' : ''}`}
     >
+      <div className='h-full rounded-3xl bg-gradient-to-br from-gray-200/80 to-gray-200/80 p-px transition-colors duration-300 group-hover:from-indigo-400 group-hover:to-fuchsia-400 dark:from-white/10 dark:to-white/10 dark:group-hover:from-indigo-400/70 dark:group-hover:to-fuchsia-400/70'>
       <motion.article
         style={{ rotateX: reduceMotion ? 0 : rotateX, rotateY: reduceMotion ? 0 : rotateY }}
         onPointerMove={(event) => {
@@ -47,27 +48,38 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
         onPointerCancel={resetTilt}
         whileHover={reduceMotion ? undefined : { y: -6 }}
         transition={{ type: 'spring', stiffness: 240, damping: 24 }}
-        className='flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200/80 bg-white/80 shadow-sm backdrop-blur-sm transition-shadow duration-300 hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-950/5 dark:border-white/10 dark:bg-slate-900/80 dark:hover:border-indigo-400/50'
+        className={`spotlight relative flex h-full flex-col overflow-hidden  ${wide ? 'md:flex-row' : ''}  rounded-[calc(1.5rem-1px)] bg-white shadow-sm transition-shadow duration-300 hover:shadow-2xl hover:shadow-indigo-500/15 dark:bg-slate-900`}
       >
-        <div className='relative aspect-[16/10] overflow-hidden border-b border-gray-200/60 bg-slate-100 dark:border-white/10 dark:bg-slate-950'>
-          <Image
-            src={imageUrl}
-            alt={`${title} project preview`}
-            fill
-            sizes='(min-width: 1280px) 560px, (min-width: 768px) 50vw, 100vw'
-            className='object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
-          />
+        <div className={`relative shrink-0 overflow-hidden border-b ${wide ? 'aspect-[16/10] md:aspect-auto md:min-h-[22rem] md:w-3/5 md:border-b-0 md:border-r' : 'aspect-[16/10]'}  border-gray-200/60 bg-slate-100 dark:border-white/10 dark:bg-slate-950`}>
+          {image ? (
+            <Image
+              src={image}
+              alt={`${title} project preview`}
+              fill
+              sizes={wide ? '(min-width: 768px) 60vw, 100vw' : '(min-width: 1280px) 560px, (min-width: 768px) 50vw, 100vw'}
+              className='object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
+            />
+          ) : (
+            // Projects saved without an image get a tile instead of an empty src.
+            <div
+              aria-hidden='true'
+              className='absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-100 via-violet-100 to-fuchsia-100 text-6xl font-bold text-indigo-300 dark:from-indigo-950 dark:via-violet-950 dark:to-fuchsia-950 dark:text-indigo-700'
+            >
+              {title.charAt(0).toUpperCase()}
+            </div>
+          )}
+          <div aria-hidden='true' className='pointer-events-none absolute inset-0 bg-gradient-to-t from-indigo-950/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
         </div>
-        <div className='flex flex-1 flex-col p-6 sm:p-8'>
+        <div className='flex flex-1 flex-col p-6 lg:p-8'>
           <h3 className='text-2xl font-semibold tracking-tight text-gray-900 dark:text-white'>{title}</h3>
-          <p className='mt-2 leading-relaxed text-gray-700 dark:text-white/70'>
+          <p className={`mt-3 leading-relaxed text-gray-700 dark:text-white/70 ${wide ? '' : 'line-clamp-4'}`}>
             {description}
           </p>
 
           <ul className='flex flex-wrap mt-4 gap-2'>
-            {tags.map((tag, index) => (
+            {tags.map((tag) => (
               <li
-                key={index}
+                key={tag}
                 className='rounded-lg border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200'
               >
                 {tag}
@@ -124,6 +136,7 @@ const Project = ({ title, description, tags, imageUrl, url, github }: ProjectPro
         </div>
 
       </motion.article>
+      </div>
     </motion.div>
   );
 };

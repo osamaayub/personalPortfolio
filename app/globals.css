@@ -54,3 +54,53 @@ html.dark {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---- Motion & interaction utilities ---- */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes gradient-pan {
+  to { background-position: 200% center; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-pan 5s linear infinite;
+}
+
+.marquee {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Cursor-following glow; position is set by <SpotlightEffect />. */
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(129 140 248 / 0.18), transparent 45%);
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .animate-gradient {
+    animation: none !important;
+  }
+}

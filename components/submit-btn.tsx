@@ -9,15 +9,17 @@ export default function SubmitBtn({ disabled }: SubmitBtnProps) {
     <button
       type="submit"
       disabled={disabled}
-      className="group flex items-center justify-center gap-2 h-[3rem] w-[8rem] bg-gray-900 text-white rounded-full outline-none transition-all 
-                 focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 dark:bg-white dark:bg-opacity-10 
-                 disabled:scale-100 disabled:bg-opacity-65"
+      className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 font-medium text-white shadow-lg shadow-indigo-500/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/30 active:translate-y-0 disabled:translate-y-0 disabled:opacity-70 sm:w-48"
     >
       {disabled ? (
-        <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
+        <>
+          <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true" />
+          Sending…
+        </>
       ) : (
         <>
-          Submit <FaPaperPlane className="text-xs opacity-70 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+          Send message
+          <FaPaperPlane className="text-xs opacity-80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-1" />
         </>
       )}
     </button>

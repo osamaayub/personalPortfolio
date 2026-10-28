@@ -1,57 +1,94 @@
-// app/api/send-email/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import ContactFormEmail from "@/email/contact-form-email";
 import React from "react";
+import ContactFormEmail from "@/email/contact-form-email";
+import { connectDb, isDbConfigured } from "@/lib/db";
+import { clientIp, hashIp, memoryRateLimit } from "@/lib/request";
+import { contactSchema } from "@/lib/validators";
+import { MessageModel } from "@/models/message";
 
-// Use Node.js runtime (required for Resend)
 export const runtime = "nodejs";
 
+const LIMIT = 3;
+const WINDOW_MS = 60 * 60 * 1000;
+
 export async function POST(req: NextRequest) {
+  let body: unknown;
   try {
-    const { senderEmail, message } = await req.json();
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
 
-    // --- Validation ---
-    if (!senderEmail || typeof senderEmail !== "string" || senderEmail.length > 500) {
-      return NextResponse.json(
-        { error: "Invalid sender email" },
-        { status: 400 }
-      );
+  const parsed = contactSchema.safeParse(body);
+  if (!parsed.success) {
+    // A filled honeypot gets a silent success so bots learn nothing.
+    if (parsed.error.issues.some((i) => i.path[0] === "website")) {
+      return NextResponse.json({ success: true });
     }
-
-    if (!message || typeof message !== "string" || message.length > 5000) {
-      return NextResponse.json(
-        { error: "Invalid message" },
-        { status: 400 }
-      );
-    }
-
-    // --- API Key check ---
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: "Resend API key not configured" },
-        { status: 500 }
-      );
-    }
-
-    const resend = new Resend(apiKey);
-
-    // --- Send email ---
-    const data = await resend.emails.send({
-      // ✅ Local/test: plain onboarding@resend.dev
-      // ✅ Production: "Acme <no-reply@yourdomain.com>" (must be verified)
-      from: "onboarding@resend.dev",
-      to: "ayubosama416@gmail.com",
-      subject: "Message from contact form",
-      react: React.createElement(ContactFormEmail, { senderEmail, message }),
-    });
-
-    return NextResponse.json({ success: true, data });
-  } catch (err: unknown) {
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Unknown error" },
-      { status: 500 }
+      { error: parsed.error.issues[0]?.message ?? "Invalid input" },
+      { status: 400 },
     );
   }
+  const { name, email, message } = parsed.data;
+
+  const ipHash = hashIp(clientIp(req));
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!isDbConfigured && !resendKey) {
+    return NextResponse.json({ error: "Contact form is not configured" }, { status: 503 });
+  }
+
+  let saved: InstanceType<typeof MessageModel> | null = null;
+  if (isDbConfigured) {
+    try {
+      await connectDb();
+      const recent = await MessageModel.countDocuments({
+        ipHash,
+        createdAt: { $gt: new Date(Date.now() - WINDOW_MS) },
+      });
+      if (recent >= LIMIT) {
+        return NextResponse.json(
+          { error: "Too many messages. Please try again later." },
+          { status: 429 },
+        );
+      }
+      saved = await MessageModel.create({ name, email, message, ipHash });
+    } catch (err) {
+      console.error("Saving contact message failed:", err);
+    }
+  } else if (!memoryRateLimit(ipHash, LIMIT, WINDOW_MS)) {
+    return NextResponse.json(
+      { error: "Too many messages. Please try again later." },
+      { status: 429 },
+    );
+  }
+
+  let emailed = false;
+  if (resendKey) {
+    try {
+      const resend = new Resend(resendKey);
+      const { error } = await resend.emails.send({
+        from: process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev",
+        to: process.env.CONTACT_TO_EMAIL ?? "ayubosama416@gmail.com",
+        replyTo: email,
+        subject: `Portfolio message from ${name || email}`,
+        react: React.createElement(ContactFormEmail, { senderEmail: email, message }),
+      });
+      if (error) throw new Error(error.message);
+      emailed = true;
+      if (saved) await MessageModel.updateOne({ _id: saved._id }, { emailed: true });
+    } catch (err) {
+      console.error("Sending contact email failed:", err);
+    }
+  }
+
+  // Success if the message landed anywhere durable.
+  if (!saved && !emailed) {
+    return NextResponse.json(
+      { error: "Could not deliver your message. Please email me directly." },
+      { status: 502 },
+    );
+  }
+  return NextResponse.json({ success: true });
 }

@@ -9,8 +9,9 @@ import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/hooks/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import RotatingText from "./rotating-text";
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 const Intro = () => {
   const reduceMotion = useReducedMotion();
@@ -47,7 +48,7 @@ const Intro = () => {
           className="profile-halo relative rounded-full p-2"
           initial={false}
           animate={reduceMotion ? { y: 0 } : { y: [0, -10, 0] }}
-          transition={{ duration: 4, ease: "easeInOut" }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 4, ease: "easeInOut", repeat: Infinity }}
           whileHover={reduceMotion ? undefined : { scale: 1.04 }}
         >
           <motion.div
@@ -86,9 +87,13 @@ const Intro = () => {
         initial={reduceMotion ? false : { opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="mt-8 rounded-full border border-indigo-200/70 bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700 dark:border-indigo-400/20 dark:bg-indigo-400/10 dark:text-indigo-200"
+        className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-200/80 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 backdrop-blur-sm dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200"
       >
-        Thoughtful code. Meaningful experiences.
+        <span className="relative flex h-2 w-2" aria-hidden="true">
+          <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+        </span>
+        Open to new opportunities
       </motion.p>
 
       {/* Heading */}
@@ -104,7 +109,7 @@ const Intro = () => {
           style={{ backgroundSize: "200% auto" }}
           initial={false}
           animate={{ backgroundPosition: reduceMotion ? "0% center" : ["100% center", "0% center"] }}
-          transition={{ duration: reduceMotion ? 0 : 4, ease: "easeInOut" }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 7, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" as const }}
         >
           <span className="sr-only">Osama Ayub</span>
           {['Osama', 'Ayub'].map((word, index) => (
@@ -139,6 +144,17 @@ const Intro = () => {
           with 2+ years of experience specializing in React, Next.js, Node.js & TypeScript.
         </span>
       </motion.h1>
+
+      {/* Rotating value line */}
+      <motion.p
+        className="mt-6 text-xl font-medium text-gray-800 sm:text-2xl dark:text-gray-200"
+        initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
+      >
+        I build{" "}
+        <RotatingText words={["scalable web apps", "clean REST APIs", "polished interfaces", "full-stack products"]} />
+      </motion.p>
 
       {/* Subtitle */}
       <motion.p
@@ -204,25 +220,47 @@ const Intro = () => {
         </MotionLink>
       </motion.div>
 
-      {/* Small Stats */}
-      <motion.div
-        className="mt-12 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-gray-200/70 bg-white/60 px-6 py-5 text-sm text-gray-600 backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
+      {/* Stats */}
+      <motion.dl
+        className="mt-14 grid w-full max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4"
         initial={reduceMotion ? false : "hidden"}
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
       >
-        {['💼 2+ Years Experience', '⚛ React & Next.js', '🟢 Node.js & Express', '🍃 MongoDB', '📍 Lahore, Pakistan'].map((stat) => (
-          <motion.span
-            key={stat}
+        {[
+          { value: "2+", label: "Years experience" },
+          { value: "5+", label: "Products shipped" },
+          { value: "MERN", label: "Core stack" },
+          { value: "PK", label: "Lahore, Pakistan" },
+        ].map((stat) => (
+          <motion.div
+            key={stat.label}
             variants={itemVariants}
-            whileHover={reduceMotion ? undefined : { y: -3, scale: 1.03 }}
+            whileHover={reduceMotion ? undefined : { y: -3 }}
             transition={{ type: "spring", stiffness: 250, damping: 20 }}
+            className="rounded-2xl border border-gray-200/70 bg-white/70 px-4 py-4 backdrop-blur-sm dark:border-white/10 dark:bg-white/5"
           >
-            {stat}
-          </motion.span>
+            <dd className="bg-gradient-to-r from-indigo-600 to-fuchsia-600 bg-clip-text text-2xl font-bold text-transparent dark:from-indigo-300 dark:to-fuchsia-300">
+              {stat.value}
+            </dd>
+            <dt className="mt-1 text-xs text-gray-600 dark:text-gray-400">{stat.label}</dt>
+          </motion.div>
         ))}
-      </motion.div>
+      </motion.dl>
+
+      <a
+        href="#about"
+        aria-label="Scroll to About section"
+        className="mt-14 hidden h-10 w-6 items-start justify-center rounded-full border-2 border-gray-400/60 p-1.5 sm:flex dark:border-white/30"
+      >
+        <motion.span
+          aria-hidden="true"
+          className="h-2 w-1 rounded-full bg-gray-500 dark:bg-white/60"
+          animate={reduceMotion ? undefined : { y: [0, 12, 0] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+        />
+      </a>
     </section>
   );
 };
