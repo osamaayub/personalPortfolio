@@ -2,41 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  overflow-x: clip;
+}
+
+html {
+  scroll-padding-top: 7rem;
+}
+
 /* Design tokens as RGB channels so Tailwind opacity modifiers work (bg-surface/80). */
 :root {
-  --canvas: 248 250 252;
-  --surface: 255 255 255;
-  --surface-2: 241 245 249;
-  --line: 226 232 240;
-  --ink: 15 23 42;
-  --ink-muted: 71 85 105;
-  --ink-subtle: 100 116 139;
-  --brand: 79 70 229;
-  --brand-soft: 238 242 255;
-  --brand-ink: 67 56 202;
-  --shadow: 15 23 42;
+  --canvas: 249 249 247;
+  --surface: 255 255 253;
+  --surface-2: 246 245 241;
+  --line: 224 224 220;
+  --ink: 29 30 34;
+  --ink-muted: 68 70 78;
+  --ink-subtle: 99 101 109;
+  --brand: 89 71 210;
+  --brand-soft: 241 239 255;
+  --brand-ink: 69 54 176;
+  --shadow: 30 31 39;
   color-scheme: light;
 }
 
 .dark {
-  --canvas: 9 11 17;
-  --surface: 18 21 30;
-  --surface-2: 26 30 42;
-  --line: 38 43 58;
-  --ink: 236 238 244;
-  --ink-muted: 163 171 188;
-  --ink-subtle: 133 142 160;
-  --brand: 129 140 248;
-  --brand-soft: 30 33 66;
-  --brand-ink: 199 210 254;
+  --canvas: 15 16 19;
+  --surface: 23 24 28;
+  --surface-2: 31 32 37;
+  --line: 47 48 55;
+  --ink: 239 239 242;
+  --ink-muted: 171 172 179;
+  --ink-subtle: 136 138 147;
+  --brand: 158 145 255;
+  --brand-soft: 40 37 61;
+  --brand-ink: 210 203 255;
   --shadow: 0 0 0;
   color-scheme: dark;
 }
 
 @layer components {
-  /* Shared surface for cards: hairline border, soft layered shadow, brand-tinted hover. */
   .card {
-    @apply rounded-3xl border border-line bg-surface/80 shadow-card backdrop-blur-sm transition-[box-shadow,border-color,transform] duration-300;
+    @apply rounded-[1.75rem] border border-line bg-surface shadow-card transition-[box-shadow,border-color,transform] duration-300;
   }
 
   .card-interactive {
@@ -49,14 +57,20 @@
 }
 
 .portfolio-backdrop {
-  background-image: radial-gradient(circle, rgb(var(--brand) / 0.14) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: linear-gradient(to bottom, black, transparent);
+  background:
+    radial-gradient(ellipse at 74% 14%, rgb(var(--brand) / 0.055), transparent 34rem),
+    radial-gradient(ellipse at 18% 28%, rgb(240 164 138 / 0.045), transparent 32rem);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
 }
 
 .profile-halo {
-  background: linear-gradient(135deg, #818cf8, #c084fc, #f0abfc);
-  box-shadow: 0 0 60px rgb(var(--brand) / 0.22);
+  background: rgb(var(--surface));
+  box-shadow: 0 28px 80px rgb(var(--shadow) / 0.13);
+}
+
+::selection {
+  color: #fff;
+  background: rgb(var(--brand) / 0.8);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -140,6 +154,14 @@
 
 .blob-a { animation: drift-a 14s ease-in-out infinite alternate; }
 .blob-b { animation: drift-b 14s ease-in-out infinite alternate; }
+
+@media (max-width: 640px) {
+  .portfolio-backdrop {
+    background:
+      radial-gradient(ellipse at 70% 8%, rgb(var(--brand) / 0.04), transparent 24rem),
+      radial-gradient(ellipse at 10% 22%, rgb(240 164 138 / 0.035), transparent 22rem);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .blob-a,

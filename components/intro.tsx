@@ -9,7 +9,6 @@ import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/hooks/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
-import RotatingText from "./rotating-text";
 import type { Profile } from "@/lib/content-schema";
 
 const MotionLink = m.create(Link);
@@ -24,7 +23,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
     "flex h-14 items-center justify-center gap-2 rounded-full px-7 font-medium transition-colors duration-300";
 
   const socialButton =
-    "flex h-14 w-14 items-center justify-center rounded-full border border-line bg-surface text-ink-muted shadow-card transition-colors duration-300 hover:text-ink";
+    "flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-ink-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:text-brand";
 
   const itemVariants = {
     hidden: { opacity: 0, y: 16, scale: 0.96 },
@@ -41,46 +40,37 @@ const Intro = ({ profile }: { profile: Profile }) => {
     <section
       ref={ref}
       id="home"
-      className="mx-auto mb-20 flex min-h-[90vh] max-w-4xl flex-col items-center justify-center scroll-mt-[100rem] px-4 text-center sm:mb-28"
+      className="relative mx-auto mb-20 flex min-h-[82svh] max-w-7xl flex-col items-center justify-center scroll-mt-28 px-4 text-center sm:mb-28 xl:items-start xl:pr-[36%] xl:text-left"
     >
       {/* Profile Image */}
-      <div className="flex justify-center">
+      <div className="flex justify-center xl:absolute xl:right-4 xl:top-1/2 xl:w-[35%] xl:-translate-y-1/2">
         <m.div
-          className="profile-halo relative rounded-full p-2"
-          initial={false}
-          animate={reduceMotion ? { y: 0 } : { y: [0, -10, 0] }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 4, ease: "easeInOut", repeat: Infinity }}
-          whileHover={reduceMotion ? undefined : { scale: 1.04 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.94 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.2 }}
         >
           <m.div
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", stiffness: 160, damping: 16 }}
+            className="profile-halo relative rounded-full p-1.5 xl:rounded-[2rem] xl:p-2"
+            animate={reduceMotion ? { y: 0 } : { y: [0, -10, 0] }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 4, ease: "easeInOut", repeat: Infinity }}
+            whileHover={reduceMotion ? undefined : { scale: 1.04 }}
           >
-            <Image
-              src="/personal.jpg"
-              alt={profile.name}
-              width={128}
-              height={128}
-              priority
-              className="h-32 w-32 rounded-full border-[5px] border-surface object-cover shadow-2xl"
-            />
+            <m.div
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.86, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ type: "spring", stiffness: 150, damping: 18, delay: 0.32 }}
+            >
+              <Image
+                src="/personal.jpg"
+                alt={profile.name}
+                width={592}
+                height={592}
+                priority
+                sizes="(min-width: 1152px) 438px, (min-width: 1024px) 38vw, 128px"
+                className="h-32 w-32 rounded-full border-[5px] border-surface object-cover shadow-2xl xl:h-auto xl:w-full xl:aspect-square xl:rounded-[1.5rem]"
+              />
+            </m.div>
           </m.div>
-
-          <m.span
-            className="absolute -bottom-1 -right-1 text-4xl"
-            style={{ transformOrigin: "70% 70%" }}
-            initial={reduceMotion ? false : { opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1, rotate: reduceMotion ? 0 : [0, 20, -12, 20, -6, 0] }}
-            transition={{
-              delay: 0.15,
-              type: "spring",
-              stiffness: 180,
-              rotate: { type: "tween", duration: 1.6, delay: 0.4, ease: "easeInOut" },
-            }}
-          >
-            👋
-          </m.span>
         </m.div>
       </div>
 
@@ -88,7 +78,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
         initial={reduceMotion ? false : { opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 backdrop-blur-sm dark:text-emerald-300"
+        className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 backdrop-blur-sm dark:text-emerald-300 xl:mt-0"
       >
         <span className="relative flex h-2 w-2" aria-hidden="true">
           <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping" />
@@ -99,18 +89,15 @@ const Intro = ({ profile }: { profile: Profile }) => {
 
       {/* Heading */}
       <m.h1
-        className="mt-8 max-w-4xl text-4xl font-medium leading-tight tracking-tight sm:text-6xl"
+        className="mt-8 max-w-4xl text-4xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-6xl xl:mt-6 xl:text-[4rem]"
         initial={reduceMotion ? false : { opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
       >
         Hi, I'm{" "}
         <m.span
-          className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text font-bold text-transparent dark:from-indigo-300 dark:via-violet-300 dark:to-purple-300"
-          style={{ backgroundSize: "200% auto" }}
+          className="font-bold text-brand"
           initial={false}
-          animate={{ backgroundPosition: reduceMotion ? "0% center" : ["100% center", "0% center"] }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 7, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" as const }}
         >
           <span className="sr-only">{profile.name}</span>
           {profile.name.split(' ').map((word, index) => (
@@ -118,7 +105,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
               {index > 0 && ' '}
               <m.span
                 aria-hidden="true"
-                className="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent dark:from-indigo-300 dark:to-purple-300"
+                className="inline-block text-brand"
                 initial={reduceMotion ? false : { opacity: 0, y: 24, rotate: -4 }}
                 animate={{ opacity: 1, y: 0, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 150, damping: 18, delay: 0.25 + index * 0.12 }}
@@ -129,53 +116,32 @@ const Intro = ({ profile }: { profile: Profile }) => {
           ))}
         </m.span>
         .
-        <br />
-        <span className="mt-6 inline-block max-w-2xl text-xl leading-relaxed text-ink-muted sm:text-2xl">
-          {profile.title}
-          {profile.company && (
-            <>
-              {" "}at{" "}
-              <span className="relative inline-block font-bold">
-                {profile.company}
-                <m.span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-0.5 origin-left rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-400"
-                  initial={reduceMotion ? false : { scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.65, delay: 0.8, ease: "easeOut" }}
-                />
-              </span>
-            </>
-          )}{" "}
-          {profile.tagline}
-        </span>
       </m.h1>
 
-      {/* Rotating value line */}
       <m.p
-        className="mt-6 text-xl font-medium text-ink sm:text-2xl"
+        className="mx-auto mt-6 max-w-2xl text-xl font-medium leading-relaxed text-ink sm:text-2xl xl:mx-0"
         initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
-      >
-        I build{" "}
-        <RotatingText words={profile.roles} />
-      </m.p>
-
-      {/* Subtitle */}
-      <m.p
-        className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-ink-muted"
-        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
       >
-        From a first idea to a polished product, I build fast, intuitive web
-        experiences backed by clean architecture and reliable systems.
+        A {profile.title.toLowerCase()} turning complex ideas into polished,
+        reliable web products.
+      </m.p>
+
+      <m.p
+        className="mx-auto mt-4 max-w-2xl text-base leading-7 text-ink-muted sm:text-lg sm:leading-8 xl:mx-0"
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
+      >
+        I work across the stack, creating intuitive React interfaces and dependable
+        APIs with a focus on clean code, performance, and the details that make
+        products feel effortless.
       </m.p>
 
       {/* Buttons */}
       <m.div
-        className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        className="mt-10 flex flex-wrap items-center justify-center gap-3 xl:justify-start"
         initial={reduceMotion ? false : "hidden"}
         animate="visible"
         variants={{ visible: { transition: { staggerChildren: 0.09, delayChildren: 0.45 } } }}
@@ -187,7 +153,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
             setActiveSection("Contact");
             setTimeOfLastClick(Date.now());
           }}
-          className={`${primaryButton} group bg-indigo-600 text-white shadow-lg shadow-indigo-500/25 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400`}
+          className={`${primaryButton} group bg-ink text-canvas shadow-card transition-all hover:-translate-y-0.5 hover:bg-brand`}
         >
           Contact Me
           <BsArrowRight className="transition-transform group-hover:translate-x-1" />
@@ -197,7 +163,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
           {...buttonMotion}
           href={profile.cvUrl}
           download
-          className={`${primaryButton} border border-line bg-surface text-ink shadow-card`}
+          className="flex h-12 items-center justify-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-surface-2"
         >
           Download CV
           <HiDownload className="text-lg" />
@@ -228,7 +194,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
 
       {/* Stats */}
       <m.dl
-        className="mt-14 grid w-full max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4"
+        className="mt-12 grid w-full max-w-2xl grid-cols-2 border-y border-line sm:grid-cols-4"
         initial={reduceMotion ? false : "hidden"}
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -240,9 +206,9 @@ const Intro = ({ profile }: { profile: Profile }) => {
             variants={itemVariants}
             whileHover={reduceMotion ? undefined : { y: -3 }}
             transition={{ type: "spring", stiffness: 250, damping: 20 }}
-            className="rounded-2xl border border-line bg-surface/70 px-4 py-4 shadow-card backdrop-blur-sm"
+            className="px-4 py-4 sm:border-r sm:border-line sm:last:border-r-0"
           >
-            <dd className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-2xl font-bold text-transparent dark:from-indigo-300 dark:to-purple-300">
+            <dd className="text-2xl font-semibold tracking-tight text-ink">
               {stat.value}
             </dd>
             <dt className="mt-1 text-xs text-ink-muted">{stat.label}</dt>

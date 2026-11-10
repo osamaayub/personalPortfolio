@@ -9,7 +9,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const { profile, sections } = await getContent();
 
   return (
-    <div className="relative pt-28 sm:pt-36">
+    <div className="relative pb-[calc(5rem+env(safe-area-inset-bottom))] pt-28 sm:pt-36 lg:pb-0">
       <AnimatedBackdrop />
       <SpotlightEffect />
       <ActiveSectionContextProvider>

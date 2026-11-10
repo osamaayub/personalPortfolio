@@ -35,7 +35,7 @@ const Skills = ({ groups, copy }: { groups: SkillGroup[]; copy: SectionsContent[
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ delay: index * 0.07, duration: 0.45 }}
-            className="spotlight card-interactive relative p-6 hover:-translate-y-1"
+            className="card-interactive relative p-6 hover:-translate-y-1"
           >
             <h3 className="text-lg font-semibold">{group.title}</h3>
             <p className="mb-4 text-sm text-ink-subtle">{group.blurb}</p>

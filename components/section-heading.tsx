@@ -8,20 +8,21 @@ type SectionHeadingProps = {
 
 export default function SectionHeading({ children, subtitle, eyebrow }: SectionHeadingProps) {
   return (
-    <div className="mb-10 text-center sm:mb-12">
+    <div className="mb-8 sm:mb-10">
       {eyebrow ? (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-brand">
+        <p className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand">
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-brand" />
           {eyebrow}
         </p>
       ) : (
         <span
           aria-hidden="true"
-          className="mx-auto mb-5 block h-1 w-12 rounded-full bg-gradient-to-r from-indigo-500 to-fuchsia-400"
+          className="mb-4 block h-1 w-10 rounded-full bg-brand"
         />
       )}
-      <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{children}</h2>
+      <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-[2.6rem]">{children}</h2>
       {subtitle ? (
-        <p className="mx-auto mt-3 max-w-[40rem] text-base leading-relaxed text-ink-muted">
+        <p className="mt-3 max-w-[40rem] text-base leading-relaxed text-ink-muted">
           {subtitle}
         </p>
       ) : null}

@@ -12,6 +12,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { BsArrowRight } from 'react-icons/bs';
+import { FaCode } from 'react-icons/fa';
 import { links } from '@/data/data';
 import { useActiveSectionContext } from '@/context/active-section-context';
 import ThemeSwitch from './theme-switch';
@@ -48,9 +49,14 @@ const Header = ({ name }: { name: string }) => {
       aria-label={`${name}, back to top`}
       className="flex items-center gap-2.5"
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-fuchsia-600 text-sm font-bold text-white shadow-md shadow-indigo-500/30">
-        {name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
-      </span>
+      <m.span
+        aria-hidden="true"
+        whileHover={reduceMotion ? undefined : { rotate: -6, scale: 1.06 }}
+        transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+        className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/20"
+      >
+        <FaCode className="text-[17px]" />
+      </m.span>
       <span className="hidden text-sm font-semibold tracking-tight min-[1100px]:inline">
         {name}
       </span>
@@ -58,10 +64,10 @@ const Header = ({ name }: { name: string }) => {
   );
 
   const barClass = clsx(
-    'fixed inset-x-0 top-3 z-[2] mx-auto w-[calc(100%-1.5rem)] max-w-5xl rounded-2xl border transition-all duration-300 lg:top-5 lg:rounded-full',
+    'fixed inset-x-0 z-[2] mx-auto w-[calc(100%-1.5rem)] rounded-2xl border transition-all duration-300',
     scrolled
-      ? 'border-line bg-surface/85 shadow-card backdrop-blur-xl'
-      : 'border-line/50 bg-surface/50 shadow-none backdrop-blur-md',
+      ? 'border-line bg-surface/90 shadow-card backdrop-blur-xl'
+      : 'border-line/70 bg-surface/75 shadow-none backdrop-blur-xl',
   );
 
   return (
@@ -82,7 +88,7 @@ const Header = ({ name }: { name: string }) => {
         initial={reduceMotion ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-        className={clsx(barClass, 'hidden lg:block')}
+        className={clsx(barClass, 'top-5 hidden max-w-6xl rounded-full lg:block')}
       >
         <div className="flex h-14 items-center justify-between gap-4 px-3 pl-4">
           {logo}
@@ -122,7 +128,7 @@ const Header = ({ name }: { name: string }) => {
             <Link
               href="#contact"
               onClick={() => go('Contact')}
-              className="group flex h-10 items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 px-5 text-sm font-medium text-white shadow-md shadow-indigo-500/25 transition-all hover:shadow-lg hover:shadow-indigo-500/40"
+              className="group flex h-10 items-center gap-2 rounded-full bg-ink px-5 text-sm font-medium text-canvas transition-colors hover:bg-brand"
             >
               Let&apos;s talk
               <BsArrowRight className="transition-transform group-hover:translate-x-0.5" />
@@ -133,10 +139,13 @@ const Header = ({ name }: { name: string }) => {
 
       {/* Mobile / tablet */}
       <m.div
-        initial={reduceMotion ? false : { y: -80, opacity: 0 }}
+        initial={reduceMotion ? false : { y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-        className={clsx(barClass, 'lg:hidden')}
+        className={clsx(
+          barClass,
+          'bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] max-w-md rounded-full lg:hidden',
+        )}
       >
         <div className="flex h-14 items-center justify-between px-3">
           {logo}
@@ -161,11 +170,11 @@ const Header = ({ name }: { name: string }) => {
           <m.nav
             id="mobile-menu"
             aria-label="Primary"
-            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            initial={{ opacity: 0, y: 12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            exit={{ opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-3 right-3 top-[4.75rem] z-[2] mx-auto max-w-5xl rounded-2xl border border-line bg-surface/95 p-3 shadow-2xl backdrop-blur-xl lg:hidden"
+            className="fixed bottom-[calc(env(safe-area-inset-bottom)+5rem)] left-3 right-3 z-[2] mx-auto max-h-[calc(100dvh-7rem)] max-w-md overflow-y-auto rounded-2xl border border-line bg-surface/95 p-3 shadow-2xl backdrop-blur-xl lg:hidden"
           >
             <m.ul
               initial="hidden"
@@ -201,7 +210,7 @@ const Header = ({ name }: { name: string }) => {
             <Link
               href="#contact"
               onClick={() => go('Contact')}
-              className="mt-3 flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 font-medium text-white"
+              className="mt-3 flex h-12 items-center justify-center gap-2 rounded-xl bg-ink font-medium text-canvas"
             >
               Let&apos;s talk
               <BsArrowRight />

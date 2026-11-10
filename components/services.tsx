@@ -91,7 +91,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
                   }`}
               >
                 <div
-                  className={`flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-500 text-white shadow-lg shadow-indigo-500/20 transition-transform motion-safe:group-hover:-rotate-6 ${isFeatured ? "h-14 w-14" : "h-12 w-12"
+                  className={`flex shrink-0 items-center justify-center rounded-2xl border border-brand/15 bg-brand-soft text-brand transition-transform motion-safe:group-hover:-rotate-3 ${isFeatured ? "h-14 w-14" : "h-12 w-12"
                     }`}
                 >
                   <Icon
@@ -137,7 +137,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
       {/* CTA */}
 
       <m.div
-        className="mt-14 rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 px-8 py-12 text-center text-white shadow-2xl"
+        className="mt-14 rounded-[1.75rem] border border-line bg-surface-2 px-6 py-10 text-center text-ink sm:px-8 sm:py-12"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -146,7 +146,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
           {copy.ctaTitle}
         </h3>
 
-        <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-300">
+        <p className="mx-auto mt-4 max-w-2xl leading-7 text-ink-muted">
           {copy.ctaText}
         </p>
 
@@ -156,7 +156,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
             setActiveSection("Contact");
             setTimeOfLastClick(Date.now());
           }}
-          className="group mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 font-semibold text-gray-900 transition-all duration-300 hover:scale-105 hover:bg-gray-100 active:scale-95"
+          className="group mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 font-semibold text-canvas transition-colors hover:bg-brand"
         >
           {copy.ctaButton}
           <BsArrowRight className="transition-transform group-hover:translate-x-1" />

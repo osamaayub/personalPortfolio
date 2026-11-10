@@ -28,7 +28,7 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
   return (
     <m.section
       ref={ref}
-      className="mb-28 max-w-[48rem] scroll-mt-28 card px-6 py-10 text-center leading-8 sm:mb-40 sm:px-10"
+      className="mb-32 max-w-5xl scroll-mt-28 card px-6 py-8 leading-8 sm:mb-40 sm:px-10 sm:py-10"
       initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.97 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -50,7 +50,7 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
             return (
               <li
                 key={h.title}
-                className="spotlight relative rounded-2xl border border-line bg-surface-2/60 p-4 leading-6"
+                className="relative rounded-2xl border border-line bg-surface-2/60 p-5 leading-6"
               >
                 <Icon className="mb-2 text-xl text-brand" aria-hidden="true" />
                 <p className="text-sm font-semibold">{h.title}</p>

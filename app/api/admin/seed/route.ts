@@ -10,6 +10,7 @@ export const runtime = "nodejs";
 // Bundled images are module imports, so seeded rows point at their /public paths.
 const imagePaths: Record<string, string> = {
   DevFlow: "/devflow.png",
+  "Pulse Dashboard": "/pulse-dashboard.jpg",
   "Hair Transplant Management System": "/HLMS.png",
   EQUIGENIX: "/Equigenix.png",
   Portfolio: "/3dportfolio.png",

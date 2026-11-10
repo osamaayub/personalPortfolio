@@ -1,5 +1,6 @@
 import portfolio from '@/public/3dportfolio.png';
 import DevFlow from '@/public/devflow.png';
+import PulseDashboard from '@/public/pulse-dashboard.jpg';
 import PrepWise from "@/public/PrepWise.png";
 import Favicon from "@/public/Equigenix.png";
 import HLMS from "@/public/HLMS.png";
@@ -12,6 +13,17 @@ export const links = [
   { name: 'Services', hash: '#services' },
   { name: 'Experience', hash: '#experience' },
   { name: 'Contact', hash: '#contact' },
+] as const;
+
+export const pinnedProjects = [
+  {
+    title: 'Pulse Dashboard',
+    description: 'A full-stack commerce dashboard for tracking revenue, orders, customers, products, and inventory. Includes interactive reports, searchable order management, CSV exports, and an audit log.',
+    tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Drizzle ORM', 'Recharts'],
+    imageUrl: PulseDashboard,
+    url: 'https://pulse-dashboard-ecru-rho.vercel.app',
+    github: 'https://github.com/osamaayub/pulse-dashboard',
+  },
 ] as const;
 
 export const projectsData = [
@@ -55,4 +67,5 @@ export const projectsData = [
     url: 'https://interview-preparation-psi-rosy.vercel.app/sign-in',
     github: 'https://github.com/osamaayub/Interview-Preparation',
   },
+  ...pinnedProjects,
 ] as const;

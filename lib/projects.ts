@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { projectsData } from "@/data/data";
+import { pinnedProjects, projectsData } from "@/data/data";
 import { connectDb, isDbConfigured } from "@/lib/db";
 import { ProjectModel } from "@/models/project";
 import { createLogger } from "@/lib/logger";
@@ -7,18 +7,37 @@ import type { PublicProject } from "@/lib/types";
 
 const log = createLogger("projects");
 
+const toPublicProject = (
+  project: (typeof projectsData)[number],
+  id: string,
+  featured = false,
+): PublicProject => ({
+  id,
+  title: project.title,
+  description: project.description,
+  tags: [...project.tags],
+  image: project.imageUrl.src,
+  url: project.url,
+  github: project.github,
+  featured,
+});
+
 const staticProjects = (): PublicProject[] =>
-  projectsData.map((p, i) => ({
-    id: `static-${i}`,
-    title: p.title,
-    description: p.description,
-    tags: [...p.tags],
-    // Plain URL string: static-import objects are fragile across the server/client boundary.
-    image: p.imageUrl.src,
-    url: p.url,
-    github: p.github,
-    featured: i === 0,
-  }));
+  projectsData.map((project, i) =>
+    toPublicProject(project, `static-${i}`, i === 0),
+  );
+
+const missingPinnedProjects = (existing: PublicProject[]): PublicProject[] =>
+  pinnedProjects
+    .map((project, i) => toPublicProject(project, `pinned-${i}`))
+    .filter(
+      (project) =>
+        !existing.some(
+          (item) =>
+            item.title === project.title ||
+            (project.github && item.github === project.github),
+        ),
+    );
 
 /**
  * Projects come from MongoDB once any exist. Until then (or if the DB is not
@@ -31,7 +50,7 @@ export const getProjects = cache(async (): Promise<PublicProject[]> => {
     await connectDb();
     const docs = await ProjectModel.find().sort({ order: 1, createdAt: -1 }).lean();
     if (docs.length === 0) return staticProjects();
-    return docs.map((d) => ({
+    const storedProjects = docs.map((d) => ({
       id: String(d._id),
       title: d.title,
       description: d.description,
@@ -41,6 +60,7 @@ export const getProjects = cache(async (): Promise<PublicProject[]> => {
       github: d.github ?? "",
       featured: Boolean(d.featured),
     }));
+    return [...storedProjects, ...missingPinnedProjects(storedProjects)];
   } catch (err) {
     log.error("Loading projects failed, using static data", err);
     return staticProjects();

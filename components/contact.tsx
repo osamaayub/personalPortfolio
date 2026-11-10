@@ -72,11 +72,11 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 p-8 text-white shadow-xl shadow-indigo-500/20 lg:col-span-2"
+          className="relative overflow-hidden rounded-[1.75rem] border border-line bg-ink p-8 text-canvas shadow-card lg:col-span-2"
         >
-          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
+          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand/25 blur-3xl" />
           <h3 className="relative text-2xl font-semibold">Contact information</h3>
-          <p className="relative mt-2 text-white/80">Prefer email? I read every message.</p>
+          <p className="relative mt-2 text-canvas/70">Prefer email? I read every message.</p>
 
           <ul className="relative mt-8 space-y-5">
             {info.map((item) => (
@@ -85,7 +85,7 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
                   <item.icon className="text-xl" aria-hidden="true" />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-xs uppercase tracking-wider text-white/70">{item.label}</p>
+                  <p className="text-xs uppercase tracking-wider text-canvas/55">{item.label}</p>
                   {"href" in item ? (
                     <a href={item.href} className="break-all font-medium underline-offset-4 hover:underline">
                       {item.value}
@@ -104,7 +104,7 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 transition hover:-translate-y-1 hover:bg-white/25"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-canvas/15 bg-canvas/10 transition hover:-translate-y-1 hover:bg-canvas/20"
             >
               <BsLinkedin />
             </a>
@@ -113,7 +113,7 @@ const Contact = ({ profile, copy }: { profile: Profile; copy: SectionsContent["c
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 transition hover:-translate-y-1 hover:bg-white/25"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-canvas/15 bg-canvas/10 transition hover:-translate-y-1 hover:bg-canvas/20"
             >
               <FaGithub />
             </a>
