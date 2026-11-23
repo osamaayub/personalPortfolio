@@ -39,16 +39,27 @@ const Skills = ({ groups, copy }: { groups: SkillGroup[]; copy: SectionsContent[
           >
             <h3 className="text-lg font-semibold">{group.title}</h3>
             <p className="mb-4 text-sm text-ink-subtle">{group.blurb}</p>
-            <ul className="flex flex-wrap gap-2">
+            <m.ul
+              className="flex flex-wrap gap-2"
+              initial={reduceMotion ? false : "hidden"}
+              whileInView="visible"
+              viewport={{ once: true, margin: "-20px" }}
+              variants={{ visible: { transition: { staggerChildren: 0.045 } } }}
+            >
               {group.skills.map((skill) => (
-                <li
+                <m.li
                   key={skill}
-                  className="chip px-3 py-1.5 text-sm transition-colors hover:border-brand/40 hover:bg-brand/15"
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.7, y: 8 },
+                    visible: { opacity: 1, scale: 1, y: 0 },
+                  }}
+                  transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                  className="chip px-3 py-1.5 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-brand/15 hover:shadow-sm"
                 >
                   {skill}
-                </li>
+                </m.li>
               ))}
-            </ul>
+            </m.ul>
           </m.div>
         ))}
       </div>

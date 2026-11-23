@@ -67,6 +67,16 @@ export const contentSchemas = {
       }),
     )
     .max(12),
+  testimonials: z
+    .array(
+      z.object({
+        quote: s(600),
+        name: s(120),
+        role: s(160),
+        company: s(160),
+      }),
+    )
+    .max(6),
 };
 
 export type SectionKey = keyof typeof contentSchemas;
@@ -77,6 +87,7 @@ export type AboutContent = z.infer<typeof contentSchemas.about>;
 export type SkillGroup = z.infer<typeof contentSchemas.skills>[number];
 export type ServicesContent = z.infer<typeof contentSchemas.services>;
 export type Experience = z.infer<typeof contentSchemas.experience>[number];
+export type TestimonialsContent = z.infer<typeof contentSchemas.testimonials>;
 export type SectionsContent = z.infer<typeof contentSchemas.sections>;
 export type SiteContent = { [K in SectionKey]: z.infer<(typeof contentSchemas)[K]> };
 
@@ -230,4 +241,7 @@ export const defaultContent: SiteContent = {
       logo: "/Narsun.jpeg",
     },
   ],
+  // One blank row so the admin editor shows the field shape; the section
+  // stays hidden on the site until a quote is filled in.
+  testimonials: [{ quote: "", name: "", role: "", company: "" }],
 };

@@ -9,6 +9,39 @@ body {
 
 html {
   scroll-padding-top: 7rem;
+  scroll-behavior: smooth;
+}
+
+/* Slim, theme-aware scrollbar. */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: rgb(var(--ink-subtle) / 0.35);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--brand) / 0.55);
+  background-clip: padding-box;
+}
+
+/* Film-grain overlay for a premium, textured surface. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Design tokens as RGB channels so Tailwind opacity modifiers work (bg-surface/80). */
@@ -155,6 +188,46 @@ html {
 .blob-a { animation: drift-a 14s ease-in-out infinite alternate; }
 .blob-b { animation: drift-b 14s ease-in-out infinite alternate; }
 
+/* Slow rotation for conic-gradient accent rings. */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+/* Gentle vertical drift for decorative glows. */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float-y 7s ease-in-out infinite;
+}
+
+/* Sweeping sheen for primary buttons. */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% -70%;
+  width: 45%;
+  background: linear-gradient(105deg, transparent, rgb(255 255 255 / 0.35), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  left: 130%;
+}
+
 @media (max-width: 640px) {
   .portfolio-backdrop {
     background:
@@ -165,7 +238,11 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .blob-a,
-  .blob-b {
+  .blob-b,
+  .animate-spin-slow,
+  .animate-float,
+  .btn-shine::after {
     animation: none !important;
+    transition: none !important;
   }
 }

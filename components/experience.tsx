@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { m, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { m, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import SectionHeading from "./section-heading";
 import type { Experience as ExperienceItem, SectionsContent } from "@/lib/content-schema";
 import { useSectionInView } from "@/hooks/hooks";
@@ -16,6 +16,7 @@ const Experience = ({ items, copy }: { items: ExperienceItem[]; copy: SectionsCo
     offset: ["start 75%", "end 60%"],
   });
   const lineScale = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+  const orbTop = useTransform(scrollYProgress, (v) => `${v * 100}%`);
 
   return (
     <section id="experience" ref={ref} className="mb-28 w-full max-w-[56rem] scroll-mt-28 sm:mb-40">
@@ -29,6 +30,14 @@ const Experience = ({ items, copy }: { items: ExperienceItem[]; copy: SectionsCo
           style={{ scaleY: reduceMotion ? 1 : lineScale }}
           className="absolute left-5 top-0 h-full w-px origin-top bg-gradient-to-b from-indigo-500 via-violet-500 to-fuchsia-500 md:left-1/2"
         />
+        {/* Glowing orb riding the tip of the drawn line. */}
+        <m.div
+          aria-hidden="true"
+          style={{ top: orbTop, opacity: reduceMotion ? 0 : 1 }}
+          className="absolute left-5 top-0 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand shadow-[0_0_16px_3px_rgb(var(--brand)/0.5)] md:left-1/2"
+        >
+          <span className="absolute inset-0 rounded-full bg-brand motion-safe:animate-ping" />
+        </m.div>
 
         <ol className="space-y-10">
           {items.map((item, index) => {

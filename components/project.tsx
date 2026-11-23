@@ -90,7 +90,7 @@ const Project = ({ title, description, tags, image, url, github, index }: Public
               target='_blank'
               rel='noopener noreferrer'
               aria-label={`View ${title} live demo (opens in a new tab)`}
-              className='inline-flex min-h-10 items-center gap-2 rounded-full bg-ink px-4 py-2 font-medium text-canvas transition-colors hover:bg-brand'
+              className='btn-shine inline-flex min-h-10 items-center gap-2 rounded-full bg-ink px-4 py-2 font-medium text-canvas transition-colors hover:bg-brand'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'

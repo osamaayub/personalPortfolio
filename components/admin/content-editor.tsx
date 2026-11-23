@@ -9,7 +9,7 @@ type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
 const field =
   "w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:border-white/15 dark:bg-white/10 dark:text-white";
 
-const longKeys = new Set(["description", "tagline", "intro", "text"]);
+const longKeys = new Set(["description", "tagline", "intro", "text", "quote"]);
 const label = (k: string) => k.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
 
 /** Empty copy of a sample value, used for "Add" buttons. */

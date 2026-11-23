@@ -19,21 +19,6 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { HiCheckCircle } from "react-icons/hi";
 
-const cardVariants = {
-  initial: {
-    opacity: 0,
-    y: 40,
-  },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: index * 0.08,
-      duration: 0.45,
-    },
-  }),
-};
-
 const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsContent["services"] }) => {
   const { ref } = useSectionInView("Services");
   const { setActiveSection, setTimeOfLastClick } =
@@ -43,7 +28,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
     <section
       ref={ref}
       id="services"
-      className="mb-28 w-full max-w-[64rem] scroll-mt-28 sm:mb-40"
+      className="mb-28 w-full max-w-[72rem] scroll-mt-28 sm:mb-40"
     >
       <SectionHeading
         eyebrow={copy.eyebrow}
@@ -52,82 +37,127 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
         {copy.title}
       </SectionHeading>
 
+      {/* Upwork banner: full-stack + AI integration */}
+      <m.aside
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mb-10 overflow-hidden rounded-2xl border border-white/10 bg-[#1d1e22] p-6 text-white shadow-card sm:p-8 lg:mb-12"
+      >
+        <div className="relative grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">
+              <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              </span>
+              Upwork · Full-Stack + AI Integration
+            </span>
 
+            <h3 className="mt-4 text-2xl font-bold tracking-tight sm:text-[1.7rem]">
+              Web apps that think with AI
+            </h3>
+            <p className="mt-3 max-w-xl text-[15px] leading-7 text-white/70">
+              End-to-end product development — pixel-perfect React interfaces,
+              robust Node/Express APIs, and production AI features: GPT &amp;
+              Gemini integrations, RAG pipelines, chatbots, and workflow
+              automation.
+            </p>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:gap-7">
+            <ul className="mt-6 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+              {[
+                "LLM API integration (OpenAI, Gemini)",
+                "RAG & vector search pipelines",
+                "AI chatbots & copilots",
+                "Workflow & task automation",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-white/80">
+                  <HiCheckCircle className="mt-0.5 shrink-0 text-base text-emerald-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href="#contact"
+              onClick={() => {
+                setActiveSection("Contact");
+                setTimeOfLastClick(Date.now());
+              }}
+              className="btn-shine group mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-violet-600 hover:text-white"
+            >
+              Start your AI project
+              <BsArrowRight className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+
+          {/* AI code-window visual */}
+          <div aria-hidden="true" className="relative hidden lg:block">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 font-mono text-[13px] leading-6 shadow-2xl backdrop-blur-sm">
+              <div className="mb-4 flex gap-1.5 border-b border-white/10 pb-4">
+                <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+              </div>
+              <p>
+                <span className="text-fuchsia-300">const</span>{" "}
+                <span className="text-sky-300">answer</span>{" "}
+                <span className="text-white/60">=</span>{" "}
+                <span className="text-emerald-300">await</span>{" "}
+                <span className="text-violet-300">ai</span>
+                <span className="text-white/60">.</span>
+                <span className="text-amber-200">generate</span>
+                <span className="text-white/60">({"{"} prompt, context {"}"})</span>
+              </p>
+              <p className="mt-1.5 text-white/40">// RAG pipeline · GPT-4o · Gemini</p>
+              <p className="mt-1.5">
+                <span className="text-fuchsia-300">return</span>{" "}
+                <span className="text-emerald-300">{"{ answer, citations }"}</span>
+              </p>
+            </div>
+            <span className="animate-float absolute -bottom-4 -left-4 rounded-full border border-white/15 bg-[#2a2c36] px-3.5 py-1.5 text-xs font-semibold text-white/85 shadow-xl">
+              GPT-4o · Gemini · Vector DB
+            </span>
+          </div>
+        </div>
+      </m.aside>
+
+      <div className="grid gap-5 sm:grid-cols-2">
         {content.items.map((service, index) => {
-          const isFeatured = false;
           const Icon = serviceIcons[service.icon];
 
           return (
             <m.article
               key={service.title}
-              variants={cardVariants}
-              custom={index}
-              initial="initial"
-              whileInView="animate"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              whileHover={{ y: -5 }}
-              transition={{
-                type: "spring",
-                stiffness: 350,
-                damping: 28,
-              }}
-              className={`spotlight card-interactive group relative overflow-hidden p-6 lg:p-8 ${isFeatured ? "sm:col-span-2 sm:p-8" : ""
-                }`}
+              transition={{ duration: 0.45, delay: (index % 2) * 0.08 }}
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-card-hover sm:p-7"
             >
-              <div
-                className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br from-fuchsia-300/40 to-indigo-300/40 opacity-60 blur-2xl transition-opacity group-hover:opacity-90 dark:from-fuchsia-500/20 dark:to-indigo-500/20"
-                aria-hidden
-              />
-              <span aria-hidden="true" className="pointer-events-none absolute right-6 top-4 select-none text-6xl font-black text-brand/10">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <div
-                className={`relative flex flex-col gap-4 ${isFeatured
-                  ? "sm:flex-row sm:items-start sm:gap-8"
-                  : ""
-                  }`}
-              >
-                <div
-                  className={`flex shrink-0 items-center justify-center rounded-2xl border border-brand/15 bg-brand-soft text-brand transition-transform motion-safe:group-hover:-rotate-3 ${isFeatured ? "h-14 w-14" : "h-12 w-12"
-                    }`}
-                >
-                  <Icon
-                    className={isFeatured ? "text-2xl" : "text-xl"}
-                  />
+              <div className="flex items-start justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/25 transition-transform duration-300 motion-safe:group-hover:-rotate-6 motion-safe:group-hover:scale-105">
+                  <Icon className="text-lg" />
                 </div>
+                <span className="font-mono text-xs font-semibold text-ink-subtle transition-colors group-hover:text-brand">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
 
-                <div className="flex-1">
-                  <div className="mb-2 flex flex-wrap items-center gap-2">
-                    <h3 className="text-lg font-semibold text-ink">
-                      {service.title}
-                    </h3>
+              <h3 className="mt-5 text-lg font-semibold tracking-tight text-ink">
+                {service.title}
+              </h3>
+              <p className="mt-2 flex-1 text-[15px] leading-7 text-ink-muted">
+                {service.description}
+              </p>
 
-                    {/* {isFeatured && (
-                      <span className="rounded-full bg-gray-900 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white dark:bg-white/10">
-                        Most Requested
-                      </span>
-                    )} */}
-                  </div>
-
-                  <p className="text-[15px] leading-7 text-ink-muted">
-                    {service.description}
-                  </p>
-
-                  <ul className="mt-5 space-y-3">
-                    {service.highlights.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2 text-sm text-ink-muted"
-                      >
-                        <HiCheckCircle className="mt-0.5 shrink-0 text-lg text-emerald-600 dark:text-emerald-400" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {service.highlights.map((item) => (
+                  <span key={item} className="chip">
+                    {item}
+                  </span>
+                ))}
               </div>
             </m.article>
           );
@@ -156,7 +186,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
             setActiveSection("Contact");
             setTimeOfLastClick(Date.now());
           }}
-          className="group mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 font-semibold text-canvas transition-colors hover:bg-brand"
+          className="btn-shine group mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 font-semibold text-canvas transition-colors hover:bg-brand"
         >
           {copy.ctaButton}
           <BsArrowRight className="transition-transform group-hover:translate-x-1" />

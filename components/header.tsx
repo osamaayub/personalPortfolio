@@ -9,10 +9,10 @@ import {
   useScroll,
 } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import clsx from 'clsx';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { BsArrowRight } from 'react-icons/bs';
-import { FaCode } from 'react-icons/fa';
 import { links } from '@/data/data';
 import { useActiveSectionContext } from '@/context/active-section-context';
 import ThemeSwitch from './theme-switch';
@@ -47,15 +47,22 @@ const Header = ({ name }: { name: string }) => {
       href="#home"
       onClick={() => go('Home')}
       aria-label={`${name}, back to top`}
-      className="flex items-center gap-2.5"
+      className="group flex items-center gap-2.5"
     >
       <m.span
         aria-hidden="true"
         whileHover={reduceMotion ? undefined : { rotate: -6, scale: 1.06 }}
         transition={{ type: 'spring', stiffness: 320, damping: 18 }}
-        className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/20"
+        className="relative flex h-9 w-9 items-center justify-center"
       >
-        <FaCode className="text-[17px]" />
+        <Image
+          src="/logo.svg"
+          alt=""
+          width={36}
+          height={36}
+          className="h-9 w-9 rounded-xl shadow-md shadow-indigo-500/25 ring-1 ring-inset ring-white/25"
+        />
+        <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-surface bg-emerald-500" />
       </m.span>
       <span className="hidden text-sm font-semibold tracking-tight min-[1100px]:inline">
         {name}
@@ -128,7 +135,7 @@ const Header = ({ name }: { name: string }) => {
             <Link
               href="#contact"
               onClick={() => go('Contact')}
-              className="group flex h-10 items-center gap-2 rounded-full bg-ink px-5 text-sm font-medium text-canvas transition-colors hover:bg-brand"
+              className="btn-shine group flex h-10 items-center gap-2 rounded-full bg-ink px-5 text-sm font-medium text-canvas transition-colors hover:bg-brand"
             >
               Let&apos;s talk
               <BsArrowRight className="transition-transform group-hover:translate-x-0.5" />

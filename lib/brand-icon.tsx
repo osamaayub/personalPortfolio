@@ -11,6 +11,8 @@ export async function brandIcon(px: number, radiusRatio: number) {
     .slice(0, 2)
     .toUpperCase();
 
+  const radius = px * radiusRatio;
+
   return new ImageResponse(
     (
       <div
@@ -20,15 +22,42 @@ export async function brandIcon(px: number, radiusRatio: number) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#fff",
-          fontSize: px * 0.46,
-          fontWeight: 700,
-          letterSpacing: -px * 0.02,
-          borderRadius: px * radiusRatio,
-          background: "linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #c026d3 100%)",
+          borderRadius: radius,
+          background: "linear-gradient(135deg, #1e1b4b 0%, #4f46e5 40%, #7c3aed 70%, #a21caf 100%)",
+          position: "relative",
         }}
       >
-        {initials}
+        {/* Top sheen */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "55%",
+            borderRadius: radius ? `${radius}px ${radius}px 40% 40%` : 0,
+            background: "linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0))",
+          }}
+        />
+        {/* Inner ring + monogram */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "74%",
+            height: "74%",
+            borderRadius: "24%",
+            border: `${Math.max(2, px * 0.012)}px solid rgba(255,255,255,0.35)`,
+            background: "rgba(255,255,255,0.1)",
+            color: "#fff",
+            fontSize: px * 0.36,
+            fontWeight: 800,
+            letterSpacing: -px * 0.02,
+          }}
+        >
+          {initials}
+        </div>
       </div>
     ),
     { width: px, height: px },

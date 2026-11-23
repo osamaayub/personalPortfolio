@@ -9,18 +9,19 @@ import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/hooks/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import RotatingText from "./rotating-text";
 import type { Profile } from "@/lib/content-schema";
 
 const MotionLink = m.create(Link);
 
-const Intro = ({ profile }: { profile: Profile }) => {
+const Intro = ({ profile, chips = [] }: { profile: Profile; chips?: readonly string[] }) => {
   const reduceMotion = useReducedMotion();
   const { ref } = useSectionInView("Home", 0.5);
   const { setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
 
   const primaryButton =
-    "flex h-14 items-center justify-center gap-2 rounded-full px-7 font-medium transition-colors duration-300";
+    "btn-shine flex h-14 items-center justify-center gap-2 rounded-full px-7 font-medium transition-colors duration-300";
 
   const socialButton =
     "flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface text-ink-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:text-brand";
@@ -43,7 +44,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
       className="relative mx-auto mb-20 flex min-h-[82svh] max-w-7xl flex-col items-center justify-center scroll-mt-28 px-4 text-center sm:mb-28 xl:items-start xl:pr-[36%] xl:text-left"
     >
       {/* Profile Image */}
-      <div className="flex justify-center xl:absolute xl:right-4 xl:top-1/2 xl:w-[35%] xl:-translate-y-1/2">
+      <div className="relative flex justify-center xl:absolute xl:right-4 xl:top-1/2 xl:w-[35%] xl:-translate-y-1/2">
         <m.div
           initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.94 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -55,6 +56,19 @@ const Intro = ({ profile }: { profile: Profile }) => {
             transition={reduceMotion ? { duration: 0 } : { duration: 4, ease: "easeInOut", repeat: Infinity }}
             whileHover={reduceMotion ? undefined : { scale: 1.04 }}
           >
+            {/* Orbiting conic-gradient arc */}
+            <div
+              aria-hidden="true"
+              className="animate-spin-slow absolute -inset-2.5 rounded-full opacity-70 blur-[3px] xl:-inset-3 xl:rounded-[2.2rem]"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, transparent 0deg, transparent 250deg, rgb(var(--brand) / 0.65) 310deg, transparent 360deg)",
+                WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                WebkitMaskComposite: "xor",
+                maskComposite: "exclude",
+                padding: "2px",
+              }}
+            />
             <m.div
               initial={reduceMotion ? false : { opacity: 0, scale: 0.86, rotate: -5 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -72,6 +86,33 @@ const Intro = ({ profile }: { profile: Profile }) => {
             </m.div>
           </m.div>
         </m.div>
+
+        {/* Floating skill chips (desktop only) */}
+        {chips.length > 0 && (
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden xl:block">
+            {[
+              { pos: "-left-9 top-10", rotate: "-6deg" },
+              { pos: "-right-7 top-1/4", rotate: "5deg" },
+              { pos: "-left-5 bottom-12", rotate: "4deg" },
+              { pos: "-right-5 bottom-24", rotate: "-5deg" },
+            ].slice(0, chips.length).map((c, i) => (
+              <m.span
+                key={chips[i]}
+                initial={reduceMotion ? false : { opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 16, delay: 0.9 + i * 0.15 }}
+                className={`absolute ${c.pos}`}
+              >
+                <span
+                  className="animate-float block rounded-full border border-line bg-surface/90 px-3 py-1.5 text-xs font-semibold text-ink-muted shadow-card backdrop-blur"
+                  style={{ rotate: c.rotate, animationDelay: `${i * 1.4}s` }}
+                >
+                  {chips[i]}
+                </span>
+              </m.span>
+            ))}
+          </div>
+        )}
       </div>
 
       <m.p
@@ -105,7 +146,7 @@ const Intro = ({ profile }: { profile: Profile }) => {
               {index > 0 && ' '}
               <m.span
                 aria-hidden="true"
-                className="inline-block text-brand"
+                className="animate-gradient inline-block bg-gradient-to-r from-indigo-600 via-fuchsia-500 to-indigo-600 bg-clip-text font-bold text-transparent dark:from-indigo-300 dark:via-fuchsia-300 dark:to-indigo-300"
                 initial={reduceMotion ? false : { opacity: 0, y: 24, rotate: -4 }}
                 animate={{ opacity: 1, y: 0, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 150, damping: 18, delay: 0.25 + index * 0.12 }}
@@ -124,8 +165,15 @@ const Intro = ({ profile }: { profile: Profile }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
       >
-        A {profile.title.toLowerCase()} turning complex ideas into polished,
-        reliable web products.
+        A {profile.title.toLowerCase()} turning complex ideas into{" "}
+        <RotatingText
+          words={[
+            "polished websites",
+            "reliable web products",
+            "delightful digital experiences",
+          ]}
+        />
+        .
       </m.p>
 
       <m.p

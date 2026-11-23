@@ -44,21 +44,35 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
       ))}
 
       {about.highlights.length > 0 && (
-        <ul className="grid gap-3 text-left sm:grid-cols-3">
+        <m.ul
+          className="grid gap-3 text-left sm:grid-cols-3"
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+        >
           {about.highlights.map((h, i) => {
             const Icon = highlightIcons[i % highlightIcons.length];
             return (
-              <li
+              <m.li
                 key={h.title}
-                className="relative rounded-2xl border border-line bg-surface-2/60 p-5 leading-6"
+                variants={{
+                  hidden: { opacity: 0, y: 20, scale: 0.96 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
+                }}
+                transition={{ type: "spring", stiffness: 140, damping: 20 }}
+                whileHover={reduceMotion ? undefined : { y: -4 }}
+                className="group relative rounded-2xl border border-line bg-surface-2/60 p-5 leading-6 transition-colors duration-300 hover:border-brand/40 hover:bg-surface"
               >
-                <Icon className="mb-2 text-xl text-brand" aria-hidden="true" />
+                <span className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-brand-soft text-brand transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
+                  <Icon className="text-lg" aria-hidden="true" />
+                </span>
                 <p className="text-sm font-semibold">{h.title}</p>
                 <p className="text-sm text-ink-muted">{h.text}</p>
-              </li>
+              </m.li>
             );
           })}
-        </ul>
+        </m.ul>
       )}
     </m.section>
   );
