@@ -110,7 +110,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
                 <span className="text-amber-200">generate</span>
                 <span className="text-white/60">({"{"} prompt, context {"}"})</span>
               </p>
-              <p className="mt-1.5 text-white/40">// RAG pipeline · GPT-4o · Gemini</p>
+              <p className="mt-1.5 text-white/40">{"// RAG pipeline · GPT-4o · Gemini"}</p>
               <p className="mt-1.5">
                 <span className="text-fuchsia-300">return</span>{" "}
                 <span className="text-emerald-300">{"{ answer, citations }"}</span>
