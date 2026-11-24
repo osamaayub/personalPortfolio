@@ -43,7 +43,7 @@ const Project = ({ title, description, tags, image, url, github, index }: Public
         whileHover={reduceMotion ? undefined : { rotateX: 180 }}
         whileTap={reduceMotion ? undefined : { rotateX: 180 }}
         transition={{ type: "spring", stiffness: 140, damping: 20 }}
-        style={{ transformStyle: "preserve-3d" }}
+        style={{ transformStyle: "preserve-3d", transformPerspective: 1200 }}
       >
       {/* Front face */}
       <div
