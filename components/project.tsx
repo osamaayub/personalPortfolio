@@ -36,6 +36,20 @@ const Project = ({ title, description, tags, image, url, github, index }: Public
       onPointerCancel={resetTilt}
       whileHover={reduceMotion ? undefined : { y: -4 }}
     >
+      {/* Flip container: rotates 180° on X so the card turns over on hover/tap. */}
+      <m.div
+        className="relative h-full w-full min-w-0"
+        initial={false}
+        whileHover={reduceMotion ? undefined : { rotateX: 180 }}
+        whileTap={reduceMotion ? undefined : { rotateX: 180 }}
+        transition={{ type: "spring", stiffness: 140, damping: 20 }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+      {/* Front face */}
+      <div
+        className="flex h-full w-full min-w-0 flex-col"
+        style={{ backfaceVisibility: "hidden" }}
+      >
       <div className="relative aspect-[16/9] shrink-0 overflow-hidden border-b border-line bg-[#efeee9] dark:bg-surface-2">
         <m.div
           initial={reduceMotion ? false : { scale: 1.12 }}
@@ -130,6 +144,90 @@ const Project = ({ title, description, tags, image, url, github, index }: Public
           )}
         </div>
       </div>
+      </div>
+
+      {/* Back face — revealed when the card flips over */}
+      <div
+        className="absolute inset-0 flex flex-col justify-between overflow-hidden p-6"
+        style={{
+          backfaceVisibility: "hidden",
+          transform: "rotateX(180deg)",
+          background: "linear-gradient(155deg, #1e1b4b 0%, #4f46e5 50%, #a21caf 100%)",
+        }}
+      >
+        <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
+            Project
+          </p>
+          <h3 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-white">
+            {title}
+          </h3>
+          <p className="mt-3 line-clamp-4 text-sm leading-6 text-white/75">
+            {description}
+          </p>
+        </div>
+
+        <div>
+          <ul className="flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <li
+                key={tag}
+                className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white/85"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+            {url && (
+              <a
+                href={url}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label={`View ${title} live demo (opens in a new tab)`}
+                className="inline-flex min-h-10 items-center gap-2 rounded-full bg-white px-4 py-2 font-medium text-slate-900 transition-colors hover:bg-indigo-100"
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth='1.5'
+                  stroke='currentColor'
+                  className='w-4 h-4'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'
+                  />
+                </svg>
+                Live Demo
+              </a>
+            )}
+            {github && (
+              <a
+                href={github}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label={`View ${title} on GitHub (opens in a new tab)`}
+                className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/30 px-4 py-2 font-medium text-white transition-colors hover:bg-white/10"
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 24 24'
+                  className='w-4 h-4'
+                >
+                  <path d='M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.77-1.35-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.26 1.87 1.26 1.08 1.85 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0C16.7 5.1 17.7 5.42 17.7 5.42c.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.62-2.8 5.64-5.47 5.94.43.37.81 1.1.81 2.23v3.3c0 .32.21.69.83.58A12 12 0 0012 0z' />
+                </svg>
+                GitHub
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+      </m.div>
     </m.article>
   );
 };
