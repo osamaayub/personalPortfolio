@@ -34,13 +34,13 @@ export default function SectionHeading({ children, subtitle, eyebrow }: SectionH
         >
           <m.span
             aria-hidden="true"
-            className="h-1.5 w-1.5 rounded-full bg-brand"
+            className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand"
             variants={{ hidden: { scale: 0 }, visible: { scale: 1 } }}
             transition={{ type: "spring", stiffness: 300, damping: 15 }}
           />
           <m.span
             aria-hidden="true"
-            className="h-px w-8 bg-gradient-to-r from-brand/70 to-transparent"
+            className="animate-gradient h-px w-8 bg-gradient-to-r from-brand/70 via-brand to-transparent"
             variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1 } }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: "left" }}

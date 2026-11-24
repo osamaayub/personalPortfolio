@@ -5,6 +5,7 @@ import SectionHeading from "./section-heading";
 import Marquee from "./marquee";
 import { useSectionInView } from "@/hooks/hooks";
 import { m, useReducedMotion } from "framer-motion";
+import Tilt from "./tilt";
 import type { SectionsContent, SkillGroup } from "@/lib/content-schema";
 
 const Skills = ({ groups, copy }: { groups: SkillGroup[]; copy: SectionsContent["skills"] }) => {
@@ -29,13 +30,13 @@ const Skills = ({ groups, copy }: { groups: SkillGroup[]; copy: SectionsContent[
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((group, index) => (
+          <Tilt key={group.title} className="h-full">
           <m.div
-            key={group.title}
             initial={reduceMotion ? false : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ delay: index * 0.07, duration: 0.45 }}
-            className="card-interactive relative p-6 hover:-translate-y-1"
+            className="spotlight card-interactive relative flex h-full flex-col p-6"
           >
             <h3 className="text-lg font-semibold">{group.title}</h3>
             <p className="mb-4 text-sm text-ink-subtle">{group.blurb}</p>
@@ -61,6 +62,7 @@ const Skills = ({ groups, copy }: { groups: SkillGroup[]; copy: SectionsContent[
               ))}
             </m.ul>
           </m.div>
+          </Tilt>
         ))}
       </div>
     </section>

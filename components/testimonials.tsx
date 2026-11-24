@@ -5,6 +5,7 @@ import { m, useReducedMotion } from "framer-motion";
 import { HiStar } from "react-icons/hi";
 import { FaQuoteLeft } from "react-icons/fa";
 import SectionHeading from "./section-heading";
+import Tilt from "./tilt";
 import type { TestimonialsContent } from "@/lib/content-schema";
 
 const initials = (name: string) =>
@@ -28,8 +29,8 @@ export default function Testimonials({ items }: { items: TestimonialsContent }) 
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((t, i) => (
+          <Tilt key={`${t.name}-${i}`} className="h-full">
           <m.figure
-            key={`${t.name}-${i}`}
             initial={reduceMotion ? false : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
@@ -39,7 +40,7 @@ export default function Testimonials({ items }: { items: TestimonialsContent }) 
               damping: 20,
               delay: (i % 3) * 0.08,
             }}
-            className="card-interactive relative flex flex-col p-6"
+            className="spotlight card-interactive relative flex h-full flex-col p-6"
           >
             <FaQuoteLeft
               aria-hidden="true"
@@ -72,6 +73,7 @@ export default function Testimonials({ items }: { items: TestimonialsContent }) 
               </span>
             </figcaption>
           </m.figure>
+          </Tilt>
         ))}
       </div>
     </section>

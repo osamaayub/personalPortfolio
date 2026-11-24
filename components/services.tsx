@@ -16,6 +16,7 @@ import { useSectionInView } from "@/hooks/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { m } from "framer-motion";
 import Link from "next/link";
+import Tilt from "./tilt";
 import { BsArrowRight } from "react-icons/bs";
 import { HiCheckCircle } from "react-icons/hi";
 
@@ -128,13 +129,13 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
           const Icon = serviceIcons[service.icon];
 
           return (
+            <Tilt key={service.title} className="h-full">
             <m.article
-              key={service.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: (index % 2) * 0.08 }}
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-card-hover sm:p-7"
+              className="spotlight group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-[border-color,box-shadow] duration-300 hover:border-brand/40 hover:shadow-card-hover sm:p-7"
             >
               <div className="flex items-start justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-md shadow-indigo-500/25 transition-transform duration-300 motion-safe:group-hover:-rotate-6 motion-safe:group-hover:scale-105">
@@ -160,6 +161,7 @@ const Services = ({ content, copy }: { content: ServicesContent; copy: SectionsC
                 ))}
               </div>
             </m.article>
+            </Tilt>
           );
         })}
       </div>

@@ -6,6 +6,7 @@ import { m, useReducedMotion, useScroll, useSpring, useTransform } from "framer-
 import SectionHeading from "./section-heading";
 import type { Experience as ExperienceItem, SectionsContent } from "@/lib/content-schema";
 import { useSectionInView } from "@/hooks/hooks";
+import Tilt from "./tilt";
 
 const Experience = ({ items, copy }: { items: ExperienceItem[]; copy: SectionsContent["experience"] }) => {
   const { ref } = useSectionInView("Experience");
@@ -61,6 +62,7 @@ const Experience = ({ items, copy }: { items: ExperienceItem[]; copy: SectionsCo
                   )}
                 </div>
 
+                <Tilt className="h-full">
                 <m.article
                   initial={reduceMotion ? false : { opacity: 0, x: onRight ? 48 : -48 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -78,6 +80,7 @@ const Experience = ({ items, copy }: { items: ExperienceItem[]; copy: SectionsCo
                   <p className="text-sm font-medium text-ink-subtle">{item.location}</p>
                   <p className="mt-3 text-[15px] leading-7 text-ink-muted">{item.description}</p>
                 </m.article>
+                </Tilt>
               </li>
             );
           })}

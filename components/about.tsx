@@ -4,6 +4,7 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { m, useReducedMotion } from "framer-motion";
 import { useSectionInView } from "@/hooks/hooks";
+import Tilt from "./tilt";
 import { FaBolt, FaLayerGroup, FaShieldAlt } from "react-icons/fa";
 import type { AboutContent, SectionsContent } from "@/lib/content-schema";
 
@@ -28,13 +29,20 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
   return (
     <m.section
       ref={ref}
-      className="mb-32 max-w-5xl scroll-mt-28 card px-6 py-8 leading-8 sm:mb-40 sm:px-10 sm:py-10"
+      className="card relative mb-32 max-w-5xl scroll-mt-28 overflow-hidden px-6 py-8 leading-8 sm:mb-40 sm:px-10 sm:py-10"
       initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.97 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ type: "spring", stiffness: 90, damping: 20 }}
       id="about"
     >
+      <div aria-hidden="true" className="animate-float pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-brand/15 blur-3xl" />
+      <div
+        aria-hidden="true"
+        className="animate-float pointer-events-none absolute -bottom-28 -left-16 h-60 w-60 rounded-full bg-fuchsia-400/10 blur-3xl"
+        style={{ animationDelay: "1.8s" }}
+      />
+      <div className="relative">
       <SectionHeading eyebrow={copy.eyebrow}>{copy.title}</SectionHeading>
 
       {about.paragraphs.map((text, i) => (
@@ -54,8 +62,8 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
           {about.highlights.map((h, i) => {
             const Icon = highlightIcons[i % highlightIcons.length];
             return (
+              <Tilt key={h.title} className="h-full">
               <m.li
-                key={h.title}
                 variants={{
                   hidden: { opacity: 0, y: 20, scale: 0.96 },
                   visible: { opacity: 1, y: 0, scale: 1 },
@@ -70,10 +78,12 @@ const About = ({ about, copy }: { about: AboutContent; copy: SectionsContent["ab
                 <p className="text-sm font-semibold">{h.title}</p>
                 <p className="text-sm text-ink-muted">{h.text}</p>
               </m.li>
+              </Tilt>
             );
           })}
         </m.ul>
       )}
+      </div>
     </m.section>
   );
 };
